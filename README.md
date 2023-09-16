@@ -36,5 +36,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## initialize prisma
 1. npm install prisma --save-dev
 2. npm install @prisma/client
-3. npx prisma init
+3. npm install typescript ts-node @types/node --save-dev
+4. npx prisma init
 You get prisma/schema.prisma
+5. build your model
+6. npx prisma migrate -> the model is now in your database
+5. prisma client: https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
+
