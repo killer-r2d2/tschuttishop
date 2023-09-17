@@ -14,6 +14,17 @@ const config: Config = {
       container: {
         center: true,
       },
+      backgroundImage: {
+        'hero-shirt': "url('/hero-shirt.png')",
+        'hero-player': "url('/shirt-player.png')",
+        'hero-vintage': "url('/vintage-hero-wide.png')"
+      },
+      backgroundSize: {
+        '120%': '120%',
+      },
+      scale: {
+        '101': '101%'
+      }
     },
   },
   plugins: [],
