@@ -1,22 +1,19 @@
+"use client";
 import { Product, ApiResponse } from '../app/types/Product';
+import  useProducts  from '@/hooks/useProducts';
 
-async function getPorducts(): Promise<ApiResponse> {
-  const url = `${process.env.BASE_URL}/api/getProducts`;
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error("An error occurred while fetching the products.");
-  }
-  return res.json();
-}
-
-export default async function Products() {
-  const data: Product[] = await getPorducts();
+export default  function Products() {
+  const {products, isLoading, isError} = useProducts();
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {isError.message}</p>;
+  
   return (
     <div>
       <div className="border">
         <h1>Products</h1>
+        <p>{JSON.stringify(products)}</p>
         <div>
-          {data.map((product) => (
+          {products.map((product) => (
             <ul key={product.id}>
               <li>{product.id}</li>
               <li>{product.name}</li>
