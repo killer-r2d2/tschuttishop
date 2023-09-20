@@ -13,6 +13,9 @@ const config: Config = {
       },
       container: {
         center: true,
+        padding: {
+
+        },
       },
       backgroundImage: {
         'hero-shirt': "url('/hero-shirt.png')",
