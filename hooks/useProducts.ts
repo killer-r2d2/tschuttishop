@@ -1,8 +1,6 @@
 "use client";
 import useSWR from "swr";
-import { Product, ApiResponse } from '../app/types/Product';
-
-// const fetcher = (...args) => fetch(...args).then(res => res.json())
+import { ApiResponse } from '../app/types/Product';
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);

@@ -1,5 +1,4 @@
 "use client";
-import { Product, ApiResponse } from '../app/types/Product';
 import  useProducts  from '@/hooks/useProducts';
 
 export default  function Products() {
@@ -13,7 +12,7 @@ export default  function Products() {
         <h1>Products</h1>
         <p>{JSON.stringify(products)}</p>
         <div>
-          {products.map((product) => (
+          {products!.map((product) => (
             <ul key={product.id}>
               <li>{product.id}</li>
               <li>{product.name}</li>
@@ -25,6 +24,7 @@ export default  function Products() {
             </ul>
           ))}
         </div>
+
       </div>
     </div>
   );
