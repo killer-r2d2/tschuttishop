@@ -1,101 +1,64 @@
-'use client';
-import React, { useState } from "react";
+"use client";
+// Desc: Form component
+// to create products
+import { useState, useEffect } from "react";
+import { useCreateProduct } from "@/hooks/useCreateProduct";
 
-type ProductInput = {
-  name: string;
-  description?: string;
-  price: number;
-  inStock: boolean;
-};
-
-export default function CreateProductForm() {
-  const [productInput, setProductInput] = useState<ProductInput>({
+export function Form() {
+  const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price: 0,
-    inStock: true, // automatisch auf true gesetzt
+    price: 0.0,
+    inStock: false,
   });
+  const { isLoading, isError, createProduct, isSuccess  } = useCreateProduct();
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setProductInput((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    const actualValue = type === 'checkbox' ? checked : type === 'number' ? parseFloat(value) : value;
+    setFormData({ ...formData, [name]: actualValue });
+  }
+  
+  useEffect(() => {
+    if (isSuccess) {
+      setFormData({
+        name: "",
+        description: "",
+        price: 0.0,
+        inStock: false,
+      });
+    }
+  }, [isSuccess]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
+    console.log(formData);
+    createProduct(formData);
+  }
 
-    // Grundlegende Validierung
-    if (!productInput.name || productInput.price <= 0) {
-      alert("Invalid input. Name and price are required.");
-      setIsLoading(false);
-      return;
-    }
-
-    const payload = {
-      ...productInput,
-      inStock: true, // automatisch auf true gesetzt
-    };
-
-    const res = await fetch("/api/createProduct", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    setIsLoading(false);
-    if (res.ok) {
-      alert("Product created successfully.");
-    } else {
-      alert("An error occurred while creating the product.");
-    }
-  };
+  if (isLoading) return <p>Loading...</p>;
+  if (isSuccess) return <p>Success: hat funktioniert</p>;
+  if (isError) return <p>Error: hat nicht funktioniert {isError}</p>;
 
   return (
-    <div>
-      <h1>Create Product</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            onChange={handleChange}
-            value={productInput.name}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            onChange={handleChange}
-            value={productInput.description || ""}
-          />
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            onChange={handleChange}
-            value={productInput.price}
-          />
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Create"}
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">Name</label>
+        <input type="text" name="name" onChange={handleInputChange} />
+      </div>
+      <div>
+        <label htmlFor="description">Description</label>
+        <input type="text" name="description" onChange={handleInputChange} />
+      </div>
+      <div>
+        <label htmlFor="price">Price</label>
+        <input type="number" name="price" step="0.01"  onChange={handleInputChange} />
+      </div>
+      <div>
+        <label htmlFor="inStock">In Stock</label>
+        <input type="checkbox" name="inStock" onChange={handleInputChange} />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
   );
 }

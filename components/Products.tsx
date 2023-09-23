@@ -1,7 +1,7 @@
 "use client";
 import  useProducts  from '@/hooks/useProducts';
 
-export default  function Products() {
+export function Products() {
   const {products, isLoading, isError} = useProducts();
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {isError.message}</p>;
@@ -10,7 +10,7 @@ export default  function Products() {
     <div>
       <div className="border">
         <h1>Products</h1>
-        <p>{JSON.stringify(products)}</p>
+        {/* <p>{JSON.stringify(products)}</p> */}
         <div>
           {products!.map((product) => (
             <ul key={product.id}>
