@@ -1,6 +1,7 @@
 import Hero from "@/app/components/hero";
 import CardsList from "@/app/components/Cards";
 import { FireIcon } from "@heroicons/react/24/solid";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
                   <FireIcon className="h-14"/>
                   <h2 className="text-5xl font-bold">Neu eingetroffen</h2>
               </div>
-              <CardsList maxCards={4} />
+              <Products/>
           </div>
     </>
   )
