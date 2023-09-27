@@ -11,7 +11,7 @@ export default function Navigation() {
                     </button>
                     <div className="flex gap-4 items-center">
                         <Image
-                            src="./logo-light.svg"
+                            src="../logo-light.svg"
                             alt="Tschuttishop Logo"
                             width={40}
                             height={40}
