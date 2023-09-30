@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FormData, UseCreateProductResponse } from "../app/types/Form";
+import { mutate } from 'swr'
 
 export const useCreateProduct = (): UseCreateProductResponse => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +23,10 @@ export const useCreateProduct = (): UseCreateProductResponse => {
       if (!response.ok) {
         throw new Error("An error occurred while creating the product.");
       }
+
+      mutate('/api/getProducts')
+
+
       setIsSuccess(true);
       setTimeout(() => setIsSuccess(false), 2000);
     } catch (error: any) {
