@@ -19,7 +19,7 @@ export function Form() {
     setFormData({ ...formData, [name]: actualValue });
   }
   
-  useEffect(() => {
+  useEffect(() => {  
     if (isSuccess) {
       setFormData({
         name: "",
@@ -36,7 +36,7 @@ export function Form() {
     createProduct(formData);
   }
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className="text-purple-600">Loading...</p>;
   if (isSuccess) return <p>Success: hat funktioniert</p>;
   if (isError) return <p>Error: hat nicht funktioniert {isError}</p>;
 

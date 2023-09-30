@@ -1,5 +1,5 @@
-import { Products } from "../components/Products";
-import { Form } from "../components/Form";
+import { Products } from "./components/Products";
+import { Form } from "./components/Form";
 import Hero from "@/app/components/hero";
 import { FireIcon } from "@heroicons/react/24/solid";
 
