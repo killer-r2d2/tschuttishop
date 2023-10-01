@@ -1,5 +1,7 @@
 import {UserCircleIcon, ShoppingCartIcon, Bars4Icon} from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
+
 
 export function Navigation() {
     return (
@@ -20,12 +22,16 @@ export function Navigation() {
                     </div>
                     <div className="flex gap-16 items-center">
                         <ul className="flex gap-5 text-slate-100">
-                            <li className="hover:text-slate-500 transition-colors">Home</li>
+                            <li className="hover:text-slate-500 transition-colors">
+                                <Link href="/">Home</Link>
+                            </li>
                             <li className="hover:text-slate-500 transition-colors">Shirts</li>
                             <li className="hover:text-slate-500 transition-colors">Schuhe</li>
                         </ul>
                         <div className="flex gap-4">
-                            <UserCircleIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors"/>
+                            <Link href="/dashboard">
+                                    <UserCircleIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors"/>
+                            </Link>
                             <ShoppingCartIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors"/>
                         </div>
                     </div>
