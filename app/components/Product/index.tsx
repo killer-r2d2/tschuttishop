@@ -3,7 +3,7 @@ import React , { useRef, useState } from "react";
 import useProducts from "@/hooks/useProducts";
 import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
-import { Product } from "../types/Product";
+import { Product } from "../../types/Product";
 import Image from "next/image";
 import Link from "next/link";
 

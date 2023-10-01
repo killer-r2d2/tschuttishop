@@ -1,6 +1,6 @@
-import { Products } from "./components/Products";
+import { Products } from "./components/Product";
 import { Form } from "./components/Form";
-import Hero from "@/app/components/hero";
+import { Hero } from "./components/Hero";
 import { FireIcon } from "@heroicons/react/24/solid";
 
 export default async function Home() {

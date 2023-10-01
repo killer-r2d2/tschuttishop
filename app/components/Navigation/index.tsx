@@ -1,7 +1,7 @@
 import {UserCircleIcon, ShoppingCartIcon, Bars4Icon} from "@heroicons/react/24/solid";
 import Image from "next/image";
 
-export default function Navigation() {
+export function Navigation() {
     return (
         <>
             <nav className="sticky top-0 z-50">

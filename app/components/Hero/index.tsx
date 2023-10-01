@@ -1,6 +1,6 @@
 import styles from './hero.module.css'
 
-export default function Hero() {
+export function Hero() {
     return (
         <div>
             <div className="container grid grid-cols-1 lg:grid-cols-2 gap-5 h-[75vh]">

@@ -1,8 +1,8 @@
 import { Roboto_Flex } from "@next/font/google";
 import { Metadata } from "next";
 import '../app/globals.css'
-import Navigation from "@/app/components/navigation";
-import Footer from "@/app/components/footer";
+import { Navigation } from "@/app/components/Navigation";
+import { Footer } from "./components/Footer";
 
 export const metadata: Metadata = {
     title: 'Tschuttishop',
