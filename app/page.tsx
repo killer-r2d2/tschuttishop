@@ -13,7 +13,6 @@ export default async function Home() {
                 <h2 className="text-5xl font-bold">Neu eingetroffen</h2>
             </div>
             <ProductList />
-            <Form />
         </div>
     </div>
   );
