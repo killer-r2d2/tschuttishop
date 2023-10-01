@@ -41,24 +41,25 @@ export function Form() {
   if (isError) return <p>Error: hat nicht funktioniert {isError}</p>;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" onChange={handleInputChange} />
+    <form onSubmit={handleSubmit} className="container mx-auto my-4 p-4">
+      <div className="my-2">
+        <label htmlFor="name" className="font-bold">Name</label>
+        <input type="text" name="name" onChange={handleInputChange} className="border rounded p-2 w-full" />
       </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <input type="text" name="description" onChange={handleInputChange} />
+      <div className="my-2">
+        <label htmlFor="description" className="font-bold">Description</label>
+        <input type="text" name="description" onChange={handleInputChange} className="border rounded p-2 w-full" />
       </div>
-      <div>
-        <label htmlFor="price">Price</label>
-        <input type="number" name="price" step="0.01"  onChange={handleInputChange} />
+      <div className="my-2">
+        <label htmlFor="price" className="font-bold">Price</label>
+        <input type="number" name="price" step="0.01" onChange={handleInputChange} className="border rounded p-2 w-full" />
       </div>
-      <div>
-        <label htmlFor="inStock">In Stock</label>
-        <input type="checkbox" name="inStock" onChange={handleInputChange} />
+      <div className="my-2">
+        <label htmlFor="inStock" className="font-bold">In Stock</label>
+        <input type="checkbox" name="inStock" onChange={handleInputChange} className="ml-2" />
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" className="bg-blue-500 text-white rounded px-4 py-2">Submit</button>
     </form>
   );
+  
 }

@@ -7,8 +7,8 @@ export default function Dashboard() {
   return (
     <Section>
       <Container>
-        <Products />
         <Form />
+        <Products />
       </Container>
     </Section>
   );
