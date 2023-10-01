@@ -11,15 +11,15 @@ export function Navigation() {
                     <button className="block md:hidden">
                         <Bars4Icon className="w-10 text-slate-100 hover:text-slate-500 transition-colors" />
                     </button>
-                    <div className="flex gap-4 items-center">
-                        <Image
-                            src="../logo-light.svg"
-                            alt="Tschuttishop Logo"
-                            width={40}
-                            height={40}
-                        />
-                        <p className="text-2xl text-slate-100">Tschuttishop</p>
-                    </div>
+                        <Link href="/" className="flex gap-4 items-center">
+                            <Image
+                                src="../logo-light.svg"
+                                alt="Tschuttishop Logo"
+                                width={40}
+                                height={40}
+                            />
+                            <p className="text-2xl text-slate-100">Tschuttishop</p>
+                        </Link>
                     <div className="flex gap-16 items-center">
                         <ul className="flex gap-5 text-slate-100">
                             <li className="hover:text-slate-500 transition-colors">
