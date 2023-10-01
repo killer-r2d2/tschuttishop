@@ -1,7 +1,7 @@
-import { Products } from "./components/Product";
 import { Form } from "./components/Form";
 import { Hero } from "./components/Hero";
 import { FireIcon } from "@heroicons/react/24/solid";
+import { ProductList } from "./components/ProductsList";
 
 export default async function Home() {
   return (
@@ -12,7 +12,7 @@ export default async function Home() {
                 <FireIcon className="h-14"/>
                 <h2 className="text-5xl font-bold">Neu eingetroffen</h2>
             </div>
-            <Products />
+            <ProductList />
             <Form />
         </div>
     </div>
