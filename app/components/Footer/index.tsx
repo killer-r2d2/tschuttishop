@@ -1,9 +1,4 @@
 import { Container } from "../Base/Container";
-import {
-  UserCircleIcon,
-  ShoppingCartIcon,
-  Bars4Icon,
-} from "@heroicons/react/24/solid";
 
 export function Footer() {
   return (

@@ -1,4 +1,4 @@
-import { Roboto_Flex } from "@next/font/google";
+import { Roboto_Flex } from "next/font/google";
 import { Metadata } from "next";
 import '../app/globals.css'
 import { Navigation } from "@/app/components/Navigation";
