@@ -8,7 +8,6 @@ export default async function handle(
     if (req.method === 'GET') {
         try {
             const id = req.query.id as string;
-            console.log('req.query', id);
             const product = await prisma.product.findUnique({
                 where: {
                     id: parseInt(id),

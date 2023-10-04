@@ -1,17 +1,19 @@
-"use client"
-import prisma from "@/prisma/client";
+"use client";
 import useGetProductById from "@/hooks/useGetProductById";
 import ProductPage from "@/app/components/ProductPage";
+import { Container } from "@/app/components/Base/Container";
 
-export default function Page({params}: { params: { id: number } }) {
-    const productId: number = params.id;
-    console.log(productId);
-    const { product, isLoading, isError } = useGetProductById(productId);
+export default function Page({ params }: { params: { id: number } }) {
+  const productId: number = params.id;
 
-    if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error: {isError.message}</p>;
-
+  const { product, isLoading, isError } = useGetProductById(productId);
+  if (isLoading)
     return (
-       <ProductPage id={product.id} name={product.name} description={product.description} price={product.price} inStock="" createdAt="" updatedAt=""></ProductPage>
+      <Container>
+        <p>Lade Produkt Daten...</p>
+      </Container>
     );
+  if (isError) return <p>Error: {isError.message}</p>;
+
+  return <ProductPage {...product}></ProductPage>;
 }
