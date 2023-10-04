@@ -1,19 +1,17 @@
-export default function Page({params}: { params: { id: string } }) {
-    const product: string = params.id;
-    return (
-        <div className="container">
-            <div className="grid grid-cols-12 gap-8">
-                <div className="col-span-3 bg-slate-200 h-[25vh] p-5">
-                    <p className="font-bold">Kategorien</p>
-                </div>
-                <div className="col-span-4 bg-slate-200 h-[500px] p-5 rounded-xl">
-                    <p>Produkt Bild</p>
-                </div>
+"use client"
+import prisma from "@/prisma/client";
+import useGetProductById from "@/hooks/useGetProductById";
+import ProductPage from "@/app/components/ProductPage";
 
-                <div className="col-span-5 h-full">
-                    <h1 className="text-2xl font-bold">Product ID: {product}</h1>
-                </div>
-            </div>
-        </div>
+export default function Page({params}: { params: { id: number } }) {
+    const productId: number = params.id;
+    console.log(productId);
+    const { product, isLoading, isError } = useGetProductById(productId);
+
+    if (isLoading) return <p>Loading...</p>;
+    if (isError) return <p>Error: {isError.message}</p>;
+
+    return (
+       <ProductPage id={product.id} name={product.name} description={product.description} price={product.price} inStock="" createdAt="" updatedAt=""></ProductPage>
     );
 }
