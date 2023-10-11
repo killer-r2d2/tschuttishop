@@ -5,8 +5,8 @@ import { ProductList } from "./components/ProductsList";
 export default async function Home() {
   return (
     <div>
-    <Hero/>
-    <ProductList/>
+      <Hero />
+      <ProductList />
     </div>
   );
 }
