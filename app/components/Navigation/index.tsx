@@ -38,7 +38,7 @@ export function Navigation() {
                 </li>
               </ul>
               <div className="flex gap-4">
-                <Link href="/">
+                <Link href="/dashboard">
                   <UserCircleIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors" />
                 </Link>
                 <ShoppingCartIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors" />
