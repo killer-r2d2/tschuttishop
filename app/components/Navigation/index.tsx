@@ -4,6 +4,7 @@ import {
   UserCircleIcon,
   ShoppingCartIcon,
   Bars4Icon,
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -55,24 +56,39 @@ export function Navigation() {
         <Container>
           <div className="flex justify-between items-center lg:block">
             <Logo />
-            <div className="flex gap-8">
+            <div className="flex gap-8 items-center">
               <CartUser />
               <button className="block" onClick={() => setToggle(!toggle)}>
-                <Bars4Icon className="w-10 text-slate-100 hover:text-slate-500 transition-colors" />
+                <Bars4Icon
+                  className={`${
+                    !toggle ? "block" : "hidden"
+                  } w-10 text-slate-100 hover:text-slate-500 transition-colors`}
+                />
+                <XMarkIcon
+                  className={`${
+                    !toggle ? "hidden" : "block"
+                  } w-10 text-slate-100 hover:text-slate-500 transition-colors`}
+                />
               </button>
             </div>
           </div>
         </Container>
-        <div className={`${!toggle ? "hidden" : "block"} bg-slate-900 p-20`}>
+        <div
+          className={`${
+            !toggle ? "hidden" : "block"
+          } bg-slate-900 shadow text-slate-100 pb-5 transition`}
+        >
           <Container>
-            {navLinks.map((link: NavLink) => (
-              <li
-                key={link.name}
-                className="hover:text-slate-500 transition-colors"
-              >
-                <Link href={link.href}>{link.name}</Link>
-              </li>
-            ))}
+            <ul className="text-center text-xl">
+              {navLinks.map((link: NavLink) => (
+                <li
+                  key={link.name}
+                  className="hover:text-slate-500 transition-colors mt-5"
+                >
+                  <Link href={link.href}>{link.name}</Link>
+                </li>
+              ))}
+            </ul>
           </Container>
         </div>
       </nav>
