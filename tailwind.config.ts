@@ -1,37 +1,36 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-roboto-flex)'],
+        sans: ["var(--font-roboto-flex)"],
       },
       container: {
         center: true,
         padding: {
-
+          DEFAULT: "0rem",
+          sm: "2rem",
         },
       },
       backgroundImage: {
-        'hero-shirt': "url('/hero-shirt.png')",
-        'hero-player': "url('/shirt-player.png')",
-        'hero-vintage': "url('/vintage-hero-wide.png')"
+        "hero-shirt": "url('/hero-shirt.png')",
+        "hero-player": "url('/shirt-player.png')",
+        "hero-vintage": "url('/vintage-hero-wide.png')",
       },
       backgroundSize: {
-        '120%': '120%',
+        "120%": "120%",
       },
       scale: {
-        '101': '101%'
-      }
+        "101": "101%",
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
-export default config
+  plugins: [require("@tailwindcss/typography")],
+};
+export default config;
