@@ -15,7 +15,12 @@ const Index = ({
 }: Product) => (
   <div className="container">
     <div className="grid grid-cols-12 gap-8">
-    <Link href="/" className="flex col-span-full items-center"><ArrowLeftIcon className="w-10 text-slate-900 transition-colors" />zurück</Link>
+      <div className="col-span-full">
+        <Link href="/" className="flex max-w-max items-center">
+          <ArrowLeftIcon className="w-10 text-slate-900 transition-colors" />
+          zurück
+        </Link>
+      </div>
       <div className="col-span-full xl:col-span-3 bg-slate-200 h-fit p-5 rounded-xl">
         <p className="font-bold">Mehr entdecken</p>
         <ul>
