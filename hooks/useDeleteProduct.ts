@@ -11,9 +11,6 @@ export const useDeleteProduct = () => {
         "Content-Type": "application/json",
       },
     });
-    console.log('Response Status:', response.status);  // Log status code
-    console.log('Response Text:', await response.text());  // Log response text
-
 
     if (!response.ok) {
       throw new Error("An error occurred while deleting the product.");
