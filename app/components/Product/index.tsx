@@ -124,7 +124,7 @@ export function Products() {
               <span>Delete</span>
             </button>
           </div>
-          <Link href={`/products/${product.id}`}>
+          <Link href={`/Products/${product.id}`}>
             <div>
               <Image
                 height="1000"
