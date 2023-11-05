@@ -47,7 +47,7 @@ export function Products() {
           <label className="font-bold">Name</label>
           <input
             type="text"
-            value={activeProduct?.name}
+            value={activeProduct ? activeProduct.name : ""}
             onChange={(event) =>
               setActiveProduct({
                 ...activeProduct!,
@@ -60,7 +60,7 @@ export function Products() {
           <label className="font-bold">Description</label>
           <input
             type="text"
-            value={activeProduct?.description}
+            value={activeProduct ? activeProduct.description : ""}
             onChange={(event) =>
               setActiveProduct({
                 ...activeProduct!,
@@ -73,7 +73,7 @@ export function Products() {
           <label className="font-bold">Price</label>
           <input
             type="number"
-            value={activeProduct?.price}
+            value={activeProduct ? activeProduct.price : 0}
             onChange={(event) =>
               setActiveProduct({
                 ...activeProduct!,
@@ -87,7 +87,7 @@ export function Products() {
           <label className="font-bold">In Stock</label>
           <input
             type="checkbox"
-            checked={activeProduct?.inStock}
+            checked={activeProduct ? activeProduct.inStock : false}
             onChange={(event) =>
               setActiveProduct({
                 ...activeProduct!,
