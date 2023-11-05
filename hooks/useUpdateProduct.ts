@@ -3,7 +3,7 @@ import { Product } from "../app/types/Product";
 
 export const useUpdateProduct = () => {
   const updateProduct = async (product: Product) => {
-    const response = await fetch("/api/updateProduct", {
+    const response = await fetch("/api/products", {
       method: "PUT",
       body: JSON.stringify(product),
       headers: {
@@ -15,7 +15,7 @@ export const useUpdateProduct = () => {
       throw new Error("An error occurred while updating the product.");
     }
 
-    mutate("/api/getProducts");
+    mutate("/api/products");
   };
 
   return {

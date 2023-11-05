@@ -30,13 +30,8 @@ export function Products() {
   };
 
   const handleDelete = async (event: React.MouseEvent, product: Product) => {
-    event.stopPropagation();
-    if (!confirm("Are you sure you want to delete this product?")) return;
-    try {
-      await deleteProduct(product);
-    } catch (error) {
-      console.error("Failed to delete product:", error);
-    }
+    event.preventDefault();
+    await deleteProduct(product);
   };
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {isError.message}</p>;

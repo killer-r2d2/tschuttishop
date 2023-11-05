@@ -9,7 +9,7 @@ const fetcher = async (url: string) => {
 }
 
 export default function useProducts () {
-  const url = `/api/getProducts`;
+  const url = `/api/products`;
   const { data, error, isLoading } = useSWR<ApiResponse>(url, fetcher)
  
   return {

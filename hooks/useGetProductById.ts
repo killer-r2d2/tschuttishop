@@ -9,7 +9,7 @@ const fetcher = async (url: string) => {
 }
 
 export default function useGetProductById (id: number) {
-       const url = `/api/getProductById?id=${id}`;
+       const url = `/api/products?id=${id}`;
        const { data, error, isLoading } = useSWR<ApiResponse>(url, fetcher)
 
     return {

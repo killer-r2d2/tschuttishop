@@ -12,7 +12,7 @@ export const useCreateProduct = (): UseCreateProductResponse => {
     setIsError(false);
 
     try {
-      const response = await fetch("/api/createProduct", {
+      const response = await fetch("/api/products", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {
@@ -24,7 +24,7 @@ export const useCreateProduct = (): UseCreateProductResponse => {
         throw new Error("An error occurred while creating the product.");
       }
 
-      mutate('/api/getProducts')
+      mutate('/api/products')
 
 
       setIsSuccess(true);
