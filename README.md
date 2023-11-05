@@ -1,6 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tschuttishop
+
+## Project for: CAS Frontend Engineering @ Ost
+## Project Team: [Roger Killer](https://github.com/killer-r2d2), [Philipp Isaak](https://github.com/codewurstler) 
+## Check out the live version: https://tschuttishop.vercel.app/
 
 ## Getting Started
+
+### Environment Variables
+
+This project requires certain environment variables to be set up. Follow the steps below to configure the environment variables:
+
+1. **Setting Up Main Environment Variables:**
+    - Copy the `example.env` file and rename the copy to `.env`.
+        ```bash
+        cp example.env .env
+        ```
+    - Open the `.env` file and set the value for `DATABASE_URL` to your database connection string.
+
+2. **Setting Up Local Environment Variables:**
+    - Copy the `example.env.local` file and rename the copy to `.env.local`.
+        ```bash
+        cp example.env.local .env.local
+        ```
+    - Open the `.env.local` file and set the values for the following variables:
+        - `BASE_URL` (usually this will remain as `http://localhost:3000`)
+        - `NEXT_PUBLIC_SUPABASE_URL` (your Supabase URL)
+        - `NEXT_PUBLIC_SUPABASE_ANON_KEY` (your Supabase anonymous key)
+
+### Running the Development Server
 
 First, run the development server:
 
@@ -10,30 +37,9 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## initialize prisma
+## How I setup prisma in this project:
 1. npm install prisma --save-dev
 2. npm install @prisma/client
 3. npm install typescript ts-node @types/node --save-dev
