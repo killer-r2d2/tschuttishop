@@ -33,6 +33,22 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), nextui()],
+  plugins: [
+    require("@tailwindcss/typography"),
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: "#0f172a",
+            },
+          },
+        },
+        dark: {
+          colors: {},
+        },
+      },
+    }),
+  ],
 };
 export default config;
