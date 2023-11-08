@@ -5,11 +5,12 @@ import Link from "next/link";
 import { FireIcon } from "@heroicons/react/24/solid";
 import { Section } from "../Base/Section";
 import { Container } from "../Base/Container";
+import { SpinnerNext } from "@/app/components/Base/Spinner";
 
 export function ProductList() {
   const { products, isLoading, isError } = useProducts();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <SpinnerNext />;
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
