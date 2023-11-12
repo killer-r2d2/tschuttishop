@@ -2,6 +2,10 @@ import prisma from "@/prisma/client";
 // import Product from types/Product.ts
 import { Product } from "@/app/types/Product";
 
+export type CreateProductType = Omit<Product, 'id' | 'createdAt' | 'updatedAt'>;
+
+export type UpdateProductType = Omit<Product, 'createdAt' | 'updatedAt'>;
+
 export const getProducts = async () => {
   return await prisma.product.findMany();
 }
@@ -14,13 +18,13 @@ export const getProductById = async (id: number) => {
   });
 }
 
-export const createProduct = async (product: Product) => {
+export const createProduct = async (product: CreateProductType) => {
   return await prisma.product.create({
     data: product
   });
 }
 
-export const updateProduct = async (id: number, product: Product) => {
+export const updateProduct = async (id: number, product: UpdateProductType) => {
   return await prisma.product.update({
     where: {
       id: id

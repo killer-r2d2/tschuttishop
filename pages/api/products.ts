@@ -67,7 +67,13 @@ export default async function handle(
   if (req.method === "PUT") {
     try {
       const { id, name, description, price, inStock } = req.body;
+
+      if (!id) {
+        return res.status(400).json({ error: "ID is required" });
+      }
+
       const product = await updateProduct(parseInt(id), {
+        id: parseInt(id),
         name,
         description,
         price: parseFloat(price),
