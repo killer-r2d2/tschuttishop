@@ -14,13 +14,13 @@ export const getProductById = async (id: number) => {
   });
 }
 
-export const createProduct = async (product: any) => {
+export const createProduct = async (product: Product) => {
   return await prisma.product.create({
     data: product
   });
 }
 
-export const updateProduct = async (id: number, product: any) => {
+export const updateProduct = async (id: number, product: Product) => {
   return await prisma.product.update({
     where: {
       id: id
