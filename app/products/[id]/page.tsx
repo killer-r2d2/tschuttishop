@@ -15,5 +15,5 @@ export default function Page({ params }: { params: { id: number } }) {
     );
   if (isError) return <p>Error: {isError.message}</p>;
 
-  return <ProductPage id={0} name={""} description={""} price={0} inStock={false} createdAt={0} updatedAt={0} {...product}></ProductPage>;
+  return <ProductPage id={0} name={""} description={""} price={0} inStock={false} createdAt={new Date()} updatedAt={new Date()} {...product}></ProductPage>;
 }
