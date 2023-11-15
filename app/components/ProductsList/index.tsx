@@ -28,7 +28,7 @@ export function ProductList() {
                 key={product.id}
                 className="card border shadow-xl rounded-xl hover:scale-101 hover:shadow-2xl transition"
               >
-                <Link href={`/Products/${product.id}`}>
+                <Link href={`/products/${product.id}`}>
                   <div>
                     <Image
                       height="1000"
