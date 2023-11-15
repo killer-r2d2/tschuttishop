@@ -7,6 +7,7 @@ import { Product } from "../../types/Product";
 import Image from "next/image";
 import Link from "next/link";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { ProductCard } from "@/app/components/Product/ProductCard";
 
 export function Products() {
   const { products, isLoading, isError } = useProducts();
@@ -102,42 +103,13 @@ export function Products() {
       </dialog>
       {/* <p>{JSON.stringify(products)}</p> */}
       {products!.map((product) => (
-        <div key={product.id} className="card border shadow-xl rounded-xl">
-          <div className="flex justify-between p-2">
-            <button
-              onClick={() => openDialog(product)}
-              className="bg-slate-900 text-slate-100 p-2 rounded-md flex gap-1 items-center hover:bg-slate-800"
-            >
-              <PencilIcon className="h-4" />
-              <span>Edit</span>
-            </button>
-            <button
-              onClick={(event) => handleDelete(event, product)}
-              className="flex gap-1 items-center text-red-700"
-            >
-              <TrashIcon className="h-4" />
-              <span>Delete</span>
-            </button>
-          </div>
-          <Link href={`/products/${product.id}`}>
-            <div>
-              <Image
-                height="1000"
-                width="1000"
-                src="/shirt-player.png"
-                alt="Shirt"
-                className="rounded-t-xl"
-              />
-            </div>
-            <div className="p-5">
-              <h2 className="font-bold">{product.name}</h2>
-              <p className="mb-5 truncate ...">{product.description}</p>
-              <div className="border-t">
-                <p className="font-bold mt-5">{product.price}</p>
-              </div>
-            </div>
-          </Link>
-        </div>
+        <ProductCard
+          {...product}
+          key={product.id}
+          hasEdit
+          openDialog={openDialog}
+          handleDelete={handleDelete}
+        />
       ))}
     </div>
   );

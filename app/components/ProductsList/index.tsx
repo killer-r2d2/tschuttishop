@@ -23,7 +23,7 @@ export function ProductList() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {products!.map((product) => (
-              <ProductCard {...product} key={product.id} />
+              <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>
         </Container>
