@@ -33,8 +33,8 @@ export function ProductCard({
                     description,
                     price,
                     inStock,
-                    createdAt: 0,
-                    updatedAt: 0,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
                   })
                 : null
             }
@@ -52,8 +52,8 @@ export function ProductCard({
                     description,
                     price,
                     inStock,
-                    createdAt: 0,
-                    updatedAt: 0,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
                   })
                 : null
             }
@@ -64,7 +64,7 @@ export function ProductCard({
           </button>
         </div>
       ) : null}
-      <Link href={`/products/${id}`}>
+      <Link href={`/Products/${id}`}>
         <div>
           <Image
             height="1000"
