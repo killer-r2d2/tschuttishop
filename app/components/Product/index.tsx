@@ -61,7 +61,7 @@ export function Products() {
           <label className="font-bold">Description</label>
           <input
             type="text"
-            value={activeProduct ? activeProduct.description : ""}
+            value={activeProduct ? activeProduct.description || "" : ""}
             onChange={(event) =>
               setActiveProduct({
                 ...activeProduct!,

@@ -1,11 +1,11 @@
 export type Product = {
     id: number;
     name: string;
-    description: string;
+    description: string | null;
     price: number;
     inStock: boolean;
-    createdAt: number;
-    updatedAt: number;
+    createdAt: Date;
+    updatedAt: Date;
 };
 
 export type ApiResponse = Product[];

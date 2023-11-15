@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/prisma/client";
+import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from "@/services/productService";
 
 // function for errror handling
 function handleError(error: any, res: NextApiResponse) {
@@ -32,11 +32,7 @@ export default async function handle(
       const id = req.query.id as string | undefined;
       if (id) {
         // Fetch product by ID if ID is provided
-        const product = await prisma.product.findUnique({
-          where: {
-            id: parseInt(id),
-          },
-        });
+        const product = await getProductById(parseInt(id));
         if (product){
           return handleSuccess(product, res);
         }
@@ -45,7 +41,7 @@ export default async function handle(
         }
       } else {
         // Fetch all products if no ID is provided
-        const data: Product[] = await prisma.product.findMany();
+        const data: Product[] = await getProducts();
         return handleSuccess(data, res);
       }
     } catch (error: any) {
@@ -56,14 +52,12 @@ export default async function handle(
   if (req.method === "POST") {
     try {
       const { name, description, price, inStock } = req.body;
-      const product = await prisma.product.create({
-        data: {
-          name,
-          description,
-          price: parseFloat(price),
-          inStock: Boolean(inStock),
-        },
-      });    
+      const product = await createProduct({
+        name,
+        description,
+        price: parseFloat(price),
+        inStock: Boolean(inStock),
+      });  
 
       return res.status(200).json(product);
     } catch (error: any) {
@@ -73,16 +67,17 @@ export default async function handle(
   if (req.method === "PUT") {
     try {
       const { id, name, description, price, inStock } = req.body;
-      const product = await prisma.product.update({
-        where: {
-          id: parseInt(id),
-        },
-        data: {
-          name,
-          description,
-          price: parseFloat(price),
-          inStock: Boolean(inStock),
-        },
+
+      if (!id) {
+        return res.status(400).json({ error: "ID is required" });
+      }
+
+      const product = await updateProduct(parseInt(id), {
+        id: parseInt(id),
+        name,
+        description,
+        price: parseFloat(price),
+        inStock: Boolean(inStock),
       });
 
       return handleSuccess(product, res);
@@ -96,11 +91,7 @@ export default async function handle(
       if (!id) {
         return res.status(400).json({ error: "ID is required" });
       }
-      const product = await prisma.product.delete({
-        where: {
-          id: parseInt(id as string, 10),
-        },
-      });
+      const product = await deleteProduct(parseInt(id));
 
       return handleSuccess(product, res);
     } catch (error: any) {

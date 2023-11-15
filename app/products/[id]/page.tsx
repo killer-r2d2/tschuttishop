@@ -23,8 +23,8 @@ export default function Page({ params }: { params: { id: number } }) {
       description={""}
       price={0}
       inStock={false}
-      createdAt={0}
-      updatedAt={0}
+      createdAt={new Date()}
+      updatedAt={new Date()}
       {...product}
     ></ProductPage>
   );
