@@ -21,8 +21,8 @@ export const getProductById = async (id: number) => {
 export const getProductsByCategory = async (category: string) => {
   return await prisma.product.findMany({
     where: {
-      name: {
-        category: category,
+      category: {
+        equals: category,
       },
     },
   });

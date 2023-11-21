@@ -84,7 +84,7 @@ export function ProductCard({
           <h2 className="font-bold">{name}</h2>
           <p className="mb-5 truncate ...">{description}</p>
           <div className="border-t">
-            <p className="font-bold mt-5">{price}</p>
+            <p className="font-bold mt-5">{price} CHF</p>
           </div>
         </div>
       </Link>

@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" className={`${roboto.variable} font-sans`}>
-      <body className="flex flex-col min-h-screen">
+      <body>
         <Providers>
           <Navigation />
           <main className="flex-grow">{children}</main>
