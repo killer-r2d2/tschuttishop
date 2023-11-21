@@ -1,5 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from "@/services/productService";
+import {
+  getProducts,
+  getProductById,
+  getProductsByCategory,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "@/services/productService";
 
 // function for errror handling
 function handleError(error: any, res: NextApiResponse) {
@@ -14,31 +21,38 @@ function handleSuccess(data: Product | Product[], res: NextApiResponse) {
 type Product = {
   id: number;
   name: string;
-  description?: string | null;
+  description: string | null;
   price: number;
+  category: string | null;
+  size: string | null;
   inStock: boolean;
   createdAt: Date;
   updatedAt: Date;
 };
 
-type ApiResponse =  Product[] | Product | { error: string };
+type ApiResponse = Product[] | Product | { error: string };
 
 export default async function handle(
   req: NextApiRequest,
-  res: NextApiResponse<ApiResponse>
+  res: NextApiResponse<ApiResponse>,
 ) {
   if (req.method === "GET") {
     try {
       const id = req.query.id as string | undefined;
+      const category = req.query.category as string;
+
       if (id) {
         // Fetch product by ID if ID is provided
         const product = await getProductById(parseInt(id));
-        if (product){
+        if (product) {
           return handleSuccess(product, res);
-        }
-        else {
+        } else {
           return res.status(404).json({ error: "Product not found." });
         }
+      } else if (category) {
+        // Fetch products by category if category is provided
+        const data: Product[] = await getProductsByCategory(category);
+        return handleSuccess(data, res);
       } else {
         // Fetch all products if no ID is provided
         const data: Product[] = await getProducts();
@@ -46,18 +60,19 @@ export default async function handle(
       }
     } catch (error: any) {
       return handleError(error, res);
-      
     }
   }
   if (req.method === "POST") {
     try {
-      const { name, description, price, inStock } = req.body;
+      const { name, description, price, category, size, inStock } = req.body;
       const product = await createProduct({
         name,
         description,
+        category,
+        size,
         price: parseFloat(price),
         inStock: Boolean(inStock),
-      });  
+      });
 
       return res.status(200).json(product);
     } catch (error: any) {
@@ -66,7 +81,8 @@ export default async function handle(
   }
   if (req.method === "PUT") {
     try {
-      const { id, name, description, price, inStock } = req.body;
+      const { id, name, description, price, category, size, inStock } =
+        req.body;
 
       if (!id) {
         return res.status(400).json({ error: "ID is required" });
@@ -76,6 +92,8 @@ export default async function handle(
         id: parseInt(id),
         name,
         description,
+        category,
+        size,
         price: parseFloat(price),
         inStock: Boolean(inStock),
       });
