@@ -1,8 +1,9 @@
 import { Product } from "@/app/types/Product";
 import { Button } from "@/app/components/Base/Button";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+
+import { SideNavigation } from "@/app/components/SideNavigation";
+import BackButton from "@/app/components/Base/BackButton";
 
 const Index = ({
   id,
@@ -16,18 +17,10 @@ const Index = ({
   <div className="container">
     <div className="grid grid-cols-12 gap-8">
       <div className="col-span-full">
-        <Link href="/" className="flex max-w-max items-center">
-          <ArrowLeftIcon className="w-10 text-slate-900 transition-colors" />
-          zurück
-        </Link>
+        <BackButton />
       </div>
-      <div className="col-span-full xl:col-span-3 bg-slate-200 h-fit p-5 rounded-xl">
-        <p className="font-bold">Mehr entdecken</p>
-        <ul>
-          <li>New Arrivals</li>
-          <li>Klubs</li>
-          <li>Vintage</li>
-        </ul>
+      <div className="col-span-full xl:col-span-3">
+        <SideNavigation />
       </div>
       <div className="col-span-full xl:col-span-4 bg-slate-200 h-[500px] p-5 rounded-xl relative">
         <Image

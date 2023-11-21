@@ -4,6 +4,8 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useGetProductsByCategory from "@/hooks/useGetProductsByCategory";
 import { ProductCard } from "@/app/components/Product/ProductCard";
 import React from "react";
+import { SideNavigation } from "@/app/components/SideNavigation";
+import BackButton from "@/app/components/Base/BackButton";
 
 export default function Page({ params }: { params: { category: string } }) {
   const category: string = params.category;
@@ -20,13 +22,11 @@ export default function Page({ params }: { params: { category: string } }) {
   return (
     <Container>
       <div className="grid grid-cols-12 gap-8">
-        <div className="col-span-full xl:col-span-3 bg-slate-200 h-fit p-5 rounded-xl">
-          <p className="font-bold">Mehr entdecken</p>
-          <ul>
-            <li>New Arrivals</li>
-            <li>Klubs</li>
-            <li>Vintage</li>
-          </ul>
+        <div className="col-span-full">
+          <BackButton />
+        </div>
+        <div className="col-span-full xl:col-span-3">
+          <SideNavigation />
         </div>
         <div className="col-span-full xl:col-span-9">
           <h2

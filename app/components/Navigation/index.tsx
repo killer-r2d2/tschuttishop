@@ -12,11 +12,7 @@ import { Container } from "../Base/Container";
 import { useState } from "react";
 import { Logo } from "@/app/components/Navigation/Logo";
 import { CartUser } from "@/app/components/Navigation/CartUser";
-
-interface NavLink {
-  name: string;
-  href: string;
-}
+import { NavLink } from "@/app/types/Navigation";
 
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
