@@ -18,6 +18,14 @@ export const getProductById = async (id: number) => {
   });
 };
 
+export const getProductsById = async (ids: number[]) => {
+  return await prisma.product.findMany({
+    where: {
+      id: { in: ids },
+    },
+  });
+};
+
 export const getProductsByCategory = async (category: string) => {
   return await prisma.product.findMany({
     where: {

@@ -6,6 +6,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductsById,
 } from "@/services/productService";
 
 // function for errror handling
@@ -41,6 +42,9 @@ export default async function handle(
       const id = req.query.id as string | undefined;
       const category = req.query.category as string;
 
+      const ids = req.query.ids as string;
+      const idsArray: number[] = ids.split(",").map((id) => parseInt(id));
+
       if (id) {
         // Fetch product by ID if ID is provided
         const product = await getProductById(parseInt(id));
@@ -49,6 +53,10 @@ export default async function handle(
         } else {
           return res.status(404).json({ error: "Product not found." });
         }
+      } else if (ids) {
+        // Fetch products by IDs if IDs is provided
+        const data: Product[] = await getProductsById(idsArray);
+        return handleSuccess(data, res);
       } else if (category) {
         // Fetch products by category if category is provided
         const data: Product[] = await getProductsByCategory(category);

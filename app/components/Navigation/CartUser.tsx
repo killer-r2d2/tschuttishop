@@ -7,7 +7,7 @@ export function CartUser() {
       <Link href="/DashboardProduct">
         <UserCircleIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors" />
       </Link>
-      <Link href="/">
+      <Link href="/Cart">
         <ShoppingCartIcon className="w-8 text-slate-100 hover:text-slate-500 transition-colors" />
       </Link>
     </div>
