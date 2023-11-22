@@ -6,6 +6,7 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useGetProductsById from "@/hooks/useGetProductsById";
 import { ProductCard } from "@/app/components/Product/ProductCard";
 import React from "react";
+import CartItem from "@/app/Cart/CartItem";
 
 export default function Cart() {
   const ids: number[] = [172, 175, 176];
@@ -30,9 +31,9 @@ export default function Cart() {
         </div>
         <div className="col-span-full xl:col-span-9">
           <h2 className="text-5xl font-bold mb-5">Warenkorb</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div>
             {products!.map((product) => (
-              <ProductCard {...product} key={product.id} hasEdit={false} />
+              <CartItem key={product.id} {...product} />
             ))}
           </div>
         </div>
