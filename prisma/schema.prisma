@@ -19,3 +19,14 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt @default(now())
 }
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+}
+
+
