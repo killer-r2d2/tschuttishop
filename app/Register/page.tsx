@@ -1,6 +1,6 @@
 'use client';
 import { useState } from "react";
-import supabase from "@/supabase/client"; // Passen Sie diesen Import an Ihren Pfad an
+import supabase from "@/supabase/client";
 import { Input } from "@nextui-org/react";
 import { Section } from "../components/Base/Section";
 import { Container } from "../components/Base/Container";
