@@ -3,6 +3,8 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import Link from "next/link";
 
+import { cartStore } from "@/store/cartState";
+
 export default function CartItem({
   id,
   name,
@@ -12,6 +14,7 @@ export default function CartItem({
   category,
   inStock,
 }: Product) {
+  const removeItem = cartStore((state) => state.deleteItem);
   return (
     <div className="grid grid-cols-12 gap-12 border-t p-8">
       <div className="p-2 col-span-full xl:col-span-4 relative">
@@ -35,7 +38,12 @@ export default function CartItem({
           <p className="mt-2">Kategorie: {category}</p>
         </div>
         <div>
-          <Button size="sm" variant="ghost" color="danger">
+          <Button
+            size="sm"
+            variant="ghost"
+            color="danger"
+            onClick={() => removeItem(id)}
+          >
             Entfernen
           </Button>
         </div>
