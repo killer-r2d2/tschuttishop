@@ -15,13 +15,16 @@ export default function Page({ params }: { params: { id: number } }) {
       </Container>
     );
   if (isError) return <p>Error: {isError.message}</p>;
-
+  console.log('product object',product);
+  
   return (
     <ProductPage
       id={0}
       name={""}
       description={""}
       price={0}
+      size={""}
+      category={""}
       inStock={false}
       createdAt={new Date()}
       updatedAt={new Date()}
