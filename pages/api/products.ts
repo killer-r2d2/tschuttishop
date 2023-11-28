@@ -24,8 +24,8 @@ type Product = {
   name: string;
   description: string | null;
   price: number;
-  category: string | null;
-  size: string | null;
+  category?: string | null;
+  size?: string | null;
   inStock: boolean;
   createdAt: Date;
   updatedAt: Date;
