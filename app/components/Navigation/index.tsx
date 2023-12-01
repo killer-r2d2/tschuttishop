@@ -6,7 +6,6 @@ import {
   Bars4Icon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
-import Image from "next/image";
 import Link from "next/link";
 import { Container } from "../Base/Container";
 import { useState } from "react";
@@ -14,11 +13,13 @@ import { Logo } from "@/app/components/Navigation/Logo";
 import { CartUser } from "@/app/components/Navigation/CartUser";
 import { NavLink } from "@/app/types/Navigation";
 
+
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
   { name: "Neu eingetroffen", href: "/" },
   { name: "Klubs", href: "/Categories/club" },
   { name: "Vintage", href: "/Categories/vintage" },
+  { name: "Login", href: "/Login" },
 ];
 
 export function Navigation() {
