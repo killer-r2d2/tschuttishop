@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { headers, cookies } from "next/headers";
-import { createClient } from "@/supabase/sever";
+import { createClient } from "@/supabase/server";
 import { redirect } from "next/navigation";
 import { Section } from "../components/Base/Section";
 import { Container } from "../components/Base/Container";

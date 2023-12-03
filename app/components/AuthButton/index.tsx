@@ -1,4 +1,4 @@
-import { createClient } from "@/supabase/sever";
+import { createClient } from "@/supabase/server";
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'

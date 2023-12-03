@@ -1,4 +1,4 @@
-import { createClient } from '@/supabase/sever'
+import { createClient } from '@/supabase/server'
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 
