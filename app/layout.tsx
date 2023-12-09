@@ -4,6 +4,8 @@ import "../app/globals.css";
 import { Navigation } from "@/app/components/Navigation";
 import { Footer } from "./components/Footer";
 import { Providers } from "./providers";
+import AuthButton from "./components/AuthButton";
+
 
 export const metadata: Metadata = {
   title: "Tschuttishop",
@@ -25,6 +27,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex flex-col min-h-screen">
             <Navigation />
+            <AuthButton />
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
