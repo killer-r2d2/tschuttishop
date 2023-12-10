@@ -4,14 +4,14 @@ import BackButton from "@/app/components/Base/BackButton";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useGetProductsById from "@/hooks/useGetProductsById";
-import { ProductCard } from "@/app/components/Product/ProductCard";
-import React from "react";
 import CartItem from "@/app/Cart/CartItem";
 
-export default function Cart() {
-  const ids: number[] = [172, 175, 176];
+import { cartStore } from "@/store/cartState";
 
-  const { products, isLoading, isError } = useGetProductsById(ids);
+export default function Cart() {
+  const items: number[] = cartStore((state) => state.items);
+
+  const { products, isLoading, isError } = useGetProductsById(items);
   if (isLoading)
     return (
       <Container>

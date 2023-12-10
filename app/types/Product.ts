@@ -3,8 +3,8 @@ export type Product = {
   name: string;
   description: string | null;
   price: number;
-  size: string | null;
-  category: string | null;
+  size?: string | null;
+  category?: string | null;
   inStock: boolean;
   createdAt: Date;
   updatedAt: Date;
