@@ -1,38 +1,28 @@
-import { Roboto_Flex } from "next/font/google";
-import { Metadata } from "next";
-import "../app/globals.css";
-import { Navigation } from "@/app/components/Navigation";
-import { Footer } from "./components/Footer";
-import { Providers } from "./providers";
-import AuthButton from "./components/AuthButton";
+import { GeistSans } from 'geist/font/sans'
+import './globals.css'
 
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000'
 
-export const metadata: Metadata = {
-  title: "Tschuttishop",
-};
+export const metadata = {
+  metadataBase: new URL(defaultUrl),
+  title: 'Next.js and Supabase Starter Kit',
+  description: 'The fastest way to build apps with Next.js and Supabase',
+}
 
-const roboto = Roboto_Flex({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto-flex",
-});
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="de" className={`${roboto.variable} font-sans`}>
-      <body>
-        <Providers>
-          <div className="flex flex-col min-h-screen">
-            <Navigation />
-            <AuthButton />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-        </Providers>
+    <html lang="en" className={GeistSans.className}>
+      <body className="bg-background text-foreground">
+        <main className="min-h-screen flex flex-col items-center">
+          {children}
+        </main>
       </body>
     </html>
-  );
+  )
 }
