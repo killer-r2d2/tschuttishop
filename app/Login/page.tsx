@@ -3,7 +3,6 @@ import { headers, cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { Section } from "@/app/components/Base/Section";
 import { Container } from "@/app/components/Base/Container";
-
 import { redirect } from "next/navigation";
 
 export default function Login({
@@ -47,6 +46,23 @@ export default function Login({
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
+
+    if (error) {
+      return redirect("/login?message=Could not authenticate user");
+    }
+
+    return redirect("/login?message=Check email to continue sign in process");
+  };
+
+  // passsword reset
+  const resetPassword = async (formData: FormData) => {
+    "use server";
+
+    const email = formData.get("email") as string;
+    const cookieStore = cookies();
+    const supabase = createClient(cookieStore);
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email);
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
@@ -119,6 +135,24 @@ export default function Login({
               </p>
             )}
           </form>
+          <h2>forgott your Password?</h2>
+          <form
+            className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+            action={resetPassword}
+          >
+            <label className="text-md" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="rounded-md px-4 py-2 bg-inherit border mb-6"
+              name="email"
+              placeholder=""
+              required
+            />
+            <button className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2">
+              Send password reset email
+            </button>
+          </form> 
         </div>
       </div>
     </Container>
