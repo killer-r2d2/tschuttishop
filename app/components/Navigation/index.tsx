@@ -19,7 +19,6 @@ const navLinks: NavLink[] = [
   { name: "Neu eingetroffen", href: "/" },
   { name: "Klubs", href: "/Categories/club" },
   { name: "Vintage", href: "/Categories/vintage" },
-  { name: "Login", href: "/Login" },
 ];
 
 export function Navigation() {
