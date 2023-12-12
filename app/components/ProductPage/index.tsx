@@ -45,7 +45,7 @@ const Index = ({
               isDisabled={!inStock}
               color="primary"
             >
-              {inStock ? "In den Warenkorb" : "Ausverkauft"}
+              {inStock ? "In den Warenkorb" : "Verkauft"}
             </Button>
           </div>
         </div>

@@ -11,8 +11,12 @@ export let cartStore = create<CartState>()((set) => ({
   items: [0],
   count: 0,
   addItem: (id: number) => {
-    set((state) => ({ items: [...state.items, id] }));
-    set((state) => ({ count: state.count + 1 }));
+    if (cartStore.getState().items.includes(id)) {
+      alert("Das Produkt ist bereits im Warenkorb!");
+    } else {
+      set((state) => ({ items: [...state.items, id] }));
+      set((state) => ({ count: state.count + 1 }));
+    }
   },
   deleteItem: (id: number) => {
     set((state) => ({ items: state.items.filter((item) => item !== id) }));
