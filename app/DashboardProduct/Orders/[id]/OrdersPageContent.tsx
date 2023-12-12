@@ -38,7 +38,7 @@ export default function OrdersPageContent({
               aria-label="Options"
               size="lg"
               color="primary"
-              variant="bordered"
+              variant="underlined"
             >
               <Tab
                 key="payment"
@@ -49,7 +49,7 @@ export default function OrdersPageContent({
                   </div>
                 }
               >
-                <Card>
+                <Card shadow="none" className="border">
                   <CardBody>
                     Bitte Übeerweisen Sie den Betrag von{" "}
                     <strong>CHF {price}</strong> auf das folgende Konto:
@@ -67,7 +67,7 @@ export default function OrdersPageContent({
                   </div>
                 }
               >
-                <Card>
+                <Card shadow="none" className="border">
                   <CardBody>
                     Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum.
