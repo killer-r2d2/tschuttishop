@@ -18,20 +18,22 @@ export default function OrdersPageContent({
         <div className="col-span-full">
           <h2 className="text-5xl font-bold mb-5">Bestellung: {id}</h2>
         </div>
-        <div className="p-2 col-span-full xl:col-span-4 relative">
-          <img src="/shirt-player.png" alt={name} className="rounded-xl" />
-        </div>
-        <div className="col-span-full xl:col-span-8 flex flex-col gap-8">
-          <h2 className="text-2xl font-bold">{name}</h2>
-          <div>
-            <p>
-              Preis: <span className="font-bold">{price} CHF</span>
-            </p>
-            <p className="mt-2">Grösse: {size}</p>
-            <p className="mt-2">Kategorie: {category}</p>
+        <div className="col-span-full xl:col-span-6 grid grid-cols-2 gap-x-4">
+          <div className="col-span-full xl:col-span-1 relative">
+            <img src="/shirt-player.png" alt={name} className="rounded-xl" />
+          </div>
+          <div className="col-span-full xl:col-span-1 flex flex-col gap-8">
+            <h2 className="text-xl font-bold">{name}</h2>
+            <div>
+              <p>
+                Preis: <span className="font-bold">{price} CHF</span>
+              </p>
+              <p className="mt-2">Grösse: {size}</p>
+              <p className="mt-2">Kategorie: {category}</p>
+            </div>
           </div>
         </div>
-        <div className="col-span-12 xl:col-span-8">
+        <div className="col-span-12 xl:col-span-6">
           <h2 className="text-2xl font-bold mb-2">Status</h2>
           <div className="flex w-full flex-col">
             <Tabs
@@ -70,7 +72,33 @@ export default function OrdersPageContent({
                 <Card shadow="none" className="border">
                   <CardBody>
                     Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
+                    culpa qui officia deserunt mollit anim id est
+                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
+                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
+                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt
+                    mollit anim id est
+                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
+                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
+                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt
+                    mollit anim id est
+                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
+                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
+                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, Excepteur sint occaecat
+                    cupidatat non proident, sunt in culpa qui officia deserunt
+                    mollit anim id est
+                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
+                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
+                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam,
                   </CardBody>
                 </Card>
               </Tab>
