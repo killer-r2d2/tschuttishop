@@ -15,7 +15,7 @@ export default function OrderItem({
 }: Product) {
   return (
     <Link
-      href="#"
+      href={`/DashboardProduct/Orders/${id}`}
       className="grid grid-cols-12 gap-12 border-t pt-4 pb-4 pr-8 pl-8 flex items-center xl:hover:bg-slate-100 transition-colors"
     >
       <div className="p-2 col-span-full xl:col-span-2 relative min-h-[130px]">
