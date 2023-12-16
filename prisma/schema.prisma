@@ -18,6 +18,8 @@ model Profile {
   name     String?
   role     Role     @default(user)
   products Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
   @@map("profile")
 }
 model Product {
