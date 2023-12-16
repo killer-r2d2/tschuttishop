@@ -19,7 +19,7 @@ export default async function Dashboard() {
   return (
     <Section>
       <Container>
-        <Form />
+        <Form userProfileId={user.id} />
         <Products />
       </Container>
     </Section>

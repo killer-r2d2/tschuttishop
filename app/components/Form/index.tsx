@@ -1,18 +1,19 @@
 "use client";
-// Desc: Form component
-// to create products
 import { useState, useEffect } from "react";
 import { useCreateProduct } from "@/hooks/useCreateProduct";
 import { Input } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
 
-export function Form() {
+export function Form({ userProfileId }: { userProfileId: string }) {
+  console.log("userProfileId: ", userProfileId);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     price: 0.0,
     inStock: false,
+    profileId: userProfileId,
   });
   const { isLoading, isError, createProduct, isSuccess } = useCreateProduct();
 
@@ -34,13 +35,17 @@ export function Form() {
         description: "",
         price: 0.0,
         inStock: false,
+        profileId: userProfileId,
       });
     }
-  }, [isSuccess]);
+  }, [isSuccess, userProfileId]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    if(!formData.profileId) {
+      console.log("profileId is missing");
+      
+    }
     createProduct(formData);
   };
 

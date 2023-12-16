@@ -18,6 +18,7 @@ export function ProductCard({
   size,
   category,
   inStock,
+  profileId,
   hasEdit,
   openDialog,
   handleDelete,
@@ -37,6 +38,7 @@ export function ProductCard({
                     size,
                     category,
                     inStock,
+                    profileId,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                   })
@@ -58,6 +60,7 @@ export function ProductCard({
                     size,
                     category,
                     inStock,
+                    profileId,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                   })

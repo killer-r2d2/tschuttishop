@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormData, UseCreateProductResponse } from "../app/types/Form";
 import { mutate } from 'swr'
 
+
 export const useCreateProduct = (): UseCreateProductResponse => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
