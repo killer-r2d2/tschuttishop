@@ -27,11 +27,13 @@ model Product {
   description String?
   price       Float
   size        String?
-  category    String?
+  club        String?
   inStock     Boolean  @default(false)
+  isVintage   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
   profileId    String? @db.Uuid
   profile      Profile? @relation(fields: [profileId], references: [id])
+  category    String?
 }
 
