@@ -15,7 +15,6 @@ enum Role {
 model Profile {
   id       String   @id @db.Uuid
   email    String   @unique
-  name     String?
   role     Role     @default(user)
   products Product[]
   createdAt DateTime @default(now())
