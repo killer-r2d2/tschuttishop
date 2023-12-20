@@ -3,6 +3,7 @@ export type FormData = {
   description: string;
   price: number;
   inStock: boolean;
+  profileId: string;
 };
 
 export type UseCreateProductResponse = {

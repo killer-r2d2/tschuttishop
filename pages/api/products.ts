@@ -71,7 +71,7 @@ export default async function handle(
   }
   if (req.method === "POST") {
     try {
-      const { name, description, price, category, size, inStock } = req.body;
+      const { name, description, price, category, size, inStock, profileId } = req.body;
       const product = await createProduct({
         name,
         description,
@@ -79,16 +79,18 @@ export default async function handle(
         size,
         price: parseFloat(price),
         inStock: Boolean(inStock),
+        profileId,
       });
 
       return res.status(200).json(product);
     } catch (error: any) {
-      return handleError(error, res);
+      console.error(error); // Loggen Sie den Fehler auf der Serverseite
+      return res.status(500).json({ error: error.message || 'Internal Server Error' });
     }
   }
   if (req.method === "PUT") {
     try {
-      const { id, name, description, price, category, size, inStock } =
+      const { id, name, description, price, category, size, inStock, profileId } =
         req.body;
 
       if (!id) {
@@ -103,6 +105,7 @@ export default async function handle(
         size,
         price: parseFloat(price),
         inStock: Boolean(inStock),
+        profileId,
       });
 
       return handleSuccess(product, res);

@@ -25,6 +25,7 @@ export default function Page({ params }: { params: { id: number } }) {
       size={""}
       category={""}
       inStock={false}
+      profileId={""}
       createdAt={new Date()}
       updatedAt={new Date()}
       {...product}

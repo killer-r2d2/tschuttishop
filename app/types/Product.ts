@@ -8,6 +8,7 @@ export type Product = {
   inStock: boolean;
   createdAt: Date;
   updatedAt: Date;
+  profileId: string;
 };
 
 export type ApiResponse = Product[];
