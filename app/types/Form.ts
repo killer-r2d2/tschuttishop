@@ -1,6 +1,8 @@
 export type FormData = {
   name: string;
   description: string;
+  size: string;
+  club: string;
   price: number;
   inStock: boolean;
   profileId: string;

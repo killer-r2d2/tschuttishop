@@ -26,7 +26,9 @@ type Product = {
   price: number;
   category?: string | null;
   size?: string | null;
+  club?: string | null;
   inStock: boolean;
+  isVintage: boolean;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -71,14 +73,16 @@ export default async function handle(
   }
   if (req.method === "POST") {
     try {
-      const { name, description, price, category, size, inStock, profileId } = req.body;
+      const { name, description, price, category, size, club, inStock, isVintage, profileId } = req.body;
       const product = await createProduct({
         name,
         description,
         category,
         size,
+        club,
         price: parseFloat(price),
         inStock: Boolean(inStock),
+        isVintage: Boolean(isVintage),
         profileId,
       });
 
@@ -90,7 +94,7 @@ export default async function handle(
   }
   if (req.method === "PUT") {
     try {
-      const { id, name, description, price, category, size, inStock, profileId } =
+      const { id, name, description, price, category, size, club, inStock, isVintage, profileId } =
         req.body;
 
       if (!id) {
@@ -103,8 +107,10 @@ export default async function handle(
         description,
         category,
         size,
+        club,
         price: parseFloat(price),
         inStock: Boolean(inStock),
+        isVintage: Boolean(isVintage),
         profileId,
       });
 

@@ -4,8 +4,10 @@ export type Product = {
   description: string | null;
   price: number;
   size?: string | null;
+  club?: string | null;
   category?: string | null;
   inStock: boolean;
+  isVintage: boolean;
   createdAt: Date;
   updatedAt: Date;
   profileId: string;
