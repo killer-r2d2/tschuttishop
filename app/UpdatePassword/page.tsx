@@ -5,7 +5,16 @@ import { Section } from "@/app/components/Base/Section";
 import { Container } from "@/app/components/Base/Container";
 import { redirect } from "next/navigation";
 
-export default function UpdatePassword() {
+export default async function UpdatePassword() {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect("/Login");
+  }
   const updateUser = async (formData: FormData) => {
     "use server";
 
@@ -13,6 +22,7 @@ export default function UpdatePassword() {
     const newPassword = formData.get("newPassword") as string;
     const cookieStore = cookies();
     const supabase = createClient(cookieStore);
+   
 
     const { data, error } = await supabase.auth.updateUser({
       email,
@@ -35,20 +45,20 @@ export default function UpdatePassword() {
       <Container>
         <div className="flex justify-center h-full">
           <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-            <h1>Gib dir ein neues Passwort</h1>
+            <h1 className="text-4xl font-bold mb-6">Ein neues Passwort</h1>
             <form className="animate-in flex-1 flex flex-col w-full justify-center mb-16 gap-2 text-foreground" action={updateUser}>
               <label className="text-md" htmlFor="email">
-                email
+                Email
               </label>
               <input
-                className="rounded-md px-4 py-2 bg-inherit border mb-6"
+                className="rounded-md px-4 py-2 bg-inherit border mb-4"
                 name="email"
                 placeholder="
               "
                 required
               />
               <label className="text-md" htmlFor="newPassword">
-                newPassword
+                neues Passwort
               </label>
               <input
                 className="rounded-md px-4 py-2 bg-inherit border mb-6"
@@ -57,7 +67,7 @@ export default function UpdatePassword() {
                 placeholder="••••••••"
                 required
               />
-              <button className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2">
+              <button className="bg-green-700 text-white rounded-md px-4 py-2 mb-2">
                 Update Password
               </button>
             </form>
