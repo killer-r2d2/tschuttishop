@@ -2,7 +2,7 @@
 
 ## Project for: CAS Frontend Engineering @ Ost
 ## Project Team: [Roger Killer](https://github.com/killer-r2d2), [Philipp Isaak](https://github.com/codewurstler) 
-## Check out the live version: https://tschuttishop.vercel.app/
+## Check out the live version: https://tschuttishop.ch
 
 ## Getting Started
 
