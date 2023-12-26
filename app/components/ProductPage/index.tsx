@@ -2,7 +2,7 @@
 import { Product } from "@/app/types/Product";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-
+import { Container } from "@/app/components/Base/Container";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
 import { cartStore } from "@/store/cartState";
@@ -18,8 +18,8 @@ const Index = ({
 }: Product) => {
   const addItem = cartStore((state) => state.addItem);
   return (
-    <div className="container">
-      <div className="grid grid-cols-12 gap-8">
+    <Container>
+      <div className="grid grid-cols-12 gap-y-8 lg:gap-x-8">
         <div className="col-span-full">
           <BackButton />
         </div>
@@ -54,7 +54,7 @@ const Index = ({
           {description}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
