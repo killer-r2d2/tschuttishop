@@ -5,9 +5,11 @@ import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
 import { Product } from "../../types/Product";
 import { ProductCard } from "@/app/components/Product/ProductCard";
+import useGetProductsByCategory from "@/hooks/useGetProductsByUserId";
 
-export function Products() {
-  const { products, isLoading, isError } = useProducts();
+export function Products({ userProfileId }: { userProfileId: string }) {
+  const { products, isLoading, isError } =
+    useGetProductsByCategory(userProfileId);
   const { deleteProduct } = useDeleteProduct();
   const { updateProduct } = useUpdateProduct();
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
@@ -35,7 +37,7 @@ export function Products() {
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div>
       <dialog ref={dialogRef} className="rounded-xl shadow-xl border p-5">
         <div className="flex justify-between">
           <h2 className="font-bold">Update Product</h2>
@@ -98,16 +100,26 @@ export function Products() {
           <button onClick={handleUpdateDialog}>Update</button>
         </div>
       </dialog>
-      {/* <p>{JSON.stringify(products)}</p> */}
-      {products!.map((product) => (
-        <ProductCard
-          {...product}
-          key={product.id}
-          hasEdit
-          openDialog={openDialog}
-          handleDelete={handleDelete}
-        />
-      ))}
+      <div className="mb-5 mt-5">
+        <h1 className="text-2xl font-bold">Deine erfassten Produkte:</h1>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {products?.length ? (
+          products!.map((product) => (
+            <ProductCard
+              {...product}
+              key={product.id}
+              hasEdit
+              openDialog={openDialog}
+              handleDelete={handleDelete}
+            />
+          ))
+        ) : (
+          <div>
+            <p>Noch keine Produkte erfasst.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

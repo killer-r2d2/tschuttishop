@@ -3,6 +3,7 @@ import {
   getProducts,
   getProductById,
   getProductsByCategory,
+  getProductsByUserId,
   createProduct,
   updateProduct,
   deleteProduct,
@@ -14,6 +15,7 @@ function handleError(error: any, res: NextApiResponse) {
   console.error("Backend Error:", error);
   return res.status(500).json({ error: error.message });
 }
+
 // function to handle success response
 function handleSuccess(data: Product | Product[], res: NextApiResponse) {
   return res.status(200).json(data);
@@ -24,11 +26,14 @@ type Product = {
   name: string;
   description: string | null;
   price: number;
-  category?: string | null;
-  size?: string | null;
+  size: string | null;
+  club: string | null;
   inStock: boolean;
+  isVintage: boolean;
   createdAt: Date;
   updatedAt: Date;
+  profileId: string | null;
+  category: string | null;
 };
 
 type ApiResponse = Product[] | Product | { error: string };
@@ -42,6 +47,7 @@ export default async function handle(
       const id = req.query.id as string | undefined;
       const category = req.query.category as string;
       const ids = req.query.ids as string;
+      const profileId = req.query.profileId as string;
 
       if (id) {
         // Fetch product by ID if ID is provided
@@ -60,6 +66,10 @@ export default async function handle(
         // Fetch products by category if category is provided
         const data: Product[] = await getProductsByCategory(category);
         return handleSuccess(data, res);
+      } else if (profileId) {
+        // Fetch products by profileId if profileId is provided
+        const data: Product[] = await getProductsByUserId(profileId);
+        return handleSuccess(data, res);
       } else {
         // Fetch all products if no ID is provided
         const data: Product[] = await getProducts();
@@ -71,7 +81,8 @@ export default async function handle(
   }
   if (req.method === "POST") {
     try {
-      const { name, description, price, category, size, inStock, profileId } = req.body;
+      const { name, description, price, category, size, inStock, profileId } =
+        req.body;
       const product = await createProduct({
         name,
         description,
@@ -85,13 +96,23 @@ export default async function handle(
       return res.status(200).json(product);
     } catch (error: any) {
       console.error(error); // Loggen Sie den Fehler auf der Serverseite
-      return res.status(500).json({ error: error.message || 'Internal Server Error' });
+      return res
+        .status(500)
+        .json({ error: error.message || "Internal Server Error" });
     }
   }
   if (req.method === "PUT") {
     try {
-      const { id, name, description, price, category, size, inStock, profileId } =
-        req.body;
+      const {
+        id,
+        name,
+        description,
+        price,
+        category,
+        size,
+        inStock,
+        profileId,
+      } = req.body;
 
       if (!id) {
         return res.status(400).json({ error: "ID is required" });
