@@ -26,14 +26,14 @@ type Product = {
   name: string;
   description: string | null;
   price: number;
-  size: string | null;
-  club: string | null;
+  category?: string | null;
+  size?: string | null;
+  club?: string | null;
   inStock: boolean;
   isVintage: boolean;
   createdAt: Date;
   updatedAt: Date;
   profileId: string | null;
-  category: string | null;
 };
 
 type ApiResponse = Product[] | Product | { error: string };
@@ -81,15 +81,26 @@ export default async function handle(
   }
   if (req.method === "POST") {
     try {
-      const { name, description, price, category, size, inStock, profileId } =
-        req.body;
+      const {
+        name,
+        description,
+        price,
+        category,
+        size,
+        club,
+        inStock,
+        isVintage,
+        profileId,
+      } = req.body;
       const product = await createProduct({
         name,
         description,
         category,
         size,
+        club,
         price: parseFloat(price),
         inStock: Boolean(inStock),
+        isVintage: Boolean(isVintage),
         profileId,
       });
 
@@ -110,7 +121,9 @@ export default async function handle(
         price,
         category,
         size,
+        club,
         inStock,
+        isVintage,
         profileId,
       } = req.body;
 
@@ -124,8 +137,10 @@ export default async function handle(
         description,
         category,
         size,
+        club,
         price: parseFloat(price),
         inStock: Boolean(inStock),
+        isVintage: Boolean(isVintage),
         profileId,
       });
 
