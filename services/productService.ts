@@ -46,6 +46,16 @@ export const getProductsByUserId = async (profileId: string) => {
   });
 };
 
+export const getProductsByBuyerId = async (buyerId: string) => {
+  return await prisma.product.findMany({
+    where: {
+      buyerId: {
+        equals: buyerId,
+      },
+    },
+  });
+};
+
 export const createProduct = async (product: CreateProductType) => {
   return await prisma.product.create({
     data: product,

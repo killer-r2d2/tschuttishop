@@ -8,7 +8,9 @@ import {
   updateProduct,
   deleteProduct,
   getProductsById,
+  getProductsByBuyerId,
 } from "@/services/productService";
+import useGetProductsByBuyerId from "@/hooks/useGetProductsByBuyerId";
 
 // function for errror handling
 function handleError(error: any, res: NextApiResponse) {
@@ -51,6 +53,7 @@ export default async function handle(
       const category = req.query.category as string;
       const ids = req.query.ids as string;
       const profileId = req.query.profileId as string;
+      const buyerId = req.query.buyerId as string;
 
       if (id) {
         // Fetch product by ID if ID is provided
@@ -72,6 +75,10 @@ export default async function handle(
       } else if (profileId) {
         // Fetch products by profileId if profileId is provided
         const data: Product[] = await getProductsByUserId(profileId);
+        return handleSuccess(data, res);
+      } else if (buyerId) {
+        // Fetch Products by buyerId if buyerId is provided
+        const data: Product[] = await getProductsByBuyerId(buyerId);
         return handleSuccess(data, res);
       } else {
         // Fetch all products if no ID is provided
