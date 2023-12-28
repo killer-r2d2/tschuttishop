@@ -1,7 +1,12 @@
 import { Product } from "@/app/types/Product";
 import { Container } from "@/app/components/Base/Container";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import { BanknotesIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import {
+  BanknotesIcon,
+  EnvelopeIcon,
+  TruckIcon,
+} from "@heroicons/react/24/solid";
+import { Button } from "@nextui-org/button";
 
 export default function OrdersPageContent({
   id,
@@ -11,6 +16,8 @@ export default function OrdersPageContent({
   size,
   category,
   inStock,
+  isPaid,
+  isShipped,
 }: Product) {
   return (
     <Container>
@@ -53,10 +60,29 @@ export default function OrdersPageContent({
               >
                 <Card shadow="none" className="border">
                   <CardBody>
-                    Bitte Übeerweisen Sie den Betrag von{" "}
-                    <strong>CHF {price}</strong> auf das folgende Konto:
-                    <br />
-                    KONTODATEN VERKÄUFER
+                    {isPaid ? (
+                      <p>
+                        Sie haben den Betrag von <strong>{price} CHF</strong>{" "}
+                        bezahlt.
+                      </p>
+                    ) : (
+                      <>
+                        <p>
+                          Bitte Überweisen Sie den Betrag von{" "}
+                          <strong>{price} CHF</strong> auf das folgende Konto:
+                        </p>
+                        <p className="mt-5">
+                          Name Vorname
+                          <br />
+                          IBAN: CH00 0000 0000 0000 0000 0
+                        </p>
+                        <div className="mt-5">
+                          <Button color="primary" size="sm">
+                            Als bezahlt markieren
+                          </Button>
+                        </div>
+                      </>
+                    )}
                   </CardBody>
                 </Card>
               </Tab>
@@ -64,41 +90,21 @@ export default function OrdersPageContent({
                 key="shipment"
                 title={
                   <div className="flex items-center space-x-2">
-                    <EnvelopeIcon className="w-6" />
+                    <TruckIcon className="w-6" />
                     <span>Versand</span>
                   </div>
                 }
               >
                 <Card shadow="none" className="border">
                   <CardBody>
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est
-                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
-                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est
-                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
-                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est
-                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
-                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est
-                    laborum.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa awdawd wdada wd
-                    awdaw da wdaw dawd awdawd awd awdawdawdd a a a a a a a a
-                    lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam,
+                    {isShipped ? (
+                      <p>Der Verkäufer hat das Produkt an Sie versendet.</p>
+                    ) : (
+                      <p>
+                        Der Verkäufer wird Ihnen das Produkt so schnell wie
+                        möglich zusenden.
+                      </p>
+                    )}
                   </CardBody>
                 </Card>
               </Tab>

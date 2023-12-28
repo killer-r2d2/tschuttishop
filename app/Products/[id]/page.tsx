@@ -29,6 +29,8 @@ export default function Page({ params }: { params: { id: number } }) {
       profileId={""}
       createdAt={new Date()}
       updatedAt={new Date()}
+      isPaid={false}
+      isShipped={false}
       {...product}
     ></ProductPage>
   );

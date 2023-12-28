@@ -28,6 +28,10 @@ export default function Page({ params }: { params: { id: number } }) {
       inStock={false}
       createdAt={new Date()}
       updatedAt={new Date()}
+      isVintage={false}
+      profileId={""}
+      isPaid={false}
+      isShipped={false}
       {...product}
     ></OrdersPageContent>
   );
