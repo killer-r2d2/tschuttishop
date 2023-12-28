@@ -4,15 +4,7 @@ import { Chip } from "@nextui-org/chip";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-export default function OrderItem({
-  id,
-  name,
-  description,
-  price,
-  size,
-  category,
-  inStock,
-}: Product) {
+export default function OrderItem({ id, name, price, isPaid }: Product) {
   return (
     <Link
       href={`/DashboardProduct/Orders/${id}`}
@@ -48,7 +40,11 @@ export default function OrderItem({
         </p>
       </div>
       <div className="col-span-full xl:col-span-3">
-        <Chip color="warning">Rechnung offen</Chip>
+        {isPaid ? (
+          <Chip color="success">Rechnung bezahlt</Chip>
+        ) : (
+          <Chip color="warning">Rechnung offen</Chip>
+        )}
       </div>
       <div className="col-span-full xl:col-span-1 d-none xl:block">
         <ChevronRightIcon className="w-6" />
