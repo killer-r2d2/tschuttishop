@@ -34,6 +34,9 @@ type Product = {
   createdAt: Date;
   updatedAt: Date;
   profileId: string | null;
+  buyerId?: string | null;
+  isPaid: boolean;
+  isShipped: boolean;
 };
 
 type ApiResponse = Product[] | Product | { error: string };
@@ -102,6 +105,9 @@ export default async function handle(
         inStock: Boolean(inStock),
         isVintage: Boolean(isVintage),
         profileId,
+        buyerId: undefined,
+        isPaid: false,
+        isShipped: false,
       });
 
       return res.status(200).json(product);
@@ -142,6 +148,9 @@ export default async function handle(
         inStock: Boolean(inStock),
         isVintage: Boolean(isVintage),
         profileId,
+        buyerId: undefined,
+        isPaid: false,
+        isShipped: false,
       });
 
       return handleSuccess(product, res);

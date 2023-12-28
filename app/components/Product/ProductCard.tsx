@@ -43,6 +43,8 @@ export function ProductCard({
                     profileId,
                     createdAt: new Date(),
                     updatedAt: new Date(),
+                    isPaid: false,
+                    isShipped: false,
                   })
                 : null
             }
@@ -66,6 +68,8 @@ export function ProductCard({
                     profileId,
                     createdAt: new Date(),
                     updatedAt: new Date(),
+                    isPaid: false,
+                    isShipped: false,
                   })
                 : null
             }

@@ -7,33 +7,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  admin
-  user
-}
-
 model Profile {
-  id       String   @id @db.Uuid
-  email    String   @unique
-  role     Role     @default(user)
-  products Product[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  id        String    @id @db.Uuid
+  email     String    @unique
+  role      Role      @default(user)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  products  Product[]
+
   @@map("profile")
 }
+
 model Product {
   id          Int      @id @default(autoincrement())
   name        String
   description String?
   price       Float
-  size        String?
-  club        String?
   inStock     Boolean  @default(false)
-  isVintage   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
-  profileId    String? @db.Uuid
-  profile      Profile? @relation(fields: [profileId], references: [id])
   category    String?
+  size        String?
+  profileId   String?  @db.Uuid
+  club        String?
+  isVintage   Boolean  @default(false)
+  buyerId     String?
+  profile     Profile? @relation(fields: [profileId], references: [id])
+  isShipped   Boolean  @default(false)
+  isPaid      Boolean  @default(false)
 }
 
+enum Role {
+  admin
+  user
+}

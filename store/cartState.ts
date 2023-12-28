@@ -8,7 +8,7 @@ interface CartState {
 }
 
 export let cartStore = create<CartState>()((set) => ({
-  items: [0],
+  items: [],
   count: 0,
   addItem: (id: number) => {
     if (cartStore.getState().items.includes(id)) {

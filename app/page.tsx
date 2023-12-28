@@ -5,7 +5,6 @@ import { getServerSideProps } from "@/app/components/AuthTest";
 export default async function Index() {
   return (
     <div>
-      <getServerSideProps />
       <Hero />
       <ProductList />
     </div>
