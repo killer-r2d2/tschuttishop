@@ -50,11 +50,17 @@ export default function Cart({
               ))}
           </div>
         </div>
+
         {items.length > 0 && (
-          <div className="col-span-full flex justify-end">
-            <Button color="primary" onClick={() => buyItems(items)}>
-              Jetzt Kaufen
-            </Button>
+          <div className="col-span-full flex flex-col items-end">
+            <div className="font-bold">
+              Total: {products!.reduce((acc, curr) => acc + curr.price, 0)} CHF
+            </div>
+            <div className="mt-5">
+              <Button color="primary" onClick={() => buyItems(items)}>
+                Jetzt Kaufen
+              </Button>
+            </div>
           </div>
         )}
       </div>
