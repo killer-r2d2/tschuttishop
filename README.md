@@ -4,6 +4,14 @@
 ## Project Team: [Roger Killer](https://github.com/killer-r2d2), [Philipp Isaak](https://github.com/codewurstler) 
 ## Check out the live version: https://tschuttishop.ch
 
+## Tech stack
+- [Nextjs](https://nextjs.org/)
+- [Supabase](https://supabase.com/)
+- [Prisma](https://www.prisma.io/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [NextUi](https://nextui.org/)
+- [Resend](https://resend.com/)
+
 ## Getting Started
 
 ### Environment Variables
