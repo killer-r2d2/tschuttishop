@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { Product, ApiResponse } from "@/app/types/Product";
 import {
   getProducts,
   getProductById,
@@ -18,22 +19,6 @@ function handleError(error: any, res: NextApiResponse) {
 function handleSuccess(data: Product | Product[], res: NextApiResponse) {
   return res.status(200).json(data);
 }
-
-type Product = {
-  id: number;
-  name: string;
-  description: string | null;
-  price: number;
-  category?: string | null;
-  size?: string | null;
-  club?: string | null;
-  inStock: boolean;
-  isVintage: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-type ApiResponse = Product[] | Product | { error: string };
 
 export default async function handle(
   req: NextApiRequest,
@@ -88,7 +73,7 @@ export default async function handle(
 
       return res.status(200).json(product);
     } catch (error: any) {
-      console.error(error); // Loggen Sie den Fehler auf der Serverseite
+      console.error(error);
       return res.status(500).json({ error: error.message || 'Internal Server Error' });
     }
   }

@@ -10,7 +10,6 @@ export type Product = {
   isVintage: boolean;
   createdAt: Date;
   updatedAt: Date;
-  profileId: string;
-};
+  profileId?: string | null | undefined;};
 
-export type ApiResponse = Product[];
+export type ApiResponse = Product[] | Product | { error: string };
