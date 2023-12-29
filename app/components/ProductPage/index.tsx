@@ -7,15 +7,7 @@ import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
 import { cartStore } from "@/store/cartState";
 
-const Index = ({
-  id,
-  name,
-  description,
-  price,
-  inStock,
-  createdAt,
-  updatedAt,
-}: Product) => {
+const Index = ({ id, name, description, price, inStock }: Product) => {
   const addItem = cartStore((state) => state.addItem);
   return (
     <Container>

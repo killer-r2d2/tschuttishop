@@ -1,16 +1,22 @@
 "use client";
 import { Container } from "@/app/components/Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
-import useGetProductsByCategory from "@/hooks/useGetProductsByCategory";
 import { ProductCard } from "@/app/components/Product/ProductCard";
 import React from "react";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
+import useProducts from "@/hooks/useProducts";
 
 export default function Page({ params }: { params: { category: string } }) {
   const category: string = params.category;
+  const { products, isLoading, isError } = useProducts();
+  let filteredProducts = products;
 
-  const { products, isLoading, isError } = useGetProductsByCategory(category);
+  if (category === "vintage") {
+    const filterIt = products?.filter((product) => product.isVintage);
+    filteredProducts = filterIt;
+  }
+
   if (isLoading)
     return (
       <Container>
@@ -36,7 +42,7 @@ export default function Page({ params }: { params: { category: string } }) {
             {category}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {products!.map((product) => (
+            {filteredProducts!.map((product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>

@@ -18,39 +18,11 @@ export const getProductById = async (id: number) => {
   });
 };
 
-export const getProductsById = async (ids: number[]) => {
-  return await prisma.product.findMany({
-    where: {
-      id: { in: ids },
-    },
-  });
-};
-
 export const getProductsByCategory = async (category: string) => {
   return await prisma.product.findMany({
     where: {
       category: {
         equals: category,
-      },
-    },
-  });
-};
-
-export const getProductsByUserId = async (profileId: string) => {
-  return await prisma.product.findMany({
-    where: {
-      profileId: {
-        equals: profileId,
-      },
-    },
-  });
-};
-
-export const getProductsByBuyerId = async (buyerId: string) => {
-  return await prisma.product.findMany({
-    where: {
-      buyerId: {
-        equals: buyerId,
       },
     },
   });

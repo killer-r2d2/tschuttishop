@@ -3,13 +3,13 @@ import { Container } from "@/app/components/Base/Container";
 import BackButton from "@/app/components/Base/BackButton";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
-import useGetProductsById from "@/hooks/useGetProductsById";
 import CartItem from "@/app/Cart/CartItem";
 import { usePurchaseProduct } from "@/hooks/usePurchaseProduct";
 import { useRouter } from "next/navigation";
 
 import { cartStore } from "@/store/cartState";
 import { Button } from "@nextui-org/button";
+import useProducts from "@/hooks/useProducts";
 
 export default function Cart({
   userProfileId,
@@ -19,10 +19,12 @@ export default function Cart({
   const items: number[] = cartStore((state) => state.items);
   const clearCart = cartStore((state) => state.clearCart);
   const { purchaseProduct } = usePurchaseProduct();
-  const { products, isLoading, isError } = useGetProductsById(items)
+  const { products, isLoading, isError } = useProducts();
+  const cartProducts = products?.filter((product) =>
+    items.includes(product.id),
+  );
   const router = useRouter();
-  
-  (items);
+
   if (isLoading)
     return (
       <Container>
@@ -38,12 +40,11 @@ export default function Cart({
     }
     try {
       for (const itemId of items) {
-       await purchaseProduct(itemId, userProfileId);
+        await purchaseProduct(itemId, userProfileId);
       }
       alert("Kauf erfolgreich");
       router.push("/DashboardProduct/Orders");
       clearCart();
-
     } catch (error) {
       if (error instanceof Error) {
         console.error("Fehler beim Kauf: ", error.message);
@@ -69,7 +70,7 @@ export default function Cart({
               <p className="text-xl font-bold">Keine Produkte im Warenkorb</p>
             )}
             {items.length > 0 &&
-              products!.map((product) => (
+              cartProducts!.map((product) => (
                 <CartItem key={product.id} {...product} />
               ))}
           </div>
@@ -78,7 +79,8 @@ export default function Cart({
         {items.length > 0 && (
           <div className="col-span-full flex flex-col items-end">
             <div className="font-bold">
-              Total: {products!.reduce((acc, curr) => acc + curr.price, 0)} CHF
+              Total: {cartProducts!.reduce((acc, curr) => acc + curr.price, 0)}{" "}
+              CHF
             </div>
             <div className="mt-5">
               <Button color="primary" onClick={() => buyItems(items)}>
