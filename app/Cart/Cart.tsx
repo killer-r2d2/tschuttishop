@@ -5,6 +5,7 @@ import { SideNavigation } from "@/app/components/SideNavigation";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useGetProductsById from "@/hooks/useGetProductsById";
 import CartItem from "@/app/Cart/CartItem";
+import { usePurchaseProduct } from "@/hooks/usePurchaseProduct";
 
 import { cartStore } from "@/store/cartState";
 import { Button } from "@nextui-org/button";
@@ -15,8 +16,10 @@ export default function Cart({
   userProfileId: string | undefined;
 }) {
   const items: number[] = cartStore((state) => state.items);
-
-  const { products, isLoading, isError } = useGetProductsById(items);
+  const { purchaseProduct } = usePurchaseProduct();
+  const { products, isLoading, isError } = useGetProductsById
+  
+  (items);
   if (isLoading)
     return (
       <Container>
@@ -25,8 +28,22 @@ export default function Cart({
     );
   if (isError) return <p>Error: {isError.message}</p>;
 
-  const buyItems = (items: number[]) => {
-    console.log("buyItems: ", items);
+  const buyItems = async (items: number[]) => {
+    if (!userProfileId) {
+      console.error("userProfileId is undefined");
+      return;
+    }
+    try {
+      for (const itemId of items) {
+       await purchaseProduct(itemId, userProfileId);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Fehler beim Kauf: ", error.message);
+      } else {
+        console.error("Ein unerwarteter Fehler ist aufgetreten");
+      }
+    }
   };
 
   return (

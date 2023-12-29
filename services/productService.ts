@@ -4,7 +4,7 @@ import { Product } from "@/app/types/Product";
 
 export type CreateProductType = Omit<Product, "id" | "createdAt" | "updatedAt">;
 
-export type UpdateProductType = Omit<Product, "createdAt" | "updatedAt">;
+export type UpdateProductType = Partial<CreateProductType>;
 
 export const getProducts = async () => {
   return await prisma.product.findMany();
