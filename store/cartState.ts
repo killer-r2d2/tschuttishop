@@ -5,6 +5,7 @@ interface CartState {
   count: number;
   addItem: (id: number) => void;
   deleteItem: (id: number) => void;
+  clearCart: () => void;
 }
 
 export let cartStore = create<CartState>()((set) => ({
@@ -22,4 +23,8 @@ export let cartStore = create<CartState>()((set) => ({
     set((state) => ({ items: state.items.filter((item) => item !== id) }));
     set((state) => ({ count: state.count - 1 }));
   },
+  clearCart: () => {
+    set((state) => ({ items: [] }));
+    set((state) => ({ count: 0 }));
+  }
 }));

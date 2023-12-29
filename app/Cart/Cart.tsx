@@ -17,6 +17,7 @@ export default function Cart({
   userProfileId: string | undefined;
 }) {
   const items: number[] = cartStore((state) => state.items);
+  const clearCart = cartStore((state) => state.clearCart);
   const { purchaseProduct } = usePurchaseProduct();
   const { products, isLoading, isError } = useGetProductsById(items)
   const router = useRouter();
@@ -41,6 +42,7 @@ export default function Cart({
       }
       alert("Kauf erfolgreich");
       router.push("/DashboardProduct/Orders");
+      clearCart();
 
     } catch (error) {
       if (error instanceof Error) {
