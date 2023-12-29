@@ -57,7 +57,6 @@ export function Form({ userProfileId }: { userProfileId: string }) {
       console.log("profileId is missing");
     }
     createProduct({ ...formData, size: formData.size });
-    console.log("formData: ", formData);
   };
 
   if (isLoading) return <p className="text-purple-600">Loading...</p>;
