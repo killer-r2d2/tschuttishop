@@ -16,7 +16,7 @@ export default function CartItem({
 }: Product) {
   const removeItem = cartStore((state) => state.deleteItem);
   return (
-    <div className="grid grid-cols-12 gap-y-12 xl:gap-x-12 border-t pt-8">
+    <div className="grid grid-cols-12 gap-y-12 xl:gap-x-12 border-t py-8">
       <div className="col-span-full xl:col-span-6 relative">
         <Image
           src="/shirt-player.png"
