@@ -1,14 +1,10 @@
 import { Product } from "@/app/types/Product";
 import { Container } from "@/app/components/Base/Container";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import {
-  BanknotesIcon,
-  EnvelopeIcon,
-  TruckIcon,
-} from "@heroicons/react/24/solid";
+import { BanknotesIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 
-export default function OrdersPageContent({
+export default function SoldPageContent({
   id,
   name,
   description,
@@ -61,25 +57,17 @@ export default function OrdersPageContent({
                   <CardBody>
                     {isPaid ? (
                       <p>
-                        Sie haben den Betrag von <strong>{price} CHF</strong>{" "}
-                        bezahlt.
+                        Der Käufer hat die Rechnung bezahlt.
+                        <br />
+                        Sobald sie die Ware versendet haben, können Sie den
+                        Status unter `&quot;`Versand`&quot;` ändern.
                       </p>
                     ) : (
                       <>
                         <p>
-                          Bitte Überweisen Sie den Betrag von{" "}
-                          <strong>{price} CHF</strong> auf das folgende Konto:
+                          Warten Sie auf die Bezahlung de Käufers:
+                          <strong>{price} CHF</strong>
                         </p>
-                        <p className="mt-5">
-                          Name Vorname
-                          <br />
-                          IBAN: CH00 0000 0000 0000 0000 0
-                        </p>
-                        <div className="mt-5">
-                          <Button color="primary" size="sm">
-                            Als bezahlt markieren
-                          </Button>
-                        </div>
                       </>
                     )}
                   </CardBody>
@@ -97,12 +85,24 @@ export default function OrdersPageContent({
                 <Card shadow="none" className="border">
                   <CardBody>
                     {isShipped ? (
-                      <p>Der Verkäufer hat das Produkt an Sie versendet.</p>
+                      <p>Sie haben das Produkt an den Käufer gesendet.</p>
                     ) : (
-                      <p>
-                        Der Verkäufer wird Ihnen das Produkt so schnell wie
-                        möglich zusenden.
-                      </p>
+                      <>
+                        <p>
+                          Senden Sie das Produkt an die folgende Adresse:
+                          <br />
+                          <strong>Vorname Nachname</strong>
+                          <br />
+                          <strong>Strasse 1</strong>
+                          <br />
+                          <strong>1234 Stadt</strong>
+                        </p>
+                        <div className="mt-5">
+                          <Button color="primary" size="sm">
+                            Als versendet markieren
+                          </Button>
+                        </div>
+                      </>
                     )}
                   </CardBody>
                 </Card>

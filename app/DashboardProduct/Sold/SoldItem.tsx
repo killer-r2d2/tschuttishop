@@ -4,7 +4,7 @@ import { Chip } from "@nextui-org/chip";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-export default function OrderItem({ id, name, price, isPaid }: Product) {
+export default function SoldItem({ id, name, price, isPaid }: Product) {
   return (
     <Link
       href={`/DashboardProduct/Sold/${id}`}

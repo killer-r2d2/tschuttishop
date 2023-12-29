@@ -13,8 +13,7 @@ export default function Page({ params }: { params: { category: string } }) {
   let filteredProducts = products;
 
   if (category === "vintage") {
-    const filterIt = products?.filter((product) => product.isVintage);
-    filteredProducts = filterIt;
+    filteredProducts = products?.filter((product) => product.isVintage);
   }
 
   if (isLoading)
