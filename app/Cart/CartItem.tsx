@@ -16,17 +16,18 @@ export default function CartItem({
 }: Product) {
   const removeItem = cartStore((state) => state.deleteItem);
   return (
-    <div className="grid grid-cols-12 gap-12 border-t p-8">
-      <div className="p-2 col-span-full xl:col-span-4 relative">
+    <div className="grid grid-cols-12 gap-y-12 xl:gap-x-12 border-t pt-8">
+      <div className="col-span-full xl:col-span-6 relative">
         <Image
           src="/shirt-player.png"
-          fill
+          height={500}
+          width={500}
           objectFit="cover"
           alt={name}
           className="rounded-xl"
         />
       </div>
-      <div className="col-span-full xl:col-span-8 flex flex-col gap-8">
+      <div className="col-span-full xl:col-span-6 flex flex-col gap-8">
         <Link href={`/Products/${id}`}>
           <h2 className="text-2xl font-bold">{name}</h2>
         </Link>
