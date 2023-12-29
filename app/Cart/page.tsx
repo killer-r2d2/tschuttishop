@@ -8,6 +8,7 @@ export default async function CartPage() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  
 
   return (
     <>
