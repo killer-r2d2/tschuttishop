@@ -145,7 +145,6 @@ export default async function handle(
       }
 
       const product = await updateProduct(parseInt(id), {
-        id: parseInt(id),
         name,
         description,
         category,
