@@ -37,6 +37,7 @@ export default function Cart({
       for (const itemId of items) {
        await purchaseProduct(itemId, userProfileId);
       }
+      alert("Kauf erfolgreich");
     } catch (error) {
       if (error instanceof Error) {
         console.error("Fehler beim Kauf: ", error.message);
