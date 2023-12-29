@@ -6,6 +6,7 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useGetProductsById from "@/hooks/useGetProductsById";
 import CartItem from "@/app/Cart/CartItem";
 import { usePurchaseProduct } from "@/hooks/usePurchaseProduct";
+import { useRouter } from "next/navigation";
 
 import { cartStore } from "@/store/cartState";
 import { Button } from "@nextui-org/button";
@@ -17,7 +18,8 @@ export default function Cart({
 }) {
   const items: number[] = cartStore((state) => state.items);
   const { purchaseProduct } = usePurchaseProduct();
-  const { products, isLoading, isError } = useGetProductsById
+  const { products, isLoading, isError } = useGetProductsById(items)
+  const router = useRouter();
   
   (items);
   if (isLoading)
@@ -38,6 +40,8 @@ export default function Cart({
        await purchaseProduct(itemId, userProfileId);
       }
       alert("Kauf erfolgreich");
+      router.push("/DashboardProduct/Orders");
+
     } catch (error) {
       if (error instanceof Error) {
         console.error("Fehler beim Kauf: ", error.message);
