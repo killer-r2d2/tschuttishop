@@ -7,7 +7,6 @@ import { Textarea } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
 
 export function Form({ userProfileId }: { userProfileId: string }) {
-  console.log("userProfileId: ", userProfileId);
 
   const [formData, setFormData] = useState({
     name: "",
