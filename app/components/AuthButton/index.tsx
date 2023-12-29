@@ -2,7 +2,6 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Container } from "../Base/Container";
 
 export default async function AuthButton() {
   const cookieStore = cookies();
@@ -34,9 +33,14 @@ export default async function AuthButton() {
           </form>
         <Link
           href="/DashboardProduct"
-          className="py-2 rounded-md max-w-max no-underline bg-btn-background hover:bg-btn-background-hover"
+          className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
         >
           Dashboard
+        </Link>
+        <Link href="/DashboardProduct/Orders"
+        className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
+        >
+          Orders
         </Link>
       </div>
     </div>
