@@ -18,16 +18,6 @@ export const getProductById = async (id: number) => {
   });
 };
 
-export const getProductsByCategory = async (category: string) => {
-  return await prisma.product.findMany({
-    where: {
-      category: {
-        equals: category,
-      },
-    },
-  });
-};
-
 export const createProduct = async (product: CreateProductType) => {
   return await prisma.product.create({
     data: product,

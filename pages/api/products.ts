@@ -56,10 +56,6 @@ export default async function handle(
         } else {
           return res.status(404).json({ error: "Product not found." });
         }
-      } else if (category) {
-        // Fetch products by category if category is provided
-        const data: Product[] = await getProductsByCategory(category);
-        return handleSuccess(data, res);
       } else {
         // Fetch all products if no ID is provided
         const data: Product[] = await getProducts();
