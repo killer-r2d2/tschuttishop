@@ -5,15 +5,17 @@ import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
 import { Product } from "../../types/Product";
 import { ProductCard } from "@/app/components/Product/ProductCard";
-import useGetProductsByCategory from "@/hooks/useGetProductsByUserId";
 
 export function Products({ userProfileId }: { userProfileId: string }) {
-  const { products, isLoading, isError } =
-    useGetProductsByCategory(userProfileId);
+  const { products, isLoading, isError } = useProducts();
   const { deleteProduct } = useDeleteProduct();
   const { updateProduct } = useUpdateProduct();
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
+
+  const userProducts = products?.filter(
+    (product) => product.profileId === userProfileId
+  );
 
   const openDialog = (product: Product) => {
     setActiveProduct(product);
@@ -104,8 +106,8 @@ export function Products({ userProfileId }: { userProfileId: string }) {
         <h1 className="text-2xl font-bold">Deine erfassten Produkte:</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {products?.length ? (
-          products!.map((product) => (
+        {userProducts && userProducts.length > 0 ? (
+          userProducts.map((product) => (
             <ProductCard
               {...product}
               key={product.id}
