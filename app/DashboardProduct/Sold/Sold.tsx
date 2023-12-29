@@ -29,7 +29,7 @@ export default function Sold({
       <BackButton />
       <div className="mt-5">
         <h1 className="text-5xl font-bold mb-5">Verkaute Produkte</h1>
-        {soldProducts ? (
+        {soldProducts!.length > 0 ? (
           soldProducts!.map((product) => (
             <SoldItem key={product.id} {...product} />
           ))
