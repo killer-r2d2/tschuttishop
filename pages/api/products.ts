@@ -45,7 +45,6 @@ export default async function handle(
   if (req.method === "GET") {
     try {
       const id = req.query.id as string | undefined;
-      const category = req.query.category as string;
 
       if (id) {
         // Fetch product by ID if ID is provided

@@ -28,7 +28,7 @@ export default function Sold({
     <Container>
       <BackButton />
       <div className="mt-5">
-        <h1 className="text-5xl font-bold mb-5">Verkaute Produkte</h1>
+        <h1 className="text-5xl font-bold mb-5">Verkaufte Produkte</h1>
         {soldProducts!.length > 0 ? (
           soldProducts!.map((product) => (
             <SoldItem key={product.id} {...product} />
