@@ -10,10 +10,10 @@ export type Product = {
   isVintage: boolean;
   createdAt: Date;
   updatedAt: Date;
-  profileId: string;
+  profileId: string | null;
   buyerId?: string | null;
   isPaid: boolean;
   isShipped: boolean;
 };
 
-export type ApiResponse = Product[];
+export type ApiResponse = Product[] | Product | { error: string };

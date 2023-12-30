@@ -6,6 +6,8 @@ import React from "react";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
 import useProducts from "@/hooks/useProducts";
+import { Product } from "@/app/types/Product";
+
 
 export default function Page({ params }: { params: { category: string } }) {
   const category: string = params.category;
@@ -13,7 +15,7 @@ export default function Page({ params }: { params: { category: string } }) {
   let filteredProducts = products;
 
   if (category === "vintage") {
-    filteredProducts = products?.filter((product) => product.isVintage);
+    filteredProducts = (products as Product[])?.filter((product) => product.isVintage);
   }
 
   if (isLoading)
@@ -41,7 +43,7 @@ export default function Page({ params }: { params: { category: string } }) {
             {category}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {filteredProducts!.map((product) => (
+            {(products as Product[]).map((product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>
