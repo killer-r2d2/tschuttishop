@@ -6,6 +6,8 @@ import { ProductCard } from "@/app/components/Product/ProductCard";
 import React from "react";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
+import { Product } from "@/app/types/Product";
+
 
 export default function Page({ params }: { params: { category: string } }) {
   const category: string = params.category;
@@ -36,7 +38,7 @@ export default function Page({ params }: { params: { category: string } }) {
             {category}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {products!.map((product) => (
+            {(products as Product[]).map((product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>

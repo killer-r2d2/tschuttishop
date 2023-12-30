@@ -5,6 +5,8 @@ import { Section } from "../Base/Section";
 import { Container } from "../Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { ProductCard } from "@/app/components/Product/ProductCard";
+import { Product } from "@/app/types/Product";
+
 
 export function ProductList() {
   const { products, isLoading, isError } = useProducts();
@@ -22,7 +24,7 @@ export function ProductList() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {products!.map((product) => (
+            {(products as Product[]).map((product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>

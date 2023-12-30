@@ -5,6 +5,8 @@ import { SideNavigation } from "@/app/components/SideNavigation";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useGetProductsById from "@/hooks/useGetProductsById";
 import CartItem from "@/app/Cart/CartItem";
+import { Product } from "../types/Product";
+
 
 import { cartStore } from "@/store/cartState";
 
@@ -32,7 +34,7 @@ export default function Cart() {
         <div className="col-span-full xl:col-span-9">
           <h2 className="text-5xl font-bold mb-5">Warenkorb</h2>
           <div>
-            {products!.map((product) => (
+            {(products as Product[]).map((product) => (
               <CartItem key={product.id} {...product} />
             ))}
           </div>

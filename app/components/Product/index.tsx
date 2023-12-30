@@ -99,7 +99,7 @@ export function Products() {
         </div>
       </dialog>
       {/* <p>{JSON.stringify(products)}</p> */}
-      {products!.map((product) => (
+      {(products as Product[]).map((product) => (
         <ProductCard
           {...product}
           key={product.id}
