@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import {
   getProducts,
   getProductById,
-  getProductsByCategory,
   createProduct,
   updateProduct,
   deleteProduct,

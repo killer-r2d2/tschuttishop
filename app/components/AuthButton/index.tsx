@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import AuthState from "@/app/components/AuthButton/AuthState";
 
 export default async function AuthButton() {
   const cookieStore = cookies();
@@ -20,29 +21,35 @@ export default async function AuthButton() {
     return redirect("/");
   };
 
+  //used for AuthState
+  let condition;
+  condition = !!user;
+
   return user ? (
     <div className="container mx-auto ps-5 pe-5 mb-5">
       <div>
         <div className="flex items-center justify-between gap-4">
           Hey, {user.email}!
         </div>
-          <form action={signOut}>
-            <button className="py-2 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-              Logout
-            </button>
-          </form>
+        <form action={signOut}>
+          <button className="py-2 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+            Logout
+          </button>
+        </form>
         <Link
           href="/DashboardProduct"
           className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
         >
           Dashboard
         </Link>
-        <Link href="/DashboardProduct/Orders"
-        className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
+        <Link
+          href="/DashboardProduct/Orders"
+          className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
         >
           Orders
         </Link>
       </div>
+      <AuthState condition={condition} />
     </div>
   ) : (
     <div className="container mx-auto ps-5 pe-5 mb-5">
@@ -52,6 +59,7 @@ export default async function AuthButton() {
       >
         Login
       </Link>
+      <AuthState condition={condition} />
     </div>
   );
 }

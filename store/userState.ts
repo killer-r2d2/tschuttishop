@@ -1,6 +1,11 @@
 import { create } from "zustand";
 
-export const userState = create((set) => ({
-  user: null,
-  setUser: (user) => set((state) => ({ user })),
+type UserState = {
+  isLoggedIn: boolean;
+  setIsLoggedIn: () => void;
+};
+
+export const userState = create<UserState>((set) => ({
+  isLoggedIn: false,
+  setIsLoggedIn: () => set({ isLoggedIn: true }),
 }));
