@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface CartState {
-  items: number[] | [];
+  items: number[];
   count: number;
   addItem: (id: number) => void;
   deleteItem: (id: number) => void;
