@@ -1,18 +1,11 @@
 "use client";
-
-import {
-  UserCircleIcon,
-  ShoppingCartIcon,
-  Bars4Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
+import { Bars4Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { Container } from "../Base/Container";
 import { useState } from "react";
 import { Logo } from "@/app/components/Navigation/Logo";
 import { CartUser } from "@/app/components/Navigation/CartUser";
 import { NavLink } from "@/app/types/Navigation";
-
 
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
@@ -26,7 +19,7 @@ export function Navigation() {
   return (
     <>
       {/* Desktop */}
-      <nav className="sticky top-0 z-50 pt-4 pb-4 bg-slate-900 shadow mb-5 hidden lg:block">
+      <nav className="pt-4 pb-4 bg-slate-900 shadow mb-5 hidden lg:block">
         <Container>
           <div className="flex justify-between items-center">
             <Logo />

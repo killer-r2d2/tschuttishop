@@ -25,8 +25,10 @@ export default function RootLayout({
       <body>
         <Providers>
           <div className="flex flex-col min-h-screen">
-            <Navigation />
-            <AuthButton />
+            <div className="sticky top-0 z-50">
+              <AuthButton />
+              <Navigation />
+            </div>
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>

@@ -3,6 +3,9 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import AuthState from "@/app/components/AuthButton/AuthState";
+import { Container } from "@/app/components/Base/Container";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
+import UserDropdown from "@/app/components/AuthButton/userDropdown";
 
 export default async function AuthButton() {
   const cookieStore = cookies();
@@ -21,45 +24,32 @@ export default async function AuthButton() {
     return redirect("/");
   };
 
-  //used for AuthState
-  let condition;
-  condition = !!user;
-
   return user ? (
-    <div className="container mx-auto ps-5 pe-5 mb-5">
-      <div>
-        <div className="flex items-center justify-between gap-4">
-          Hey, {user.email}!
+    <div className="pt-2 bg-slate-900 text-slate-100">
+      <Container>
+        <div className="flex justify-end items-center gap-6">
+          <form action={signOut}>
+            <button className="py-2 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+              Logout
+            </button>
+          </form>
+          <UserDropdown user={user.email} />
         </div>
-        <form action={signOut}>
-          <button className="py-2 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-            Logout
-          </button>
-        </form>
-        <Link
-          href="/DashboardProduct"
-          className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
-        >
-          Dashboard
-        </Link>
-        <Link
-          href="/DashboardProduct/Orders"
-          className="py-2 rounded-md max-w-max block no-underline bg-btn-background hover:bg-btn-background-hover"
-        >
-          Orders
-        </Link>
-      </div>
-      <AuthState condition={condition} />
+      </Container>
     </div>
   ) : (
-    <div className="container mx-auto ps-5 pe-5 mb-5">
-      <Link
-        href="/Login"
-        className="py-2 flex rounded-md max-w-max no-underline bg-btn-background hover:bg-btn-background-hover"
-      >
-        Login
-      </Link>
-      <AuthState condition={condition} />
+    <div className="pt-2 bg-slate-900 text-slate-100">
+      <Container>
+        <div className="flex justify-end items-center gap-4">
+          <Link
+            href="/Login"
+            className="py-2 flex rounded-md max-w-max no-underline bg-btn-background hover:bg-btn-background-hover"
+          >
+            Login
+          </Link>
+          <UserCircleIcon className="w-8 text-slate-500 " />
+        </div>
+      </Container>
     </div>
   );
 }
