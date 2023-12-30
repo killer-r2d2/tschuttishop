@@ -4,6 +4,7 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useProducts from "@/hooks/useProducts";
 import SoldItem from "@/app/DashboardProduct/Sold/SoldItem";
 import BackButton from "@/app/components/Base/BackButton";
+import { Product } from "@/app/types/Product";
 export default function Sold({
   userProfileId,
 }: {
@@ -11,7 +12,7 @@ export default function Sold({
 }) {
   const { products, isLoading, isError } = useProducts();
 
-  const soldProducts = products?.filter(
+  const soldProducts = (products as Product[])?.filter(
     (product) =>
       product.profileId === userProfileId && product.buyerId !== null,
   );

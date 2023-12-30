@@ -6,6 +6,8 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import CartItem from "@/app/Cart/CartItem";
 import { usePurchaseProduct } from "@/hooks/usePurchaseProduct";
 import { useRouter } from "next/navigation";
+import { Product } from "../types/Product";
+
 
 import { cartStore } from "@/store/cartState";
 import { Button } from "@nextui-org/button";
@@ -20,7 +22,7 @@ export default function Cart({
   const clearCart = cartStore((state) => state.clearCart);
   const { purchaseProduct } = usePurchaseProduct();
   const { products, isLoading, isError } = useProducts();
-  const cartProducts = products?.filter((product) =>
+  const cartProducts = (products as Product[])?.filter((product) =>
     items.includes(product.id),
   );
   const router = useRouter();

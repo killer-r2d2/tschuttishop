@@ -5,6 +5,7 @@ import OrderItem from "@/app/DashboardProduct/Orders/OrderItem";
 import useProducts from "@/hooks/useProducts";
 import BackButton from "@/app/components/Base/BackButton";
 import SoldItem from "@/app/DashboardProduct/Sold/SoldItem";
+import { Product } from "@/app/types/Product";
 export default function Orders({
   userProfileId,
 }: {
@@ -12,7 +13,7 @@ export default function Orders({
 }) {
   const { products, isLoading, isError } = useProducts();
 
-  const boughtProducts = products?.filter(
+  const boughtProducts = (products as Product[])?.filter(
     (product) => product.buyerId === userProfileId,
   );
 
