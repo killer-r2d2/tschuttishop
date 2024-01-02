@@ -19,6 +19,24 @@ export default function OrdersPageContent({
   isPaid,
   isShipped,
 }: Product) {
+  const handleMarkAsPaid = async () => {
+    try {
+      const response = await fetch('/api/updatePaymentStatus', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId: id }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update payment status');
+      }
+      console.log('Produkt erfolgreich als bezahlt markiert');
+    } catch (error) {
+      console.error('Fehler beim Markieren als bezahlt: ', (error as Error).message);
+    }
+  };
+  
   return (
     <Container>
       <div className="grid grid-cols-12 gap-8">
@@ -76,7 +94,7 @@ export default function OrdersPageContent({
                           IBAN: CH00 0000 0000 0000 0000 0
                         </p>
                         <div className="mt-5">
-                          <Button color="primary" size="sm">
+                          <Button color="primary" size="sm" onClick={handleMarkAsPaid}>
                             Als bezahlt markieren
                           </Button>
                         </div>
