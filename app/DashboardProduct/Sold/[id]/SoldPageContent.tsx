@@ -4,6 +4,7 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { BanknotesIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 
+
 export default function SoldPageContent({
   id,
   name,
@@ -15,6 +16,24 @@ export default function SoldPageContent({
   isPaid,
   isShipped,
 }: Product) {
+  const handleMarkAsShipped = async () => {
+    try {
+      const response = await fetch('/api/updateShipmentStatus', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId: id }),
+      });
+        if (!response.ok) {
+        throw new Error('Failed to update shipment status');
+      }
+      console.log('Produkt erfolgreich als versendet markiert');
+    } catch (error) {
+      console.error('Fehler beim Markieren als versendet: ', (error as Error).message);
+    }
+  };
+  
   return (
     <Container>
       <div className="grid grid-cols-12 gap-8">
@@ -98,7 +117,7 @@ export default function SoldPageContent({
                           <strong>1234 Stadt</strong>
                         </p>
                         <div className="mt-5">
-                          <Button color="primary" size="sm">
+                          <Button color="primary" size="sm" onClick={handleMarkAsShipped}>
                             Als versendet markieren
                           </Button>
                         </div>
