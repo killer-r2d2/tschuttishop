@@ -32,7 +32,7 @@ export default function Orders({
         <h1 className="text-5xl font-bold mb-5">Gekaufte Artikel</h1>
         {boughtProducts!.length > 0 ? (
           boughtProducts!.map((product) => (
-            <SoldItem key={product.id} {...product} />
+            <OrderItem key={product.id} {...product} />
           ))
         ) : (
           <p>Sie haben noch keine Produkte gekauft.</p>
