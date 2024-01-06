@@ -4,8 +4,9 @@ import Link from "next/link";
 import { Container } from "../Base/Container";
 import { useState } from "react";
 import { Logo } from "@/app/components/Navigation/Logo";
-import { CartUser } from "@/app/components/Navigation/CartUser";
+import { CartNav } from "@/app/components/Navigation/CartNav";
 import { NavLink } from "@/app/types/Navigation";
+import { FavoritesNav } from "@/app/components/Navigation/FavoritesNav";
 
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
@@ -34,7 +35,10 @@ export function Navigation() {
                   </li>
                 ))}
               </ul>
-              <CartUser />
+              <div className="flex gap-4 items-center">
+                <FavoritesNav />
+                <CartNav />
+              </div>
             </div>
           </div>
         </Container>
@@ -45,8 +49,9 @@ export function Navigation() {
         <Container>
           <div className="flex justify-between items-center lg:block">
             <Logo />
-            <div className="flex gap-8 items-center">
-              <CartUser />
+            <div className="flex gap-2 items-center">
+              <FavoritesNav />
+              <CartNav />
               <button className="block" onClick={() => setToggle(!toggle)}>
                 <Bars4Icon
                   className={`${
