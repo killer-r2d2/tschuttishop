@@ -48,10 +48,13 @@ export default function OrdersPageContent({
         </div>
         <div className="col-span-full xl:col-span-6 xl:grid flex flex-col lg:flex-row xl:grid-rows-0 xl:grid-cols-2 xl:gap-x-4 gap-y-4 mb-8 xl:mb-0">
           <div className="xl:col-span-1 md:mr-8 aspect-[4/3] max-w-lg">
-            <img
+            <Image
               src="/shirt-player.png"
               alt="shirt-player"
-              className="w-full h-full object-cover rounded-xl"
+              width={500}
+              height={500}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              className="rounded-xl"
             />
           </div>
           <div className="col-span-full xl:col-span-1 flex flex-col">
