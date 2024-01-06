@@ -11,12 +11,22 @@ import { Product } from "../types/Product";
 import { cartStore } from "@/store/cartStore";
 import { Button } from "@nextui-org/button";
 import useProducts from "@/hooks/useProducts";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
+import CartModal from "@/app/Cart/CartModal";
 
 export default function Cart({
   userProfileId,
 }: {
   userProfileId: string | undefined;
 }) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const items: number[] = cartStore((state) => state.items);
   const clearCart = cartStore((state) => state.clearCart);
   const { purchaseProduct } = usePurchaseProduct();
@@ -84,9 +94,13 @@ export default function Cart({
               CHF
             </div>
             <div className="mt-5">
-              <Button color="primary" onClick={() => buyItems(items)}>
-                Jetzt Kaufen
-              </Button>
+              {userProfileId ? (
+                <Button color="primary" onClick={() => buyItems(items)}>
+                  Jetzt Kaufen
+                </Button>
+              ) : (
+                <CartModal />
+              )}
             </div>
           </div>
         )}
