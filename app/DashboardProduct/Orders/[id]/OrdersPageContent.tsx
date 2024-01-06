@@ -42,15 +42,19 @@ export default function OrdersPageContent({
   return (
     <Container>
       <BackButton />
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12">
         <div className="col-span-full">
-          <h2 className="text-5xl font-bold mb-5">Bestellung: {id}</h2>
+          <h1 className="text-5xl font-bold mb-5">Bestellung: {id}</h1>
         </div>
-        <div className="col-span-full xl:col-span-6 grid grid-cols-2 gap-x-4">
-          <div className="col-span-full xl:col-span-1 relative">
-            <img src="/shirt-player.png" alt={name} className="rounded-xl" />
+        <div className="col-span-full xl:col-span-6 xl:grid flex flex-col lg:flex-row xl:grid-rows-0 xl:grid-cols-2 xl:gap-x-4 gap-y-4 mb-8 xl:mb-0">
+          <div className="xl:col-span-1 md:mr-8 aspect-[4/3] max-w-lg">
+            <img
+              src="/shirt-player.png"
+              alt="shirt-player"
+              className="w-full h-full object-cover rounded-xl"
+            />
           </div>
-          <div className="col-span-full xl:col-span-1 flex flex-col gap-8">
+          <div className="col-span-full xl:col-span-1 flex flex-col">
             <h2 className="text-xl font-bold">{name}</h2>
             <div>
               <p>Club: {club}</p>
@@ -61,7 +65,7 @@ export default function OrdersPageContent({
             </div>
           </div>
         </div>
-        <div className="col-span-12 xl:col-span-6">
+        <div className="col-span-full xl:col-span-6">
           <h2 className="text-2xl font-bold mb-2">Status</h2>
           <div className="flex w-full flex-col">
             <Tabs
