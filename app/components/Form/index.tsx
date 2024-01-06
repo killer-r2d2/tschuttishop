@@ -93,6 +93,7 @@ export function Form({ userProfileId }: { userProfileId: string }) {
           variant={"bordered"}
           label="Name"
           name="name"
+          isRequired
           onChange={handleInputChange}
         />
       </div>
@@ -102,6 +103,7 @@ export function Form({ userProfileId }: { userProfileId: string }) {
           label="Beschreibung"
           placeholder="Beschreiben Sie das Produkt"
           name="description"
+          isRequired
           onChange={handleInputChange}
         />
       </div>
@@ -110,7 +112,7 @@ export function Form({ userProfileId }: { userProfileId: string }) {
           label="Grösse"
           name="size"
           className="max-w-xs bg-white"
-          required
+          isRequired
           onChange={handleSelectChange}
         >
           {sizes.map((size) => (
@@ -125,7 +127,7 @@ export function Form({ userProfileId }: { userProfileId: string }) {
           label="Club"
           name="club"
           className="max-w-xs bg-white"
-          required
+          isRequired
           onChange={handleSelectChange}
         >
           {clubs.map((club) => (
@@ -141,6 +143,7 @@ export function Form({ userProfileId }: { userProfileId: string }) {
           variant={"bordered"}
           label="Preis"
           name="price"
+          isRequired
           step="0.01"
           onChange={handleInputChange}
         />

@@ -28,7 +28,7 @@ export default function Orders({
   return (
     <Container>
       <BackButton />
-      <div className="mt-5">
+      <div>
         <h1 className="text-5xl font-bold mb-5">Gekaufte Artikel</h1>
         {boughtProducts!.length > 0 ? (
           boughtProducts!.map((product) => (
