@@ -8,18 +8,19 @@ export default function SoldItem({ id, name, price, isPaid }: Product) {
   return (
     <Link
       href={`/DashboardProduct/Sold/${id}`}
-      className="grid grid-cols-6 gap-12 border-t pt-4 pb-4 pr-8 pl-8 items-center xl:hover:bg-slate-100 transition-colors"
+      className="grid grid-cols-6 gap-12 border-t py-4 px-8 items-center xl:hover:bg-slate-100 transition-colors"
     >
-      <div className="p-2 col-span-full xl:col-span-1 relative min-h-[200px] xl:min-h-[130px]">
+      <div className="col-span-full xl:col-span-2 relative aspect-[4/3] max-w-lg">
         <Image
           src="/shirt-player.png"
-          fill
-          objectFit="cover"
           alt={name}
-          className="rounded-xl h-[200px] max-w-full"
+          width={800}
+          height={800}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          className="rounded-xl"
         />
       </div>
-      <div className="col-span-full xl:col-span-3">
+      <div className="col-span-full xl:col-span-2">
         <h2 className="text-xl">{name}</h2>
         <div>
           <p>
