@@ -8,7 +8,7 @@ export default function BackButton() {
     <button
       type="button"
       onClick={() => router.back()}
-      className="flex gap-2 text-slate-900 hover:text-slate-500 transition-colors"
+      className="flex gap-2 text-slate-900 mb-5 hover:text-slate-500 transition-colors"
     >
       <ArrowLeftIcon className="w-6" />
       Zurück

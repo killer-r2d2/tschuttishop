@@ -6,6 +6,8 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { BanknotesIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
+import BackButton from "@/app/components/Base/BackButton";
+
 
 export default function SoldPageContent({
   id,
@@ -35,6 +37,7 @@ export default function SoldPageContent({
  
   return (
     <Container>
+      <BackButton />
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-full">
           <h2 className="text-5xl font-bold mb-5">Bestellung: {id}</h2>
