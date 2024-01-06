@@ -2,7 +2,6 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import AuthState from "@/app/components/AuthButton/AuthState";
 import { Container } from "@/app/components/Base/Container";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import UserDropdown from "@/app/components/AuthButton/userDropdown";

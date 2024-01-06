@@ -8,7 +8,7 @@ import useProducts from "@/hooks/useProducts";
 import { favoritesStore } from "@/store/favoritesStore";
 import FavoritesItem from "@/app/Favorites/FavoritesItem";
 
-export default function Cart() {
+export default function Page() {
   const items: number[] = favoritesStore((state) => state.items);
   const { products, isLoading, isError } = useProducts();
   const favoritesProducts = (products as Product[])?.filter((product) =>

@@ -7,9 +7,12 @@ type FavoritesStore = {
 };
 
 const localStorageKey: string = "favoritesStore";
+let storedState: string | null;
 
 export let favoritesStore = create<FavoritesStore>()((set) => {
-  const storedState = localStorage.getItem(localStorageKey);
+  if (typeof window !== "undefined") {
+    storedState = localStorage.getItem(localStorageKey);
+  }
   const initialState: FavoritesStore = storedState
     ? JSON.parse(storedState)
     : { items: [] };

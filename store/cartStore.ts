@@ -1,18 +1,20 @@
 import { create } from "zustand";
 
-interface CartStore {
+type CartStore = {
   items: number[];
   count: number;
   addItem: (id: number) => void;
   deleteItem: (id: number) => void;
   clearCart: () => void;
-}
+};
 
 const localStorageKey: string = "cartStore";
+let storedState: string | null;
 
 export let cartStore = create<CartStore>()((set) => {
-  // Load state from localStorage when the store is initialized
-  const storedState = localStorage.getItem(localStorageKey);
+  if (typeof window !== "undefined") {
+    storedState = localStorage.getItem(localStorageKey);
+  }
   const initialState: CartStore = storedState
     ? JSON.parse(storedState)
     : { items: [], count: 0 };
