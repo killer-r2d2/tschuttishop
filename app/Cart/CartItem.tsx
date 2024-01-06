@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import Link from "next/link";
 
-import { cartStore } from "@/store/cartState";
+import { cartStore } from "@/store/cartStore";
 
 export default function CartItem({
   id,

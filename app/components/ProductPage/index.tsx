@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Container } from "@/app/components/Base/Container";
 import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
-import { cartStore } from "@/store/cartState";
+import { cartStore } from "@/store/cartStore";
 import { favoritesStore } from "@/store/favoritesStore";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
 

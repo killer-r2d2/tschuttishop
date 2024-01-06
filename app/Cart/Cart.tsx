@@ -8,7 +8,7 @@ import { usePurchaseProduct } from "@/hooks/usePurchaseProduct";
 import { useRouter } from "next/navigation";
 import { Product } from "../types/Product";
 
-import { cartStore } from "@/store/cartState";
+import { cartStore } from "@/store/cartStore";
 import { Button } from "@nextui-org/button";
 import useProducts from "@/hooks/useProducts";
 

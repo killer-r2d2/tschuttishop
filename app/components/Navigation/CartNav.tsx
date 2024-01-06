@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
-import { cartStore } from "@/store/cartState";
+import { cartStore } from "@/store/cartStore";
 import { Badge } from "@nextui-org/react";
 export function CartNav() {
   const count = cartStore((state) => state.count);
