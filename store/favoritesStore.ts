@@ -20,13 +20,9 @@ export let favoritesStore = create<FavoritesStore>()((set) => {
   return {
     ...initialState,
     addFav: (id: number) => {
-      if (initialState.items.includes(id)) {
-        alert("Das Produkt befindet sich bereits in der Liste!");
-      } else {
-        set((state) => ({
-          items: [...state.items, id],
-        }));
-      }
+      set((state) => ({
+        items: [...state.items, id],
+      }));
     },
     removeFav: (id: number) => {
       set((state) => ({
