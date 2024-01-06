@@ -4,12 +4,10 @@ import { Product } from "@/app/types/Product";
 import { Container } from "@/app/components/Base/Container";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import Image from "next/image";
-import {
-  BanknotesIcon,
-  TruckIcon,
-} from "@heroicons/react/24/solid";
+import { BanknotesIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
+import BackButton from "@/app/components/Base/BackButton";
 
 export default function OrdersPageContent({
   id,
@@ -43,6 +41,7 @@ export default function OrdersPageContent({
   };
   return (
     <Container>
+      <BackButton />
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-full">
           <h2 className="text-5xl font-bold mb-5">Bestellung: {id}</h2>
