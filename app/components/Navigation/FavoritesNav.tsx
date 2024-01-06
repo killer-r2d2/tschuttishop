@@ -9,11 +9,7 @@ export function FavoritesNav() {
   return (
     <div className="flex gap-4">
       <Link href="/Favorites">
-        {hasFavorites ? (
-          <HeartIcon className="w-6 text-slate-100 hover:text-slate-500 transition-colors" />
-        ) : (
-          <HeartIcon className="w-6 text-slate-400 hover:text-slate-500 transition-colors" />
-        )}
+        <HeartIcon className="w-6 text-slate-100 hover:text-slate-500 transition-colors" />
       </Link>
     </div>
   );
