@@ -3,13 +3,13 @@ import { useState } from "react";
 import { Product } from "@/app/types/Product";
 import { Container } from "@/app/components/Base/Container";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import Image from "next/image";
 import {
   BanknotesIcon,
   TruckIcon,
 } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
-import { SpinnerNext } from "@/app/components/Base/Spinner";
 
 export default function OrdersPageContent({
   id,

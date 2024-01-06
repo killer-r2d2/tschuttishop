@@ -1,9 +1,11 @@
+"use client";
+import { useState } from "react";
 import { Product } from "@/app/types/Product";
 import { Container } from "@/app/components/Base/Container";
 import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { BanknotesIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
-
+import { useUpdateProduct } from "@/hooks/useUpdateProduct";
 
 export default function SoldPageContent({
   id,
@@ -11,29 +13,26 @@ export default function SoldPageContent({
   description,
   price,
   size,
+  club,
   category,
   inStock,
   isPaid,
   isShipped,
 }: Product) {
+  const [isShippedState, setIsShippedState] = useState(isShipped);
+  const { updateProduct } = useUpdateProduct();
   const handleMarkAsShipped = async () => {
     try {
-      const response = await fetch('/api/updateShipmentStatus', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ productId: id }),
+      await updateProduct({
+        id,
+        isShipped: true,
       });
-        if (!response.ok) {
-        throw new Error('Failed to update shipment status');
-      }
-      console.log('Produkt erfolgreich als versendet markiert');
+      setIsShippedState(true);
     } catch (error) {
-      console.error('Fehler beim Markieren als versendet: ', (error as Error).message);
+      console.log(error);
     }
-  };
-  
+   };
+ 
   return (
     <Container>
       <div className="grid grid-cols-12 gap-8">
@@ -47,6 +46,7 @@ export default function SoldPageContent({
           <div className="col-span-full xl:col-span-1 flex flex-col gap-8">
             <h2 className="text-xl font-bold">{name}</h2>
             <div>
+            <p>Club: {club}</p>
               <p>
                 Preis: <span className="font-bold">{price} CHF</span>
               </p>
@@ -103,7 +103,7 @@ export default function SoldPageContent({
               >
                 <Card shadow="none" className="border">
                   <CardBody>
-                    {isShipped ? (
+                    {isShippedState ? (
                       <p>Sie haben das Produkt an den Käufer gesendet.</p>
                     ) : (
                       <>
