@@ -84,35 +84,14 @@ export default async function handle(
     try {
       const {
         id,
-        name,
-        description,
-        price,
-        category,
-        size,
-        club,
-        inStock,
-        isVintage,
-        profileId,
+        ...updateData
       } = req.body;
 
       if (!id) {
         return res.status(400).json({ error: "ID is required" });
       }
 
-      const product = await updateProduct(parseInt(id), {
-        name,
-        description,
-        category,
-        size,
-        club,
-        price: parseFloat(price),
-        inStock: Boolean(inStock),
-        isVintage: Boolean(isVintage),
-        profileId,
-        buyerId: undefined,
-        isPaid: false,
-        isShipped: false,
-      });
+      const product = await updateProduct(parseInt(id), updateData);
 
       return handleSuccess(product, res);
     } catch (error: any) {

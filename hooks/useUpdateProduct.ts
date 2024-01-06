@@ -2,10 +2,10 @@ import { mutate } from "swr";
 import { Product } from "../app/types/Product";
 
 export const useUpdateProduct = () => {
-  const updateProduct = async (product: Product) => {
+  const updateProduct = async (updateFields: Partial<Product>) => {
     const response = await fetch("/api/products", {
       method: "PUT",
-      body: JSON.stringify(product),
+      body: JSON.stringify(updateFields),
       headers: {
         "Content-Type": "application/json",
       },
