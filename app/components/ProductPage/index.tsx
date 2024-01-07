@@ -9,7 +9,7 @@ import { cartStore } from "@/store/cartStore";
 import { favoritesStore } from "@/store/favoritesStore";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
 
-const Index = ({ id, name, description, price, inStock }: Product) => {
+const Index = ({ id, name, club, size, description, price, inStock }: Product) => {
   const favItems: number[] = favoritesStore((state) => state.items);
   const addFav = favoritesStore((state) => state.addFav);
   const removeFav = favoritesStore((state) => state.removeFav);
@@ -59,6 +59,10 @@ const Index = ({ id, name, description, price, inStock }: Product) => {
                 <HeartIcon className="w-1/2" />
               </Button>
             )}
+          </div>
+          <div>
+            <p className="font-bold">club: {club}</p>
+            <p className="font-bold">size: {size}</p>
           </div>
           <div>
             <p className="text-xl font-bold">{price} CHF</p>

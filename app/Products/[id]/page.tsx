@@ -28,6 +28,7 @@ export default function Page({ params }: { params: { id: number } }) {
       category={""}
       inStock={false}
       isVintage={false}
+      club={""}
       profileId={""}
       createdAt={new Date()}
       updatedAt={new Date()}
