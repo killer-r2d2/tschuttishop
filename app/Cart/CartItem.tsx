@@ -4,17 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { cartStore } from "@/store/cartStore";
+import { useStore } from "zustand";
 
-export default function CartItem({
-  id,
-  name,
-  description,
-  price,
-  size,
-  category,
-  inStock,
-}: Product) {
-  const removeItem = cartStore((state) => state.deleteItem);
+export default function CartItem({ id, name, price, size, category }: Product) {
+  const removeItem = useStore(cartStore, (state) => state.deleteItem);
   return (
     <div className="grid grid-cols-12 gap-y-12 xl:gap-x-12 border-t py-8">
       <div className="col-span-full xl:col-span-6 relative">

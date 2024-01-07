@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { favoritesStore } from "@/store/favoritesStore";
+import { useStore } from "zustand";
 
 export default function FavoritesItem({ id, name, price }: Product) {
-  const removeFav = favoritesStore((state) => state.removeFav);
-
+  const removeFav = useStore(favoritesStore, (state) => state.removeFav);
   return (
     <div className="grid grid-cols-6 gap-6 xl:gap-12 border-t pt-4 pb-4 pr-8 pl-8 items-center xl:hover:bg-slate-100 transition-colors">
       <div className="p-2 col-span-full xl:col-span-1 relative min-h-[200px] xl:min-h-[130px]">

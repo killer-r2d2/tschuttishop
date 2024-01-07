@@ -8,11 +8,20 @@ import BackButton from "@/app/components/Base/BackButton";
 import { cartStore } from "@/store/cartStore";
 import { favoritesStore } from "@/store/favoritesStore";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
+import { useStore } from "zustand";
 
-const Index = ({ id, name, club, size, description, price, inStock }: Product) => {
-  const favItems: number[] = favoritesStore((state) => state.items);
-  const addFav = favoritesStore((state) => state.addFav);
-  const removeFav = favoritesStore((state) => state.removeFav);
+const Index = ({
+  id,
+  name,
+  club,
+  size,
+  description,
+  price,
+  inStock,
+}: Product) => {
+  const favItems: number[] = useStore(favoritesStore, (state) => state.items);
+  const addFav = useStore(favoritesStore, (state) => state.addFav);
+  const removeFav = useStore(favoritesStore, (state) => state.removeFav);
   const addItem = cartStore((state) => state.addItem);
 
   return (

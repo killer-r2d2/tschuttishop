@@ -7,28 +7,19 @@ import CartItem from "@/app/Cart/CartItem";
 import { usePurchaseProduct } from "@/hooks/usePurchaseProduct";
 import { useRouter } from "next/navigation";
 import { Product } from "../types/Product";
-
 import { cartStore } from "@/store/cartStore";
 import { Button } from "@nextui-org/button";
 import useProducts from "@/hooks/useProducts";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  useDisclosure,
-} from "@nextui-org/react";
 import CartModal from "@/app/Cart/CartModal";
+import { useStore } from "zustand";
 
 export default function Cart({
   userProfileId,
 }: {
   userProfileId: string | undefined;
 }) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const items: number[] = cartStore((state) => state.items);
-  const clearCart = cartStore((state) => state.clearCart);
+  const items: number[] = useStore(cartStore, (state) => state.items);
+  const clearCart = useStore(cartStore, (state) => state.clearCart);
   const { purchaseProduct } = usePurchaseProduct();
   const { products, isLoading, isError } = useProducts();
   const cartProducts = (products as Product[])?.filter((product) =>
