@@ -1,10 +1,10 @@
 import { Hero } from "./components/Hero";
-import { ProductList } from "./components/ProductsList";
+import { NewArrivalProductsList } from "./components/NewArrivalProductsList";
 export default async function Index() {
   return (
     <div>
       <Hero />
-      <ProductList />
+      <NewArrivalProductsList />
     </div>
   );
 }
