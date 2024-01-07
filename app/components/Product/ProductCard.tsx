@@ -3,11 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/app/types/Product";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { Button } from "@nextui-org/button";
 
 interface ExtendProduct extends Product {
   hasEdit: boolean;
-  openDialog?: (product: Product) => void;
+  getActiveProduct?: (product: Product) => void;
   handleDelete?: (event: React.MouseEvent, product: Product) => void;
+  openModal?: () => void;
 }
 
 export function ProductCard({
@@ -21,17 +23,18 @@ export function ProductCard({
   isVintage,
   profileId,
   hasEdit,
-  openDialog,
+  getActiveProduct,
   handleDelete,
+  openModal,
 }: ExtendProduct) {
   return (
     <div className="card border shadow-xl rounded-xl hover:scale-101 hover:shadow-2xl transition">
       {hasEdit ? (
         <div className="flex justify-between p-2">
-          <button
+          <Button
             onClick={() =>
-              openDialog
-                ? openDialog({
+              getActiveProduct
+                ? getActiveProduct({
                     id,
                     name,
                     description,
@@ -48,11 +51,10 @@ export function ProductCard({
                   })
                 : null
             }
-            className="bg-slate-900 text-slate-100 p-2 rounded-md flex gap-1 items-center hover:bg-slate-800"
+            onPress={openModal}
           >
             <PencilIcon className="h-4" />
-            <span>Edit</span>
-          </button>
+          </Button>
           <button
             onClick={(event) =>
               handleDelete
