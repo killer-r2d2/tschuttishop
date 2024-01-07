@@ -57,11 +57,13 @@ You get prisma/schema.prisma
 5. build your model
 6. npx prisma migrate -> the model is now in your database
 5. prisma client: https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
+```
+
 
 ## Automated Testing with Playwright
 
 In this project, we use [Playwright](https://playwright.dev/) for automated end-to-end testing to ensure the functionality and reliability of our application. The following tests have been implemented:
 
-- **Basic URL Checks (`multiplePages.spec.ts`)**: This test verifies the accessibility of the main pages of our application to ensure that all essential links are functioning correctly.
+- Basic URL Checks (`multiplePages.spec.ts`): This test verifies the accessibility of the main pages of our application to ensure that all essential links are functioning correctly.
   
-- **First Product Detail Page Check (`productDetailPage.spec.ts`)**: This test ensures that the detail page of the first product on the homepage loads successfully and that the user can return to the homepage using the 'Back' button.
+- First Product Detail Page Check (`productDetailPage.spec.ts`): This test ensures that the detail page of the first product on the homepage loads successfully and that the user can return to the homepage using the 'Back' button.
