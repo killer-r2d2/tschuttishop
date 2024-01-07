@@ -27,7 +27,6 @@ export function DashBoardProducts({
   const { deleteProduct } = useDeleteProduct();
   const { updateProduct } = useUpdateProduct();
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const userProducts = (products as Product[])?.filter(
     (product) => product.profileId === userProfileId && !product.buyerId,
