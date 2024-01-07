@@ -4,7 +4,6 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import OrderItem from "@/app/DashboardProduct/Orders/OrderItem";
 import useProducts from "@/hooks/useProducts";
 import BackButton from "@/app/components/Base/BackButton";
-import SoldItem from "@/app/DashboardProduct/Sold/SoldItem";
 import { Product } from "@/app/types/Product";
 export default function Orders({
   userProfileId,

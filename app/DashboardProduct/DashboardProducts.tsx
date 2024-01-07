@@ -3,10 +3,16 @@ import React, { useRef, useState } from "react";
 import useProducts from "@/hooks/useProducts";
 import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
-import { Product } from "../../types/Product";
+import { Product } from "../types/Product";
 import { ProductCard } from "@/app/components/Product/ProductCard";
+import { Container } from "@/app/components/Base/Container";
+import { SpinnerNext } from "@/app/components/Base/Spinner";
 
-export function Products({ userProfileId }: { userProfileId: string }) {
+export function DashBoardProducts({
+  userProfileId,
+}: {
+  userProfileId: string;
+}) {
   const { products, isLoading, isError } = useProducts();
   const { deleteProduct } = useDeleteProduct();
   const { updateProduct } = useUpdateProduct();
@@ -14,7 +20,7 @@ export function Products({ userProfileId }: { userProfileId: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const userProducts = (products as Product[])?.filter(
-    (product) => product.profileId === userProfileId,
+    (product) => product.profileId === userProfileId && !product.buyerId,
   );
 
   const openDialog = (product: Product) => {
@@ -35,7 +41,12 @@ export function Products({ userProfileId }: { userProfileId: string }) {
     event.preventDefault();
     await deleteProduct(product);
   };
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <Container>
+        <SpinnerNext />
+      </Container>
+    );
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
@@ -102,9 +113,6 @@ export function Products({ userProfileId }: { userProfileId: string }) {
           <button onClick={handleUpdateDialog}>Update</button>
         </div>
       </dialog>
-      <div className="mb-5 mt-5">
-        <h1 className="text-2xl font-bold">Deine erfassten Produkte:</h1>
-      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {userProducts && userProducts.length > 0 ? (
           userProducts.map((product) => (

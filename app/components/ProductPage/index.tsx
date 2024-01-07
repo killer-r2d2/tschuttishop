@@ -42,19 +42,21 @@ const Index = ({ id, name, description, price, inStock }: Product) => {
                 isIconOnly
                 color="danger"
                 aria-label="Remove from favorites"
+                size="sm"
                 onClick={() => removeFav(id)}
               >
-                <HeartIcon className="w-6" />
+                <HeartIcon className="w-1/2" />
               </Button>
             ) : (
               <Button
                 isIconOnly
                 color="danger"
                 aria-label="Add to favorites"
+                size="sm"
                 variant="bordered"
                 onClick={() => addFav(id)}
               >
-                <HeartIcon className="w-6" />
+                <HeartIcon className="w-1/2" />
               </Button>
             )}
           </div>

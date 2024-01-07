@@ -5,9 +5,13 @@ import { Input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
 
-export function Form({ userProfileId }: { userProfileId: string }) {
-
+export function DashboardProductForm({
+  userProfileId,
+}: {
+  userProfileId: string;
+}) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -85,8 +89,7 @@ export function Form({ userProfileId }: { userProfileId: string }) {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="container mx-auto my-4 p-4">
-      <h2>Produkt erfassen</h2>
+    <form onSubmit={handleSubmit}>
       <div className="my-2">
         <Input
           type="text"
@@ -158,12 +161,9 @@ export function Form({ userProfileId }: { userProfileId: string }) {
           Vintage
         </Checkbox>
       </div>
-      <button
-        type="submit"
-        className="bg-green-700 text-white rounded px-4 py-2"
-      >
-        Submit
-      </button>
+      <Button color="primary" type="submit">
+        Produkt erstellen
+      </Button>
     </form>
   );
 }
