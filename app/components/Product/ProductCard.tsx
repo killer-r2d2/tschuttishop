@@ -84,7 +84,7 @@ export function ProductCard({
           </button>
         </div>
       ) : null}
-      <Link href={`/Products/${id}`}>
+      <Link href={`/Products/${id}`} data-testid='product-link'>
         <div>
           <div className="relative">
             {isVintage ? (
