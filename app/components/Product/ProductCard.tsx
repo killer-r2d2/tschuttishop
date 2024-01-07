@@ -29,8 +29,11 @@ export function ProductCard({
   handleDelete,
   openModal,
 }: ExtendProduct) {
+  const isInStock = inStock ? "opacity-100" : "opacity-50";
   return (
-    <div className="card border shadow-xl rounded-xl hover:scale-101 hover:shadow-2xl transition">
+    <div
+      className={`card border shadow-xl rounded-xl hover:scale-101 hover:shadow-2xl transition ${isInStock}`}
+    >
       {hasEdit ? (
         <div className="flex justify-between p-2">
           <Button
@@ -84,16 +87,23 @@ export function ProductCard({
           </button>
         </div>
       ) : null}
-      <Link href={`/Products/${id}`} data-testid='product-link'>
+      <Link href={`/Products/${id}`} data-testid="product-link">
         <div>
           <div className="relative">
-            {isVintage ? (
-              <div className="absolute top-4 right-9">
-                <Badge  content="Vintage" color="primary">
-                  Vintage
-                </Badge>
+            <div className="absolute top-5  flex flex-col items-end space-y-2 w-full">
+              <div className="flex flex-col gap-y-2">
+                {isVintage ? (
+                    <Badge content="Vintage" color="primary" className="right-10">
+                      Vintage
+                    </Badge>
+                ) : null}
+                {!inStock ? (
+                    <Badge content="Aussverkauft" color="primary" className="right-14">
+                      In Stock
+                    </Badge>
+                ) : null}
               </div>
-            ) : null}
+            </div>
             <Image
               height="1000"
               width="1000"
