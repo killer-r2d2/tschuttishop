@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Product } from "@/app/types/Product";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
+import { Badge } from "@nextui-org/react";
 
 interface ExtendProduct extends Product {
   hasEdit: boolean;
@@ -84,13 +85,22 @@ export function ProductCard({
       ) : null}
       <Link href={`/Products/${id}`}>
         <div>
-          <Image
-            height="1000"
-            width="1000"
-            src="/shirt-player.png"
-            alt="Shirt"
-            className="rounded-t-xl"
-          />
+          <div className="relative">
+            {isVintage ? (
+              <div className="absolute top-4 right-9">
+                <Badge  content="Vintage" color="primary">
+                  Vintage
+                </Badge>
+              </div>
+            ) : null}
+            <Image
+              height="1000"
+              width="1000"
+              src="/shirt-player.png"
+              alt="Shirt"
+              className="rounded-t-xl relative"
+            />
+          </div>
         </div>
         <div className="p-5">
           <h2 className="font-bold">{name}</h2>
