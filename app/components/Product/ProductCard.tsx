@@ -90,15 +90,15 @@ export function ProductCard({
       <Link href={`/Products/${id}`} data-testid="product-link">
         <div>
           <div className="relative">
-            <div className="absolute top-4  flex flex-col items-end space-y-2 w-full">
+            <div className="absolute top-5  flex flex-col items-end space-y-2 w-full">
               <div className="flex flex-col gap-y-2">
                 {isVintage ? (
-                    <Badge content="Vintage" color="primary" className="right-7">
+                    <Badge content="Vintage" color="primary" className="right-10">
                       Vintage
                     </Badge>
                 ) : null}
                 {!inStock ? (
-                    <Badge content="Aussverkauft" color="primary" className="right-12">
+                    <Badge content="Aussverkauft" color="primary" className="right-14">
                       In Stock
                     </Badge>
                 ) : null}
