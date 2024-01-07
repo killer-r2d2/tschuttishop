@@ -19,6 +19,7 @@ export function ProductCard({
   description,
   price,
   size,
+  club,
   category,
   inStock,
   isVintage,
@@ -83,7 +84,7 @@ export function ProductCard({
           </button>
         </div>
       ) : null}
-      <Link href={`/Products/${id}`}>
+      <Link href={`/Products/${id}`} data-testid='product-link'>
         <div>
           <div className="relative">
             {isVintage ? (
@@ -105,6 +106,10 @@ export function ProductCard({
         <div className="p-5">
           <h2 className="font-bold">{name}</h2>
           <p className="mb-5 truncate ...">{description}</p>
+          <div className="flex justify-between mb-4">
+            <p className="font-bold">club: {club}</p>
+            <p className="font-bold">size: {size}</p>
+          </div>
           <div className="border-t">
             <p className="font-bold mt-5">{price} CHF</p>
           </div>

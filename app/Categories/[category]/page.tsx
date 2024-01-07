@@ -11,11 +11,23 @@ import { Product } from "@/app/types/Product";
 
 export default function Page({ params }: { params: { category: string } }) {
   const category: string = params.category;
-  const { products, isLoading, isError } = useProducts();
-  let filteredProducts = products;
+  console.log(category);
 
-  if (category === "vintage") {
-    filteredProducts = (products as Product[])?.filter((product) => product.isVintage);
+  const { products, isLoading, isError } = useProducts();
+
+  let filteredProducts: Product[] = [];
+
+  if (products) {
+    switch (category) {
+      case 'vintage':
+        filteredProducts = (products as Product[]).filter((product: Product) => product.isVintage);
+        break;
+      case 'club':
+        filteredProducts = products as Product[];
+        break;
+      default:
+        filteredProducts = products as Product[];
+    }
   }
 
   if (isLoading)
@@ -43,7 +55,7 @@ export default function Page({ params }: { params: { category: string } }) {
             {category}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(products as Product[]).map((product) => (
+            {filteredProducts.map((product: Product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>
