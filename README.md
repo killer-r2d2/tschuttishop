@@ -8,6 +8,7 @@
 - [Nextjs](https://nextjs.org/)
 - [Supabase](https://supabase.com/)
 - [Prisma](https://www.prisma.io/)
+- [Playwright](https://playwright.dev/)
 - [Tailwindcss](https://tailwindcss.com/)
 - [NextUi](https://nextui.org/)
 - [Resend](https://resend.com/)
