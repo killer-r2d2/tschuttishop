@@ -10,9 +10,7 @@ import { FavoritesNav } from "@/app/components/Navigation/FavoritesNav";
 
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
-  { name: "Neu eingetroffen", href: "/" },
-  { name: "Klubs", href: "/Categories/club" },
-  { name: "Vintage", href: "/Categories/vintage" },
+  { name: "Alle Produkte", href: "/Categories/all" },
 ];
 
 export function Navigation() {
