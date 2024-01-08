@@ -22,7 +22,7 @@ export function DashboardProductForm({
     size: "M",
     club: "FC Basel",
     price: 0.0,
-    inStock: false,
+    inStock: true,
     isVintage: false,
     profileId: userProfileId,
   });
@@ -52,7 +52,7 @@ export function DashboardProductForm({
         size: "",
         club: "",
         price: 0.0,
-        inStock: false,
+        inStock: true,
         isVintage: false,
         profileId: userProfileId,
       });
@@ -96,11 +96,11 @@ export function DashboardProductForm({
           onChange={handleInputChange}
         />
       </div>
-      <div className="flex my-2 w-full flex-wrap md:flex-nowrap gap-4">
+      <div className="my-2">
         <Select
           label="Grösse"
           name="size"
-          className="max-w-xs bg-white"
+          className="lg:w-1/2"
           isRequired
           onChange={handleSelectChange}
         >
@@ -111,11 +111,11 @@ export function DashboardProductForm({
           ))}
         </Select>
       </div>
-      <div className="flex my-2 w-full flex-wrap md:flex-nowrap gap-4">
+      <div className="my-2">
         <Select
-          label="Club"
+          label="Klub"
           name="club"
-          className="max-w-xs bg-white"
+          className="lg:w-1/2"
           isRequired
           onChange={handleSelectChange}
         >
@@ -133,14 +133,9 @@ export function DashboardProductForm({
           label="Preis"
           name="price"
           isRequired
-          step="0.01"
+          step="0.05"
           onChange={handleInputChange}
         />
-      </div>
-      <div className="my-4">
-        <Checkbox name="inStock" onChange={handleInputChange}>
-          In Stock
-        </Checkbox>
       </div>
       <div className="my-4">
         <Checkbox name="isVintage" onChange={handleInputChange}>

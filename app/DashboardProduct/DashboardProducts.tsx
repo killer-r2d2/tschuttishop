@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import useProducts from "@/hooks/useProducts";
 import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
@@ -14,8 +14,17 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Textarea,
+  Checkbox,
+  Input,
+  Select,
+  SelectItem,
   useDisclosure,
 } from "@nextui-org/react";
+import {
+  productAspectsClubs,
+  productAspectsSizes,
+} from "@/app/DashboardProduct/formProductAspects";
 
 export function DashBoardProducts({
   userProfileId,
@@ -27,6 +36,8 @@ export function DashBoardProducts({
   const { deleteProduct } = useDeleteProduct();
   const { updateProduct } = useUpdateProduct();
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
+  const clubs = productAspectsClubs;
+  const sizes = productAspectsSizes;
 
   const userProducts = (products as Product[])?.filter(
     (product) => product.profileId === userProfileId && !product.buyerId,
@@ -54,6 +65,8 @@ export function DashBoardProducts({
     );
   if (isError) return <p>Error: {isError.message}</p>;
 
+  console.log("activeProduct", activeProduct);
+
   return (
     <div>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
@@ -61,14 +74,17 @@ export function DashBoardProducts({
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Produkt anpassen
+                {activeProduct?.name} anpassen
               </ModalHeader>
               <ModalBody>
-                <div className="flex flex-col mt-5">
-                  <label className="font-bold">Name</label>
-                  <input
+                <div>
+                  <Input
                     type="text"
                     value={activeProduct ? activeProduct.name : ""}
+                    variant="bordered"
+                    label="Name"
+                    name="name"
+                    isRequired
                     onChange={(event) =>
                       setActiveProduct({
                         ...activeProduct!,
@@ -77,11 +93,14 @@ export function DashBoardProducts({
                     }
                   />
                 </div>
-                <div className="flex flex-col mt-5">
-                  <label className="font-bold">Description</label>
-                  <input
-                    type="text"
+                <div>
+                  <Textarea
                     value={activeProduct ? activeProduct.description || "" : ""}
+                    variant="bordered"
+                    label="Beschreibung"
+                    placeholder="Beschreiben Sie das Produkt"
+                    name="description"
+                    isRequired
                     onChange={(event) =>
                       setActiveProduct({
                         ...activeProduct!,
@@ -90,11 +109,61 @@ export function DashBoardProducts({
                     }
                   />
                 </div>
-                <div className="flex flex-col mt-5">
-                  <label className="font-bold">Price</label>
-                  <input
+                <div>
+                  <Select
+                    label="Grösse"
+                    name="size"
+                    isRequired
+                    className="lg:w-1/2"
+                    selectedKeys={
+                      activeProduct?.size ? [activeProduct.size] : []
+                    }
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        size: event.target.value,
+                      })
+                    }
+                  >
+                    {sizes.map((size) => (
+                      <SelectItem key={size.value} value={size.value}>
+                        {size.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </div>
+                <div>
+                  <Select
+                    label="Klub"
+                    name="club"
+                    isRequired
+                    className="lg:w-1/2"
+                    selectedKeys={
+                      activeProduct?.club ? [activeProduct.club] : []
+                    }
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        club: event.target.value,
+                      })
+                    }
+                  >
+                    {clubs.map((club) => (
+                      <SelectItem key={club.value} value={club.value}>
+                        {club.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </div>
+                <div>
+                  <Input
                     type="number"
-                    value={activeProduct ? activeProduct.price : 0}
+                    variant={"bordered"}
+                    label="Preis"
+                    name="price"
+                    isRequired
+                    value={activeProduct?.price.toString()}
+                    step="0.05"
                     onChange={(event) =>
                       setActiveProduct({
                         ...activeProduct!,
@@ -103,19 +172,19 @@ export function DashBoardProducts({
                     }
                   />
                 </div>
-                {/* inStock */}
-                <div className="flex flex-col mt-5">
-                  <label className="font-bold">In Stock</label>
-                  <input
-                    type="checkbox"
-                    checked={activeProduct ? activeProduct.inStock : false}
+                <div>
+                  <Checkbox
+                    name="isVintage"
+                    isSelected={activeProduct ? activeProduct.isVintage : false}
                     onChange={(event) =>
                       setActiveProduct({
                         ...activeProduct!,
-                        inStock: event.target.checked,
+                        isVintage: event.target.checked,
                       })
                     }
-                  />
+                  >
+                    Vintage
+                  </Checkbox>
                 </div>
               </ModalBody>
               <ModalFooter>
@@ -127,7 +196,7 @@ export function DashBoardProducts({
                   onPress={onClose}
                   onClick={handleUpdateDialog}
                 >
-                  Anpassen
+                  Produkt Anpassen
                 </Button>
               </ModalFooter>
             </>

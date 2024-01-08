@@ -45,6 +45,7 @@ export function ProductCard({
                     description,
                     price,
                     size,
+                    club,
                     category,
                     inStock,
                     isVintage,
@@ -69,6 +70,7 @@ export function ProductCard({
                     description,
                     price,
                     size,
+                    club,
                     category,
                     inStock,
                     isVintage,
@@ -93,14 +95,18 @@ export function ProductCard({
             <div className="absolute top-5  flex flex-col items-end space-y-2 w-full">
               <div className="flex flex-col gap-y-2">
                 {isVintage ? (
-                    <Badge content="Vintage" color="primary" className="right-10">
-                      Vintage
-                    </Badge>
+                  <Badge content="Vintage" color="primary" className="right-10">
+                    Vintage
+                  </Badge>
                 ) : null}
                 {!inStock ? (
-                    <Badge content="Aussverkauft" color="primary" className="right-14">
-                      In Stock
-                    </Badge>
+                  <Badge
+                    content="Aussverkauft"
+                    color="primary"
+                    className="right-14"
+                  >
+                    In Stock
+                  </Badge>
                 ) : null}
               </div>
             </div>
