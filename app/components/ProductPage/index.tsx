@@ -3,7 +3,6 @@ import { Product } from "@/app/types/Product";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { Container } from "@/app/components/Base/Container";
-import { SideNavigation } from "@/app/components/SideNavigation";
 import BackButton from "@/app/components/Base/BackButton";
 import { cartStore } from "@/store/cartStore";
 import { favoritesStore } from "@/store/favoritesStore";
@@ -29,9 +28,6 @@ const Index = ({
       <div className="grid grid-cols-12 gap-y-8 lg:gap-x-8">
         <div className="col-span-full">
           <BackButton />
-        </div>
-        <div className="col-span-full xl:col-span-3">
-          <SideNavigation />
         </div>
         <div className="col-span-full xl:col-span-4 bg-slate-200 h-[500px] p-5 rounded-xl relative">
           <Image
