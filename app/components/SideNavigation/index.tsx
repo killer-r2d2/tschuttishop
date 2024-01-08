@@ -2,8 +2,6 @@ import { NavLink } from "@/app/types/Navigation";
 import Link from "next/link";
 
 const navLinks: NavLink[] = [
-  { name: "Neu eingetroffen", href: "/" },
-  { name: "Club", href: "/Categories/club" },
   { name: "Vintage", href: "/Categories/vintage" },
 ];
 export function SideNavigation() {
