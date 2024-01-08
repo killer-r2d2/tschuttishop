@@ -37,7 +37,7 @@ export function ProductCard({
       {hasEdit ? (
         <div className="flex justify-between p-2">
           <Button
-            onClick={() =>
+            onPressStart={() =>
               getActiveProduct
                 ? getActiveProduct({
                     id,
@@ -58,6 +58,7 @@ export function ProductCard({
                 : null
             }
             onPress={openModal}
+            color="primary"
           >
             <PencilIcon className="h-4" />
           </Button>

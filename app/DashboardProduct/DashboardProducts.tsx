@@ -65,8 +65,6 @@ export function DashBoardProducts({
     );
   if (isError) return <p>Error: {isError.message}</p>;
 
-  console.log("activeProduct", activeProduct);
-
   return (
     <div>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
