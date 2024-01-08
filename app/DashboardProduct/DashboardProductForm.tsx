@@ -6,6 +6,10 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
+import {
+  productAspectsSizes,
+  productAspectsClubs,
+} from "@/app/DashboardProduct/formProductAspects";
 
 export function DashboardProductForm({
   userProfileId,
@@ -63,30 +67,12 @@ export function DashboardProductForm({
     createProduct({ ...formData, size: formData.size });
   };
 
+  const sizes = productAspectsSizes;
+  const clubs = productAspectsClubs;
+
   if (isLoading) return <p className="text-purple-600">Loading...</p>;
   if (isSuccess) return <p>Success: hat funktioniert</p>;
   if (isError) return <p>Error: hat nicht funktioniert {isError}</p>;
-
-  const sizes = [
-    { value: "XS", label: "XS" },
-    { value: "S", label: "S" },
-    { value: "M", label: "M" },
-    { value: "L", label: "L" },
-    { value: "XL", label: "XL" },
-  ];
-
-  const clubs = [
-    { value: "FC Basel", label: "FC Basel" },
-    { value: "FC Zürich", label: "FC Zürich" },
-    { value: "FC Aarau", label: "FC Aarau" },
-    { value: "FC Sion", label: "FC Sion" },
-    { value: "FC Luzern", label: "FC Luzern" },
-    { value: "FC St.Gallen", label: "FC St. Gallen" },
-    { value: "FC Lausanne-Sport", label: "FC Lausanne-Sport" },
-    { value: "Servette FC", label: "Servette FC" },
-    { value: "FC Lugano", label: "FC Lugano" },
-    { value: "FC Vaduz", label: "FC Vaduz" },
-  ];
 
   return (
     <form onSubmit={handleSubmit}>
