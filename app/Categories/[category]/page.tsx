@@ -15,12 +15,16 @@ export default function Page({ params }: { params: { category: string } }) {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [filterOption, setFilterOption] = useState("all");
   const [selectedClub, setSelectedClub] = useState("");
+  const [hasProducts, setHasProducts] = useState(true);
 
-  const uniqueClubs = ["Alle", ...new Set(
-    (products || [])
-      .map((product) => product.club)
-      .filter((club): club is string => club !== null && club !== undefined)
-  )];
+  const uniqueClubs = [
+    "Alle",
+    ...new Set(
+      (products || [])
+        .map((product) => product.club)
+        .filter((club): club is string => club !== null && club !== undefined)
+    ),
+  ];
   useEffect(() => {
     if (products) {
       let filtered = products;
@@ -50,6 +54,7 @@ export default function Page({ params }: { params: { category: string } }) {
       }
 
       setFilteredProducts(filtered as Product[]);
+      setHasProducts(filtered.length > 0);
     }
   }, [products, filterOption, selectedClub]);
 
@@ -96,17 +101,21 @@ export default function Page({ params }: { params: { category: string } }) {
           </div>
         </div>
         <div className="col-span-full xl:col-span-9">
-          <h2
+          <h1
             className="text-5xl font-bold mb-5"
             style={{ textTransform: "capitalize" }}
           >
             {category}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {filteredProducts.map((product) => (
-              <ProductCard {...product} key={product.id} hasEdit={false} />
-            ))}
-          </div>
+          </h1>
+          {hasProducts ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+              {filteredProducts.map((product) => (
+                <ProductCard {...product} key={product.id} hasEdit={false} />
+              ))}
+            </div>
+          ) : (
+            <p>Keine Produkte gefunden.</p>
+          )}
         </div>
       </div>
     </Container>
