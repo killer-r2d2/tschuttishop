@@ -6,6 +6,10 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
+import {
+  productAspectsSizes,
+  productAspectsClubs,
+} from "@/app/DashboardProduct/formProductAspects";
 
 export function DashboardProductForm({
   userProfileId,
@@ -18,7 +22,7 @@ export function DashboardProductForm({
     size: "M",
     club: "FC Basel",
     price: 0.0,
-    inStock: false,
+    inStock: true,
     isVintage: false,
     profileId: userProfileId,
   });
@@ -48,7 +52,7 @@ export function DashboardProductForm({
         size: "",
         club: "",
         price: 0.0,
-        inStock: false,
+        inStock: true,
         isVintage: false,
         profileId: userProfileId,
       });
@@ -63,30 +67,12 @@ export function DashboardProductForm({
     createProduct({ ...formData, size: formData.size });
   };
 
+  const sizes = productAspectsSizes;
+  const clubs = productAspectsClubs;
+
   if (isLoading) return <p className="text-purple-600">Loading...</p>;
   if (isSuccess) return <p>Success: hat funktioniert</p>;
   if (isError) return <p>Error: hat nicht funktioniert {isError}</p>;
-
-  const sizes = [
-    { value: "XS", label: "XS" },
-    { value: "S", label: "S" },
-    { value: "M", label: "M" },
-    { value: "L", label: "L" },
-    { value: "XL", label: "XL" },
-  ];
-
-  const clubs = [
-    { value: "FC Basel", label: "FC Basel" },
-    { value: "FC Zürich", label: "FC Zürich" },
-    { value: "FC Aarau", label: "FC Aarau" },
-    { value: "FC Sion", label: "FC Sion" },
-    { value: "FC Luzern", label: "FC Luzern" },
-    { value: "FC St.Gallen", label: "FC St. Gallen" },
-    { value: "FC Lausanne-Sport", label: "FC Lausanne-Sport" },
-    { value: "Servette FC", label: "Servette FC" },
-    { value: "FC Lugano", label: "FC Lugano" },
-    { value: "FC Vaduz", label: "FC Vaduz" },
-  ];
 
   return (
     <form onSubmit={handleSubmit}>
@@ -110,11 +96,11 @@ export function DashboardProductForm({
           onChange={handleInputChange}
         />
       </div>
-      <div className="flex my-2 w-full flex-wrap md:flex-nowrap gap-4">
+      <div className="my-2">
         <Select
           label="Grösse"
           name="size"
-          className="max-w-xs bg-white"
+          className="lg:w-1/2"
           isRequired
           onChange={handleSelectChange}
         >
@@ -125,11 +111,11 @@ export function DashboardProductForm({
           ))}
         </Select>
       </div>
-      <div className="flex my-2 w-full flex-wrap md:flex-nowrap gap-4">
+      <div className="my-2">
         <Select
-          label="Club"
+          label="Klub"
           name="club"
-          className="max-w-xs bg-white"
+          className="lg:w-1/2"
           isRequired
           onChange={handleSelectChange}
         >
@@ -147,14 +133,9 @@ export function DashboardProductForm({
           label="Preis"
           name="price"
           isRequired
-          step="0.01"
+          step="0.05"
           onChange={handleInputChange}
         />
-      </div>
-      <div className="my-4">
-        <Checkbox name="inStock" onChange={handleInputChange}>
-          In Stock
-        </Checkbox>
       </div>
       <div className="my-4">
         <Checkbox name="isVintage" onChange={handleInputChange}>

@@ -37,7 +37,7 @@ export function ProductCard({
       {hasEdit ? (
         <div className="flex justify-between p-2">
           <Button
-            onClick={() =>
+            onPressStart={() =>
               getActiveProduct
                 ? getActiveProduct({
                     id,
@@ -45,6 +45,7 @@ export function ProductCard({
                     description,
                     price,
                     size,
+                    club,
                     category,
                     inStock,
                     isVintage,
@@ -57,6 +58,7 @@ export function ProductCard({
                 : null
             }
             onPress={openModal}
+            color="primary"
           >
             <PencilIcon className="h-4" />
           </Button>
@@ -69,6 +71,7 @@ export function ProductCard({
                     description,
                     price,
                     size,
+                    club,
                     category,
                     inStock,
                     isVintage,
@@ -93,14 +96,18 @@ export function ProductCard({
             <div className="absolute top-5  flex flex-col items-end space-y-2 w-full">
               <div className="flex flex-col gap-y-2">
                 {isVintage ? (
-                    <Badge content="Vintage" color="primary" className="right-10">
-                      Vintage
-                    </Badge>
+                  <Badge content="Vintage" color="primary" className="right-10">
+                    Vintage
+                  </Badge>
                 ) : null}
                 {!inStock ? (
-                    <Badge content="Aussverkauft" color="primary" className="right-14">
-                      In Stock
-                    </Badge>
+                  <Badge
+                    content="Aussverkauft"
+                    color="primary"
+                    className="right-14"
+                  >
+                    In Stock
+                  </Badge>
                 ) : null}
               </div>
             </div>
