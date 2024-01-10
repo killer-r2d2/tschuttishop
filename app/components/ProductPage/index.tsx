@@ -1,12 +1,12 @@
 "use client";
 import { Product } from "@/app/types/Product";
-import { Button } from "@nextui-org/button";
+import { Button, Badge } from "@nextui-org/react";
 import Image from "next/image";
 import { Container } from "@/app/components/Base/Container";
 import BackButton from "@/app/components/Base/BackButton";
 import { cartStore } from "@/store/cartStore";
 import { favoritesStore } from "@/store/favoritesStore";
-import { HeartIcon, StarIcon } from "@heroicons/react/24/solid";
+import { HeartIcon } from "@heroicons/react/24/solid";
 import { useStore } from "zustand";
 
 const Index = ({
@@ -17,11 +17,13 @@ const Index = ({
   description,
   price,
   inStock,
+  isVintage,
 }: Product) => {
   const favItems: number[] = useStore(favoritesStore, (state) => state.items);
   const addFav = useStore(favoritesStore, (state) => state.addFav);
   const removeFav = useStore(favoritesStore, (state) => state.removeFav);
   const addItem = cartStore((state) => state.addItem);
+  const cartItems: number[] = cartStore((state) => state.items);
 
   return (
     <Container>
@@ -38,10 +40,9 @@ const Index = ({
             className="rounded-xl"
           />
         </div>
-        <div className="col-span-full xl:col-span-5 h-full flex flex-col justify-between">
+        <div className="col-span-full xl:col-span-8 h-full flex flex-col justify-between gap-y-5 lg:gap-y-5">
           <div className="flex justify-between">
             <h1 className="text-4xl font-bold">{name}</h1>
-
             {favItems.includes(id) ? (
               <Button
                 isIconOnly
@@ -66,24 +67,34 @@ const Index = ({
             )}
           </div>
           <div>
-            <p className="font-bold">club: {club}</p>
-            <p className="font-bold">size: {size}</p>
+            <p className="lg:text-xl">Klub: {club}</p>
+            <p className="lg:text-xl">Grösse: {size}</p>
+            {isVintage && <p className="lg:text-xl">Vintage</p>}
           </div>
           <div>
-            <p className="text-xl font-bold">{price} CHF</p>
+            <p className="lg:text-xl font-bold">{price} CHF</p>
             <hr className="mt-4 mb-4" />
-            <Button
-              onClick={() => addItem(id)}
-              isDisabled={!inStock}
-              color="primary"
-            >
-              {inStock ? "In den Warenkorb" : "Verkauft"}
-            </Button>
+
+            {!cartItems.includes(id) ? (
+              <Button
+                onClick={() => addItem(id)}
+                isDisabled={!inStock}
+                color="primary"
+              >
+                {inStock ? "In den Warenkorb" : "Verkauft"}
+              </Button>
+            ) : (
+              <Button variant="faded" isDisabled>
+                Im Warenkorb
+              </Button>
+            )}
           </div>
         </div>
-        <div className="col-span-full xl:col-start-4 col-end-8">
+        <div className="col-span-full xl:col-start-5">
           <p className="font-bold">Beschreibung</p>
           {description}
+          aaaaaaaaaaa daww w dafwdawawd wad awd awd wad wad aw awd awd awd adaw
+          wda dw awd awwa dawd wadwda awdw d dawd awdawd wd
         </div>
       </div>
     </Container>

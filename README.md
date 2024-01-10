@@ -67,3 +67,10 @@ In this project, we use [Playwright](https://playwright.dev/) for automated end-
 - Basic URL Checks (`multiplePages.spec.ts`): This test verifies the accessibility of the main pages of our application to ensure that all essential links are functioning correctly.
   
 - First Product Detail Page Check (`productDetailPage.spec.ts`): This test ensures that the detail page of the first product on the homepage loads successfully and that the user can return to the homepage using the 'Back' button.
+
+## Usability Testing
+Für das Usability Testing haben wir einen Fragebogen mit ein paar Aufgaben erstellt. Getestet wurde von mehreren Personen auf Windows und Mac.
+Die Umfragen mit den Antworten sind hier zu funden. [Usability Testing](https://drive.google.com/drive/folders/1aVG5FBLAst57tTYWFlhghE66SeIWbxEz?usp=sharing)
+### Anpassungen nach Usability Testing
+- Der Button auf der Produktseite, wird nun direkt nach dem das Produkt in den Warenkorb gelegt wurde deaktiviert und zeigt, dass das Produkt erfolgreich in den Warenkorb gelegt wurde.
+
