@@ -3,7 +3,6 @@ import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { DashBoardProducts } from "@/app/DashboardProduct/DashboardProducts";
-import { DashboardProductForm } from "@/app/DashboardProduct/DashboardProductForm";
 import { DashboardUser } from "@/app/DashboardProduct/DashboardUser";
 
 export default async function Dashboard() {
@@ -26,9 +25,8 @@ export default async function Dashboard() {
         </div>
         <div className="col-span-full lg:col-span-1">
           <hr className="lg:hidden mb-10" />
-          <h2 className="text-2xl font-bold">Neues Produkt</h2>
-          <p className="text-xl mb-5">Erfasse hier ein neues Produkt:</p>
-          <DashboardProductForm userProfileId={user.id} />
+          <h2 className="text-2xl font-bold">Deine Produkte</h2>
+          <p>Info zu Aktuellen, gekauften und verkauften Produkten!</p>
         </div>
         <div className="col-span-full">
           <hr className="mb-10" />
