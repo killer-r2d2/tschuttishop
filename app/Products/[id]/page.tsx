@@ -3,7 +3,6 @@ import useGetProductById from "@/hooks/useGetProductById";
 import ProductPage from "@/app/components/ProductPage";
 import { Container } from "@/app/components/Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
-import useProducts from "@/hooks/useProducts";
 
 export default function Page({ params }: { params: { id: number } }) {
   const productId: number = params.id;
