@@ -8,7 +8,7 @@ import OrdersPageContent from "@/app/DashboardProduct/Orders/[id]/OrdersPageCont
 export default function Page({ params }: { params: { id: number } }) {
   const productId: number = params.id;
 
-  const { product, isLoading, isError } = useGetProductById(productId.toString());
+  const { product, isLoading, isError } = useGetProductById(productId);
   if (isLoading)
     return (
       <Container>
