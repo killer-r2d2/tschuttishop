@@ -10,7 +10,6 @@ import { Product } from "@/app/types/Product";
 
 export function NewArrivalProductsList() {
   const { products, isLoading, isError } = useProducts();
-
   if (isLoading) return <SpinnerNext />;
   if (isError) return <p>Error: {isError.message}</p>;
 
@@ -19,9 +18,10 @@ export function NewArrivalProductsList() {
     date.setDate(date.getDate() - 2);
     return new Date(product.createdAt) >= date;
   };
-  const recentProducts = (products as Product[]).filter(isRecentProduct) || [];
-  const displayedProducts = recentProducts.slice(0, 12);
-  
+  const sortedProducts = [...products].sort((a, b) => 
+  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+);
+  const displayedProducts = sortedProducts.filter(isRecentProduct);
   return (
     <>
       <Section>
