@@ -10,7 +10,7 @@ export default function OrderItem({ id, name, price, isPaid }: Product) {
       href={`/DashboardProduct/Orders/${id}`}
       className="grid grid-cols-6 gap-12 border-t py-4 px-8 items-center xl:hover:bg-slate-100 transition-colors"
     >
-      <div className="col-span-full xl:col-span-2 relative aspect-[4/3] max-w-lg">
+      <div className="col-span-full xl:col-span-1 relative aspect-[4/3] max-w-lg">
         <Image
           src="/shirt-player.png"
           alt={name}
@@ -20,7 +20,7 @@ export default function OrderItem({ id, name, price, isPaid }: Product) {
           className="rounded-xl"
         />
       </div>
-      <div className="col-span-full xl:col-span-2">
+      <div className="col-span-full xl:col-span-3">
         <h2 className="text-xl">{name}</h2>
         <div>
           <p>

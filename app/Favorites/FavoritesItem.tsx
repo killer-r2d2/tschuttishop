@@ -8,19 +8,20 @@ import { useStore } from "zustand";
 export default function FavoritesItem({ id, name, price }: Product) {
   const removeFav = useStore(favoritesStore, (state) => state.removeFav);
   return (
-    <div className="grid grid-cols-6 gap-6 xl:gap-12 border-t pt-4 pb-4 pr-8 pl-8 items-center xl:hover:bg-slate-100 transition-colors">
-      <div className="p-2 col-span-full xl:col-span-1 relative min-h-[200px] xl:min-h-[130px]">
+    <div className="grid grid-cols-6 gap-12 border-t py-4 px-8 items-center">
+      <div className="col-span-full xl:col-span-1 relative aspect-[4/3] max-w-lg">
         <Link href={`/Products/${id}`}>
           <Image
             src="/shirt-player.png"
-            fill
-            objectFit="cover"
             alt={name}
-            className="rounded-xl h-[200px] max-w-full"
+            width={800}
+            height={800}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="rounded-xl"
           />
         </Link>
       </div>
-      <div className="col-span-full xl:col-span-3">
+      <div className="col-span-full xl:col-span-4">
         <Link href={`/Products/${id}`}>
           <h2 className="text-xl">{name}</h2>
         </Link>
@@ -30,7 +31,7 @@ export default function FavoritesItem({ id, name, price }: Product) {
           </p>
         </div>
       </div>
-      <div className="col-span-full xl:col-span-2  flex w-full xl:justify-end">
+      <div className="col-span-full xl:col-span-1  flex w-full xl:justify-end">
         <Button
           size="sm"
           variant="ghost"

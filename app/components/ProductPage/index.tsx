@@ -31,12 +31,13 @@ const Index = ({
         <div className="col-span-full">
           <BackButton />
         </div>
-        <div className="col-span-full xl:col-span-4 bg-slate-200 h-[500px] p-5 rounded-xl relative">
+        <div className="col-span-full xl:col-span-4 bg-slate-200 relative aspect-[4/3] max-w-lg">
           <Image
             src="/shirt-player.png"
-            fill
-            objectFit="cover"
             alt={name}
+            width={800}
+            height={800}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
             className="rounded-xl"
           />
         </div>

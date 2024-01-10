@@ -61,7 +61,7 @@ export default function Cart({
         <div className="col-span-full">
           <BackButton />
         </div>
-        <div className="col-span-full xl:col-span-9">
+        <div className="col-span-full">
           <h2 className="text-5xl font-bold mb-5">Warenkorb</h2>
           <div>
             {items.length === 0 && (

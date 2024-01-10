@@ -9,18 +9,20 @@ import { useStore } from "zustand";
 export default function CartItem({ id, name, price, size, category }: Product) {
   const removeItem = useStore(cartStore, (state) => state.deleteItem);
   return (
-    <div className="grid grid-cols-12 gap-y-12 xl:gap-x-12 border-t py-8">
-      <div className="col-span-full xl:col-span-6 relative">
-        <Image
-          src="/shirt-player.png"
-          height={500}
-          width={500}
-          objectFit="cover"
-          alt={name}
-          className="rounded-xl"
-        />
+    <div className="grid grid-cols-6 gap-12 border-t py-4 px-8 items-center">
+      <div className="col-span-full xl:col-span-1 relative aspect-[4/3] max-w-lg">
+        <Link href={`/Products/${id}`}>
+          <Image
+            src="/shirt-player.png"
+            alt={name}
+            width={800}
+            height={800}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="rounded-xl"
+          />
+        </Link>
       </div>
-      <div className="col-span-full xl:col-span-6 flex flex-col gap-8">
+      <div className="col-span-full xl:col-span-4 flex flex-col gap-8">
         <Link href={`/Products/${id}`}>
           <h2 className="text-2xl font-bold">{name}</h2>
         </Link>
@@ -31,16 +33,16 @@ export default function CartItem({ id, name, price, size, category }: Product) {
           <p className="mt-2">Grösse: {size}</p>
           <p className="mt-2">Kategorie: {category}</p>
         </div>
-        <div>
-          <Button
-            size="sm"
-            variant="ghost"
-            color="danger"
-            onClick={() => removeItem(id)}
-          >
-            Entfernen
-          </Button>
-        </div>
+      </div>
+      <div className="col-span-full xl:col-span-1  flex w-full xl:justify-end">
+        <Button
+          size="sm"
+          variant="ghost"
+          color="danger"
+          onClick={() => removeItem(id)}
+        >
+          Entfernen
+        </Button>
       </div>
     </div>
   );

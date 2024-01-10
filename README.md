@@ -73,4 +73,5 @@ Für das Usability Testing haben wir einen Fragebogen mit ein paar Aufgaben erst
 Die Umfragen mit den Antworten sind hier zu funden. [Usability Testing](https://drive.google.com/drive/folders/1aVG5FBLAst57tTYWFlhghE66SeIWbxEz?usp=sharing)
 ### Anpassungen nach Usability Testing
 - Der Button auf der Produktseite, wird nun direkt nach dem das Produkt in den Warenkorb gelegt wurde deaktiviert und zeigt, dass das Produkt erfolgreich in den Warenkorb gelegt wurde.
-
+- Cards wurden so angepasst, dass diese anzeigen wenn ein Produkt "Vintage" oder "Verkauft" ist.
+- 

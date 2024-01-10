@@ -4,7 +4,8 @@ import { Button } from "@nextui-org/button";
 export function DashboardUser() {
   return (
     <>
-      <div className="w-1/4 h-auto bg-slate-200 rounded-xl mt-5">
+      <h2 className="text-2xl font-bold mt-5 mb-2">Mein Profil</h2>
+      <div className="w-1/4 h-auto bg-slate-200 rounded-xl">
         <UserIcon className="w-full" />
       </div>
       <div className="mt-5">

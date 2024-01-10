@@ -20,7 +20,7 @@ export default function UserDropdown({ user }: { user: string | undefined }) {
           <DropdownItem key="dashboard" href="/DashboardProduct">
             Dashboard
           </DropdownItem>
-          <DropdownItem key="dashboard" href="/DashboardProduct#my-products">
+          <DropdownItem key="products" href="/DashboardProduct#my-products">
             Deine Produkte
           </DropdownItem>
           <DropdownItem key="sell" href="/DashboardProduct/Sold">
