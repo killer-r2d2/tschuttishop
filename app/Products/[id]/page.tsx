@@ -8,7 +8,7 @@ import useProducts from "@/hooks/useProducts";
 export default function Page({ params }: { params: { id: number } }) {
   const productId: number = params.id;
 
-  const { product, isLoading, isError } = useGetProductById(productId);
+  const { product, isLoading, isError } = useGetProductById(productId.toString());
 
   if (isLoading)
     return (
