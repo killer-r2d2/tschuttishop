@@ -8,7 +8,7 @@ export function FavoritesNav() {
 
   return (
     <div className="flex gap-4">
-      <Link href="/Favorites">
+      <Link href="/Favorites" aria-label="favorites icon">
         <HeartIcon className="w-6 text-slate-100 hover:text-slate-500 transition-colors" />
       </Link>
     </div>

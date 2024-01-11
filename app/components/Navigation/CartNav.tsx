@@ -13,7 +13,7 @@ export function CartNav() {
         color="danger"
         isInvisible={count === undefined || count < 1}
       >
-        <Link href="/Cart">
+        <Link href="/Cart" aria-label="cart icon">
           <ShoppingCartIcon className="w-6 text-slate-100 hover:text-slate-500 transition-colors" />
         </Link>
       </Badge>

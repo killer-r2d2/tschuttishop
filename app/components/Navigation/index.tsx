@@ -51,6 +51,7 @@ export function Navigation() {
               <FavoritesNav />
               <CartNav />
               <button className="block" onClick={() => setToggle(!toggle)}>
+                <span className="sr-only">Toggle navigation</span>
                 <Bars4Icon
                   className={`${
                     !toggle ? "block" : "hidden"
@@ -61,6 +62,7 @@ export function Navigation() {
                     !toggle ? "hidden" : "block"
                   } w-10 text-slate-100 hover:text-slate-500 transition-colors`}
                 />
+                
               </button>
             </div>
           </div>
