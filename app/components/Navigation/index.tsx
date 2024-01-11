@@ -47,7 +47,7 @@ export function Navigation() {
         <Container>
           <div className="flex justify-between items-center lg:block">
             <Logo />
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-4 items-center">
               <FavoritesNav />
               <CartNav />
               <button className="block" onClick={() => setToggle(!toggle)}>
