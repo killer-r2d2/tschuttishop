@@ -25,7 +25,7 @@ export default function Page() {
 
   return (
     <Container>
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12">
         <div className="col-span-full">
           <BackButton />
         </div>
