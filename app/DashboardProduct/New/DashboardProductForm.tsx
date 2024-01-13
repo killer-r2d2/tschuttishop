@@ -13,11 +13,7 @@ import {
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { CheckIcon } from "@heroicons/react/24/solid";
 
-export function DashboardProductForm({
-  userProfileId,
-}: {
-  userProfileId: string;
-}) {
+export function DashboardProductForm({ profileId }: { profileId: string }) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -26,7 +22,7 @@ export function DashboardProductForm({
     price: 0.0,
     inStock: true,
     isVintage: false,
-    profileId: userProfileId,
+    profileId: profileId,
   });
   const { isLoading, isError, createProduct, isSuccess } = useCreateProduct();
 
@@ -56,10 +52,10 @@ export function DashboardProductForm({
         price: 0.0,
         inStock: true,
         isVintage: false,
-        profileId: userProfileId,
+        profileId: profileId,
       });
     }
-  }, [isSuccess, userProfileId]);
+  }, [isSuccess, profileId]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

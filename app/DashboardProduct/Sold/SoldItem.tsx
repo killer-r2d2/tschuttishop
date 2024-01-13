@@ -4,7 +4,13 @@ import { Chip } from "@nextui-org/chip";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-export default function SoldItem({ id, name, price, isPaid }: Product) {
+export default function SoldItem({
+  id,
+  name,
+  price,
+  isPaid,
+  isShipped,
+}: Product) {
   return (
     <Link
       href={`/DashboardProduct/Sold/${id}`}
@@ -20,7 +26,7 @@ export default function SoldItem({ id, name, price, isPaid }: Product) {
           className="rounded-xl"
         />
       </div>
-      <div className="col-span-full xl:col-span-3">
+      <div className="col-span-full xl:col-span-2">
         <h2 className="text-xl">{name}</h2>
         <div>
           <p>
@@ -29,10 +35,19 @@ export default function SoldItem({ id, name, price, isPaid }: Product) {
         </div>
       </div>
       <div className="col-span-full xl:col-span-1">
+        <p>Käufer:</p>
         {isPaid ? (
           <Chip color="success">Rechnung bezahlt</Chip>
         ) : (
           <Chip color="warning">Rechnung offen</Chip>
+        )}
+      </div>
+      <div className="col-span-full xl:col-span-1">
+        <p>Sie:</p>
+        {isShipped ? (
+          <Chip color="success">Versendet</Chip>
+        ) : (
+          <Chip color="warning">Nicht versendet</Chip>
         )}
       </div>
       <div className="col-span-full xl:col-span-1 hidden xl:flex w-full justify-end">

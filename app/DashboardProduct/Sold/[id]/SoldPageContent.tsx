@@ -2,25 +2,26 @@
 import { useState } from "react";
 import { Product } from "@/app/types/Product";
 import { Container } from "@/app/components/Base/Container";
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
-import { BanknotesIcon, TruckIcon } from "@heroicons/react/24/solid";
+import { Tabs, Tab, Card, CardBody, Badge } from "@nextui-org/react";
+import { BanknotesIcon, CheckIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
 import BackButton from "@/app/components/Base/BackButton";
 import Image from "next/image";
+import { useGetProfileById } from "@/hooks/useGetProfileById";
 
 export default function SoldPageContent({
   id,
   name,
-  description,
   price,
   size,
   club,
-  category,
-  inStock,
   isPaid,
   isShipped,
+  buyerId,
 }: Product) {
+  const { profile } = useGetProfileById(buyerId || "");
+
   const [isShippedState, setIsShippedState] = useState(isShipped);
   const { updateProduct } = useUpdateProduct();
   const handleMarkAsShipped = async () => {
@@ -40,12 +41,23 @@ export default function SoldPageContent({
       <BackButton />
       <div className="grid grid-cols-12">
         <div className="col-span-full">
-          <h1 className="text-5xl font-bold mb-5">Bestellung: {id}</h1>
+          <div className="flex flex-col lg:flex-row justify-between">
+            <h1 className="text-5xl font-bold mb-5">Bestellung: {id}</h1>
+            {isPaid && isShipped ? (
+              <div className="bg-success-100 text-xl w-fit h-fit p-3 rounded-xl text-success-600">
+                <p>Abgeschlossen</p>
+              </div>
+            ) : (
+              <div className="bg-warning-100 text-xl w-fit h-fit p-3 rounded-xl text-warning-600">
+                <p>In Bearbeitung</p>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="col-span-full xl:col-span-6 xl:grid flex flex-col lg:flex-row xl:grid-rows-0 xl:grid-cols-2 xl:gap-x-4 gap-y-4 mb-8 xl:mb-0">
+        <div className="col-span-full xl:col-span-6 xl:grid flex flex-col lg:flex-row xl:grid-rows-0 xl:grid-cols-2 xl:gap-x-4 gap-y-4 mb-8 xl:mb-0 mt-5 lg:mt-0">
           <div className="xl:col-span-1 md:mr-8 aspect-[4/3] max-w-lg">
             <Image
-              src="/shirt-player.png"
+              src="/shirt-player.jpg"
               alt="shirt-player"
               width={500}
               height={500}
@@ -77,7 +89,11 @@ export default function SoldPageContent({
                 key="payment"
                 title={
                   <div className="flex items-center space-x-2">
-                    <BanknotesIcon className="w-6" />
+                    {isPaid ? (
+                      <CheckIcon className="w-6" color="success" />
+                    ) : (
+                      <BanknotesIcon className="w-6" />
+                    )}
                     <span>Zahlung</span>
                   </div>
                 }
@@ -85,17 +101,22 @@ export default function SoldPageContent({
                 <Card shadow="none" className="border">
                   <CardBody>
                     {isPaid ? (
-                      <p>
-                        Der Käufer hat die Rechnung bezahlt.
-                        <br />
-                        Sobald sie die Ware versendet haben, können Sie den
-                        Status unter `&quot;`Versand`&quot;` ändern.
-                      </p>
+                      <>
+                        <div className="bg-success-100 w-fit p-3 rounded-xl text-success-600">
+                          <p>
+                            Der Käufer hat die Rechnung als bezahlt markiert.
+                          </p>
+                        </div>
+                        <p className="mt-5">
+                          Sobald Sie die Ware versendet haben, können Sie den
+                          Status unter &quot;Versand&quot; ändern.
+                        </p>
+                      </>
                     ) : (
                       <>
                         <p>
                           Warten Sie auf die Bezahlung de Käufers:
-                          <strong>{price} CHF</strong>
+                          <strong> {price} CHF</strong>
                         </p>
                       </>
                     )}
@@ -106,25 +127,54 @@ export default function SoldPageContent({
                 key="shipment"
                 title={
                   <div className="flex items-center space-x-2">
-                    <TruckIcon className="w-6" />
-                    <span>Versand</span>
+                    {isShipped ? (
+                      <CheckIcon className="w-6" />
+                    ) : (
+                      <TruckIcon className="w-6" />
+                    )}
+                    {isPaid && !isShipped ? (
+                      <Badge content="" color="warning">
+                        <span>Versand</span>
+                      </Badge>
+                    ) : (
+                      <span>Versand</span>
+                    )}
                   </div>
                 }
               >
                 <Card shadow="none" className="border">
                   <CardBody>
                     {isShippedState ? (
-                      <p>Sie haben das Produkt an den Käufer gesendet.</p>
+                      <>
+                        <div className="bg-success-100 w-fit p-3 rounded-xl text-success-600">
+                          <p className="text-success-600">
+                            Sie haben das Produkt an den Käufer gesendet.
+                          </p>
+                        </div>
+                        <p className="mt-5">
+                          Adresse:
+                          <br />
+                          {profile?.firstname} {profile?.lastname}
+                          <br />
+                          {profile?.street}
+                          <br />
+                          {profile?.zip} {profile?.city}
+                        </p>
+                      </>
                     ) : (
                       <>
                         <p>
                           Senden Sie das Produkt an die folgende Adresse:
                           <br />
-                          <strong>Vorname Nachname</strong>
+                          <strong>
+                            {profile?.firstname} {profile?.lastname}
+                          </strong>
                           <br />
-                          <strong>Strasse 1</strong>
+                          <strong>{profile?.street}</strong>
                           <br />
-                          <strong>1234 Stadt</strong>
+                          <strong>
+                            {profile?.zip} {profile?.city}
+                          </strong>
                         </p>
                         <div className="mt-5">
                           <Button

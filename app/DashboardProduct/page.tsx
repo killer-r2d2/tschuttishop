@@ -25,7 +25,7 @@ export default async function Dashboard() {
         </div>
         <div className="col-span-full lg:col-span-1">
           <hr className="lg:hidden mb-10" />
-          <h2 className="text-2xl font-bold mb-5">Deine Produkte</h2>
+          <h2 className="text-2xl font-bold mb-5">Meldungen</h2>
           <DashboardStatus profileId={user.id} />
         </div>
       </div>

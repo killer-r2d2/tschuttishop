@@ -27,8 +27,6 @@ export function DashboardUser({ profileId }: { profileId: string }) {
     zip: "",
   });
 
-  console.log("loadedProfile", loadedProfile);
-
   useEffect(() => {
     if (loadedProfile && isOpen) {
       setProfile({
