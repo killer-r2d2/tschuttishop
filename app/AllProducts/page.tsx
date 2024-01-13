@@ -8,9 +8,7 @@ import BackButton from "@/app/components/Base/BackButton";
 import useProducts from "@/hooks/useProducts";
 import { Product } from "@/app/types/Product";
 
-export default function Page({ params }: { params: { category: string } }) {
-  const category: string = params.category;
-
+export default function AllProductsPage() {
   const { products, isLoading, isError } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [filterOption, setFilterOption] = useState("all");
@@ -103,9 +101,8 @@ export default function Page({ params }: { params: { category: string } }) {
         <div className="col-span-full xl:col-span-9">
           <h1
             className="text-5xl font-bold mb-5"
-            style={{ textTransform: "capitalize" }}
           >
-            {category}
+            Alle Produkte
           </h1>
           {hasProducts ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
