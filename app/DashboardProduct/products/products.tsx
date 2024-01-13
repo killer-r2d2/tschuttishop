@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import useProducts from "@/hooks/useProducts";
 import { useDeleteProduct } from "@/hooks/useDeleteProduct";
 import { useUpdateProduct } from "@/hooks/useUpdateProduct";
-import { Product } from "../types/Product";
+import { Product } from "@/app/types/Product";
 import { ProductCard } from "@/app/components/Product/ProductCard";
 import { Container } from "@/app/components/Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
@@ -26,11 +26,7 @@ import {
   productAspectsSizes,
 } from "@/app/DashboardProduct/formProductAspects";
 
-export function DashBoardProducts({
-  userProfileId,
-}: {
-  userProfileId: string;
-}) {
+export function Products({ userProfileId }: { userProfileId: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { products, isLoading, isError } = useProducts();
   const { deleteProduct } = useDeleteProduct();

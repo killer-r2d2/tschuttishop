@@ -2,7 +2,6 @@ import { Container } from "../components/Base/Container";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { DashBoardProducts } from "@/app/DashboardProduct/DashboardProducts";
 import { DashboardUser } from "@/app/DashboardProduct/DashboardUser";
 import { DashboardStatus } from "@/app/DashboardProduct/DashboardStatus";
 
@@ -28,13 +27,6 @@ export default async function Dashboard() {
           <hr className="lg:hidden mb-10" />
           <h2 className="text-2xl font-bold mb-5">Deine Produkte</h2>
           <DashboardStatus profileId={user.id} />
-        </div>
-        <div className="col-span-full">
-          <hr className="mb-10" />
-          <h2 className="text-2xl font-bold mb-5 scroll-m-32" id="my-products">
-            Deine Produkte
-          </h2>
-          <DashBoardProducts userProfileId={user.id} />
         </div>
       </div>
     </Container>
