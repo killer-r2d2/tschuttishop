@@ -31,7 +31,7 @@ const Index = ({
         </div>
         <div className="col-span-full xl:col-span-4 bg-slate-200 h-[500px] p-5 rounded-xl relative">
           <Image
-            src="/shirt-player.png"
+            src="/shirt-player.jpg"
             fill
             objectFit="cover"
             alt={name}
