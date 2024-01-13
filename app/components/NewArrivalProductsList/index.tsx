@@ -7,21 +7,19 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { ProductCard } from "@/app/components/Product/ProductCard";
 import { Product } from "@/app/types/Product";
 
-
 export function NewArrivalProductsList() {
   const { products, isLoading, isError } = useProducts();
   if (isLoading) return <SpinnerNext />;
   if (isError) return <p>Error: {isError.message}</p>;
 
-  const isRecentProduct = (product: Product) => {
-    const date = new Date();
-    date.setDate(date.getDate() - 2);
-    return new Date(product.createdAt) >= date;
-  };
-  const sortedProducts = [...products].sort((a, b) => 
-  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-);
-  const displayedProducts = sortedProducts.filter(isRecentProduct);
+  // Sort products by createdAt date in descending order and filter out the products that are out of stock
+  const sortedProducts = [...products]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .filter((product: Product) => product.inStock);
+
+  // Select the first 12 products from the sorted and filtered list to display
+  const displayedProducts = sortedProducts.slice(0, 12);
+
   return (
     <>
       <Section>
@@ -32,7 +30,7 @@ export function NewArrivalProductsList() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(displayedProducts as Product[]).map((product) => (
+            {displayedProducts.map((product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
           </div>
