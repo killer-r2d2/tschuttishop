@@ -33,7 +33,7 @@ const Index = ({
         </div>
         <div className="col-span-full xl:col-span-4 bg-slate-200 relative aspect-[4/3] max-w-lg">
           <Image
-            src="/shirt-player.png"
+            src="/shirt-player.jpg"
             alt={name}
             width={800}
             height={800}
@@ -94,8 +94,6 @@ const Index = ({
         <div className="col-span-full xl:col-start-5">
           <p className="font-bold">Beschreibung</p>
           {description}
-          aaaaaaaaaaa daww w dafwdawawd wad awd awd wad wad aw awd awd awd adaw
-          wda dw awd awwa dawd wadwda awdw d dawd awdawd wd
         </div>
       </div>
     </Container>

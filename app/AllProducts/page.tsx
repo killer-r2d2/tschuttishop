@@ -8,9 +8,7 @@ import BackButton from "@/app/components/Base/BackButton";
 import useProducts from "@/hooks/useProducts";
 import { Product } from "@/app/types/Product";
 
-export default function Page({ params }: { params: { category: string } }) {
-  const category: string = params.category;
-
+export default function AllProductsPage() {
   const { products, isLoading, isError } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [filterOption, setFilterOption] = useState("all");
@@ -68,11 +66,11 @@ export default function Page({ params }: { params: { category: string } }) {
 
   return (
     <Container>
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12">
         <div className="col-span-full">
           <BackButton />
         </div>
-        <div className="col-span-full xl:col-span-3">
+        <div className="col-span-full xl:col-span-3 mb-5 xl:mr-5">
           <div className="bg-slate-200 h-fit p-5 rounded-xl">
             <p className="font-bold mb-4">Filter</p>
             <RadioGroup
@@ -103,9 +101,8 @@ export default function Page({ params }: { params: { category: string } }) {
         <div className="col-span-full xl:col-span-9">
           <h1
             className="text-5xl font-bold mb-5"
-            style={{ textTransform: "capitalize" }}
           >
-            {category}
+            Alle Produkte
           </h1>
           {hasProducts ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">

@@ -22,7 +22,7 @@ export default async function Dashboard() {
       <div className="grid grid-cols-2 gap-y-10">
         <div className="col-span-full lg:col-span-1">
           <p className="text-xl">Willkommen {user.email}!</p>
-          <DashboardUser />
+          <DashboardUser profileId={user.id} />
         </div>
         <div className="col-span-full lg:col-span-1">
           <hr className="lg:hidden mb-10" />

@@ -7,7 +7,8 @@ import { Providers } from "./providers";
 import AuthButton from "./components/AuthButton";
 
 export const metadata: Metadata = {
-  title: "Tschuttishop",
+  title: "tschuttishop | Exklusive Fußballshirts kaufen & verkaufen",
+  description: "Entdecken Sie im Tschuttishop eine umfangreiche Kollektion an Fußballshirts. Ob Klassiker oder aktuelle Designs – kaufen und verkaufen Sie einzigartige Fußballtrikots mit Leidenschaft. Starten Sie jetzt Ihr Fußballerlebnis!",
 };
 
 const roboto = Roboto_Flex({

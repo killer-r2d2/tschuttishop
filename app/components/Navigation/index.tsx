@@ -10,7 +10,7 @@ import { FavoritesNav } from "@/app/components/Navigation/FavoritesNav";
 
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
-  { name: "Alle Produkte", href: "/Categories/all" },
+  { name: "Alle Produkte", href: "/AllProducts" },
 ];
 
 export function Navigation() {
@@ -47,10 +47,11 @@ export function Navigation() {
         <Container>
           <div className="flex justify-between items-center lg:block">
             <Logo />
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-4 items-center">
               <FavoritesNav />
               <CartNav />
               <button className="block" onClick={() => setToggle(!toggle)}>
+                <span className="sr-only">Toggle navigation</span>
                 <Bars4Icon
                   className={`${
                     !toggle ? "block" : "hidden"
@@ -61,6 +62,7 @@ export function Navigation() {
                     !toggle ? "hidden" : "block"
                   } w-10 text-slate-100 hover:text-slate-500 transition-colors`}
                 />
+                
               </button>
             </div>
           </div>

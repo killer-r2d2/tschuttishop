@@ -46,9 +46,10 @@ npm run dev
 yarn dev
 # or
 pnpm dev
+```
 
+## How to setup prisma in this project:
 
-## How I setup prisma in this project:
 1. npm install prisma --save-dev
 2. npm install @prisma/client
 3. npm install typescript ts-node @types/node --save-dev
@@ -57,7 +58,7 @@ You get prisma/schema.prisma
 5. build your model
 6. npx prisma migrate -> the model is now in your database
 5. prisma client: https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
-```
+
 
 
 ## Automated Testing with Playwright

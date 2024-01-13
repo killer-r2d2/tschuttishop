@@ -13,6 +13,11 @@ model Profile {
   role      Role      @default(user)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
+  firstname String?
+  lastname  String?
+  street    String?
+  city      String?
+  zip       String?
   products  Product[]
 
   @@map("profile")
@@ -32,9 +37,9 @@ model Product {
   club        String?
   isVintage   Boolean  @default(false)
   buyerId     String?
-  profile     Profile? @relation(fields: [profileId], references: [id])
   isShipped   Boolean  @default(false)
   isPaid      Boolean  @default(false)
+  profile     Profile? @relation(fields: [profileId], references: [id])
 }
 
 enum Role {

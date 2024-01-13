@@ -5,7 +5,13 @@ import { Button } from "@nextui-org/button";
 import { favoritesStore } from "@/store/favoritesStore";
 import { useStore } from "zustand";
 
-export default function FavoritesItem({ id, name, price }: Product) {
+export default function FavoritesItem({
+  id,
+  name,
+  price,
+  size,
+  category,
+}: Product) {
   const removeFav = useStore(favoritesStore, (state) => state.removeFav);
   return (
     <div className="grid grid-cols-6 gap-12 border-t py-4 px-8 items-center">
@@ -23,12 +29,14 @@ export default function FavoritesItem({ id, name, price }: Product) {
       </div>
       <div className="col-span-full xl:col-span-4">
         <Link href={`/Products/${id}`}>
-          <h2 className="text-xl">{name}</h2>
+          <h2 className="text-xl font-bold">{name}</h2>
         </Link>
         <div>
           <p>
             Preis: <span className="font-bold">{price} CHF</span>
           </p>
+          <p className="mt-2">Grösse: {size}</p>
+          <p className="mt-2">Kategorie: {category}</p>
         </div>
       </div>
       <div className="col-span-full xl:col-span-1  flex w-full xl:justify-end">

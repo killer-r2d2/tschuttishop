@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
-import Cart from "@/app/Cart/Cart";
+import CartList from "@/app/Cart/CartList";
 
 export default async function CartPage() {
   const cookieStore = cookies();
@@ -12,7 +12,7 @@ export default async function CartPage() {
 
   return (
     <>
-      <Cart userProfileId={user?.id} />
+      <CartList userProfileId={user?.id} />
     </>
   );
 }
