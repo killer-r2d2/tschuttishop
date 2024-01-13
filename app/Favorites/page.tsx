@@ -30,7 +30,7 @@ export default function Page() {
           <BackButton />
         </div>
         <div className="col-span-full xl:col-span-9">
-          <h2 className="text-5xl font-bold mb-5">Favoriten</h2>
+          <h1 className="text-5xl font-bold mb-5">Favoriten</h1>
           <div>
             {items.length > 0 ? (
               favoritesProducts?.map((product) => (

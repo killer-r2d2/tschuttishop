@@ -62,7 +62,7 @@ export default function Cart({
           <BackButton />
         </div>
         <div className="col-span-full xl:col-span-9">
-          <h2 className="text-5xl font-bold mb-5">Warenkorb</h2>
+          <h1 className="text-5xl font-bold mb-5">Warenkorb</h1>
           <div>
             {items.length === 0 && (
               <p className="text-xl font-bold">Keine Produkte im Warenkorb</p>
