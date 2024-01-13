@@ -6,6 +6,8 @@ import { Container } from "../Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { ProductCard } from "@/app/components/Product/ProductCard";
 import { Product } from "@/app/types/Product";
+import React from "react";
+import { Link, Button } from "@nextui-org/react";
 
 export function NewArrivalProductsList() {
   const { products, isLoading, isError } = useProducts();
@@ -14,7 +16,10 @@ export function NewArrivalProductsList() {
 
   // Sort products by createdAt date in descending order and filter out the products that are out of stock
   const sortedProducts = [...products]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
     .filter((product: Product) => product.inStock);
 
   // Select the first 12 products from the sorted and filtered list to display
@@ -33,6 +38,16 @@ export function NewArrivalProductsList() {
             {displayedProducts.map((product) => (
               <ProductCard {...product} key={product.id} hasEdit={false} />
             ))}
+          </div>
+          {/* button link to AllProducts page */}
+          <div className="flex justify-center mt-10">
+            <Button
+              href="/AllProducts"
+              as={Link}
+              color="primary"
+            >
+              Alle Produkte
+            </Button>
           </div>
         </Container>
       </Section>
