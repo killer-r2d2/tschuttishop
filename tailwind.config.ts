@@ -21,9 +21,9 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        "hero-shirt": "url('/hero-shirt.png')",
-        "hero-player": "url('/shirt-player.png')",
-        "hero-vintage": "url('/vintage-hero-wide.png')",
+        "hero-shirt": "url('/hero-shirt.jpg')",
+        "hero-player": "url('/shirt-player.jpg')",
+        "hero-vintage": "url('/vintage-hero-wide.jpg')",
       },
       backgroundSize: {
         "120%": "120%",

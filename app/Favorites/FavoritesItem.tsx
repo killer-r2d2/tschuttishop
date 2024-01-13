@@ -12,7 +12,7 @@ export default function FavoritesItem({ id, name, price, size, category }: Produ
       <div className="col-span-full xl:col-span-6 relative">
         <Link href={`/Products/${id}`}>
           <Image
-            src="/shirt-player.png"
+            src="/shirt-player.jpg"
             height={500}
             width={500}
             objectFit="cover"

@@ -12,7 +12,7 @@ export default function CartItem({ id, name, price, size, category }: Product) {
     <div className="grid grid-cols-12 gap-y-12 xl:gap-x-12 border-t py-8">
       <div className="col-span-full xl:col-span-6 relative">
         <Image
-          src="/shirt-player.png"
+          src="/shirt-player.jpg"
           height={500}
           width={500}
           objectFit="cover"

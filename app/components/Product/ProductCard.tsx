@@ -114,7 +114,7 @@ export function ProductCard({
             <Image
               height="1000"
               width="1000"
-              src="/shirt-player.png"
+              src="/shirt-player.jpg"
               alt="Shirt"
               className="rounded-t-xl relative"
             />

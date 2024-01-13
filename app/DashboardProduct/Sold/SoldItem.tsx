@@ -12,7 +12,7 @@ export default function SoldItem({ id, name, price, isPaid }: Product) {
     >
       <div className="col-span-full xl:col-span-2 relative aspect-[4/3] max-w-lg">
         <Image
-          src="/shirt-player.png"
+          src="/shirt-player.jpg"
           alt={name}
           width={800}
           height={800}
