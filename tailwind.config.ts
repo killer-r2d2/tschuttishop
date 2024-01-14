@@ -20,11 +20,6 @@ const config: Config = {
           sm: "2rem",
         },
       },
-      backgroundImage: {
-        "hero-shirt": "url('/hero-shirt.jpg')",
-        "hero-player": "url('/shirt-player.jpg')",
-        "hero-vintage": "url('/vintage-hero-wide.jpg')",
-      },
       backgroundSize: {
         "120%": "120%",
       },
