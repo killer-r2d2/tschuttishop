@@ -42,8 +42,8 @@ export default function SoldPageContent({
       <div className="grid grid-cols-12">
         <div className="col-span-full">
           <div className="flex flex-col lg:flex-row justify-between">
-            <h1 className="text-5xl font-bold mb-5">Bestellung: {id}</h1>
-            {isPaid && isShipped ? (
+            <h1 className="text-5xl font-bold mb-5">Verkauf: {id}</h1>
+            {isPaid && isShippedState ? (
               <div className="bg-success-100 text-xl w-fit h-fit p-3 rounded-xl text-success-600">
                 <p>Abgeschlossen</p>
               </div>
@@ -127,12 +127,12 @@ export default function SoldPageContent({
                 key="shipment"
                 title={
                   <div className="flex items-center space-x-2">
-                    {isShipped ? (
+                    {isShippedState ? (
                       <CheckIcon className="w-6" />
                     ) : (
                       <TruckIcon className="w-6" />
                     )}
-                    {isPaid && !isShipped ? (
+                    {isPaid && !isShippedState ? (
                       <Badge content="" color="warning">
                         <span>Versand</span>
                       </Badge>
@@ -152,7 +152,7 @@ export default function SoldPageContent({
                           </p>
                         </div>
                         <p className="mt-5">
-                          Adresse:
+                          <strong>Adresse:</strong>
                           <br />
                           {profile?.firstname} {profile?.lastname}
                           <br />
