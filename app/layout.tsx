@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de" className={`${roboto.variable} font-sans`}>
+    <html lang="de" className={`${roboto.variable} font-sans scroll-smtooth focus:scroll-auto`} >
       <body>
         <Providers>
           <div className="flex flex-col min-h-screen">
