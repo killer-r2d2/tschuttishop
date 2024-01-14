@@ -7,6 +7,7 @@ import { ProductCard } from "@/app/components/Product/ProductCard";
 import BackButton from "@/app/components/Base/BackButton";
 import useProducts from "@/hooks/useProducts";
 import { Product } from "@/app/types/Product";
+import { Section } from "@/app/components/Base/Section";
 
 export default function AllProductsPage() {
   const { products, isLoading, isError } = useProducts();
@@ -65,56 +66,54 @@ export default function AllProductsPage() {
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
-    <Container>
-      <div className="grid grid-cols-12">
-        <div className="col-span-full">
-          <BackButton />
-        </div>
-        <div className="col-span-full xl:col-span-3 mb-5 xl:mr-5">
-          <div className="bg-slate-200 h-fit p-5 rounded-xl">
-            <p className="font-bold mb-4">Filter</p>
-            <RadioGroup
-              value={filterOption}
-              onChange={(event) => setFilterOption(event.target.value)}
-              defaultValue="all"
-              className="mb-4"
-            >
-              <Radio value="all">Alle Produkte</Radio>
-              <Radio value="vintage">Vintage</Radio>
-              <Radio value="inStock">Erhältlich</Radio>
-              <Radio value="outOfStock">Ausverkauft</Radio>
-            </RadioGroup>
-            <Select
-              label="Wählen Sie einen Club"
-              placeholder="Club auswählen"
-              className="max-w-xs"
-              onChange={(e) => setSelectedClub(e.target.value)}
-            >
-              {uniqueClubs.map((club) => (
-                <SelectItem key={club || ""} value={club || ""}>
-                  {club}
-                </SelectItem>
-              ))}
-            </Select>
+    <Section>
+      <Container>
+        <div className="grid grid-cols-12">
+          <div className="col-span-full">
+            <BackButton />
+          </div>
+          <div className="col-span-full xl:col-span-3 mb-5 xl:mr-5">
+            <div className="bg-slate-200 h-fit p-5 rounded-xl">
+              <p className="font-bold mb-4">Filter</p>
+              <RadioGroup
+                value={filterOption}
+                onChange={(event) => setFilterOption(event.target.value)}
+                defaultValue="all"
+                className="mb-4"
+              >
+                <Radio value="all">Alle Produkte</Radio>
+                <Radio value="vintage">Vintage</Radio>
+                <Radio value="inStock">Erhältlich</Radio>
+                <Radio value="outOfStock">Ausverkauft</Radio>
+              </RadioGroup>
+              <Select
+                label="Wählen Sie einen Club"
+                placeholder="Club auswählen"
+                className="max-w-xs"
+                onChange={(e) => setSelectedClub(e.target.value)}
+              >
+                {uniqueClubs.map((club) => (
+                  <SelectItem key={club || ""} value={club || ""}>
+                    {club}
+                  </SelectItem>
+                ))}
+              </Select>
+            </div>
+          </div>
+          <div className="col-span-full xl:col-span-9">
+            <h1 className="text-5xl font-bold mb-5">Alle Produkte</h1>
+            {hasProducts ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                {filteredProducts.map((product) => (
+                  <ProductCard {...product} key={product.id} hasEdit={false} />
+                ))}
+              </div>
+            ) : (
+              <p>Keine Produkte gefunden.</p>
+            )}
           </div>
         </div>
-        <div className="col-span-full xl:col-span-9">
-          <h1
-            className="text-5xl font-bold mb-5"
-          >
-            Alle Produkte
-          </h1>
-          {hasProducts ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {filteredProducts.map((product) => (
-                <ProductCard {...product} key={product.id} hasEdit={false} />
-              ))}
-            </div>
-          ) : (
-            <p>Keine Produkte gefunden.</p>
-          )}
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </Section>
   );
 }

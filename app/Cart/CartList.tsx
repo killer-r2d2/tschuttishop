@@ -11,6 +11,7 @@ import { Button } from "@nextui-org/button";
 import useProducts from "@/hooks/useProducts";
 import CartModal from "@/app/Cart/CartModal";
 import { useStore } from "zustand";
+import { Section } from "@/app/components/Base/Section";
 
 export default function Cart({
   userProfileId,
@@ -22,7 +23,7 @@ export default function Cart({
   const { purchaseProduct } = usePurchaseProduct();
   const { products, isLoading, isError } = useProducts();
   const cartProducts = (products as Product[])?.filter((product) =>
-    items.includes(product.id),
+    items.includes(product.id)
   );
   const router = useRouter();
 
@@ -56,42 +57,44 @@ export default function Cart({
   };
 
   return (
-    <Container>
-      <div className="grid grid-cols-12">
-        <div className="col-span-full">
-          <BackButton />
-        </div>
-        <div className="col-span-full">
-          <h2 className="text-5xl font-bold mb-5">Warenkorb</h2>
-          <div>
-            {items.length === 0 && (
-              <p className="text-xl font-bold">Keine Produkte im Warenkorb</p>
-            )}
-            {items.length > 0 &&
-              cartProducts!.map((product) => (
-                <CartItem key={product.id} {...product} />
-              ))}
+    <Section>
+      <Container>
+        <div className="grid grid-cols-12">
+          <div className="col-span-full">
+            <BackButton />
           </div>
-        </div>
-
-        {items.length > 0 && (
-          <div className="col-span-full flex flex-col items-end">
-            <div className="font-bold">
-              Total: {cartProducts!.reduce((acc, curr) => acc + curr.price, 0)}{" "}
-              CHF
-            </div>
-            <div className="mt-5">
-              {userProfileId ? (
-                <Button color="primary" onClick={() => buyItems(items)}>
-                  Jetzt Kaufen
-                </Button>
-              ) : (
-                <CartModal />
+          <div className="col-span-full">
+            <h2 className="text-5xl font-bold mb-5">Warenkorb</h2>
+            <div>
+              {items.length === 0 && (
+                <p className="text-xl font-bold">Keine Produkte im Warenkorb</p>
               )}
+              {items.length > 0 &&
+                cartProducts!.map((product) => (
+                  <CartItem key={product.id} {...product} />
+                ))}
             </div>
           </div>
-        )}
-      </div>
-    </Container>
+
+          {items.length > 0 && (
+            <div className="col-span-full flex flex-col items-end">
+              <div className="font-bold">
+                Total:{" "}
+                {cartProducts!.reduce((acc, curr) => acc + curr.price, 0)} CHF
+              </div>
+              <div className="mt-5">
+                {userProfileId ? (
+                  <Button color="primary" onClick={() => buyItems(items)}>
+                    Jetzt Kaufen
+                  </Button>
+                ) : (
+                  <CartModal />
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </Container>
+    </Section>
   );
 }

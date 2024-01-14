@@ -7,12 +7,13 @@ import useProducts from "@/hooks/useProducts";
 import { favoritesStore } from "@/store/favoritesStore";
 import FavoritesItem from "@/app/Favorites/FavoritesItem";
 import { useStore } from "zustand";
+import { Section } from "@/app/components/Base/Section";
 
 export default function Page() {
   const items: number[] = useStore(favoritesStore, (state) => state.items);
   const { products, isLoading, isError } = useProducts();
   const favoritesProducts = (products as Product[])?.filter((product) =>
-    items.includes(product.id),
+    items.includes(product.id)
   );
 
   if (isLoading)
@@ -24,24 +25,26 @@ export default function Page() {
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
-    <Container>
-      <div className="grid grid-cols-12">
-        <div className="col-span-full">
-          <BackButton />
-        </div>
-        <div className="col-span-full">
-          <h2 className="text-5xl font-bold mb-5">Favoriten</h2>
-          <div>
-            {items.length > 0 ? (
-              favoritesProducts?.map((product) => (
-                <FavoritesItem {...product} key={product.id} />
-              ))
-            ) : (
-              <p className="text-xl font-bold">Keine Produkte in der Liste</p>
-            )}
+    <Section>
+      <Container>
+        <div className="grid grid-cols-12">
+          <div className="col-span-full">
+            <BackButton />
+          </div>
+          <div className="col-span-full">
+            <h2 className="text-5xl font-bold mb-5">Favoriten</h2>
+            <div>
+              {items.length > 0 ? (
+                favoritesProducts?.map((product) => (
+                  <FavoritesItem {...product} key={product.id} />
+                ))
+              ) : (
+                <p className="text-xl font-bold">Keine Produkte in der Liste</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </Section>
   );
 }
