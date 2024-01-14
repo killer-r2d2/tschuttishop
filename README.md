@@ -75,4 +75,4 @@ Die Umfragen mit den Antworten sind hier zu funden. [Usability Testing](https://
 ### Anpassungen nach Usability Testing
 - Der Button auf der Produktseite, wird nun direkt nach dem das Produkt in den Warenkorb gelegt wurde deaktiviert und zeigt, dass das Produkt erfolgreich in den Warenkorb gelegt wurde.
 - Cards wurden so angepasst, dass diese anzeigen wenn ein Produkt "Vintage" oder "Verkauft" ist.
-- 
+- Dashboard wurde neu aufgeteilt und mit mehr Informationen zum Status des Verkaufs/Verkaufs erweitert.
