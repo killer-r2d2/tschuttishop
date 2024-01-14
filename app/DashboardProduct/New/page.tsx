@@ -21,7 +21,7 @@ export default async function Page() {
       <h1 className="text-5xl font-bold mb-5">Neues Produkt erfassen</h1>
       <div className="grid grid-cols-12 gap-y-10">
         <div className="col-span-full lg:col-span-6">
-          <DashboardProductForm userProfileId={user.id} />
+          <DashboardProductForm profileId={user.id} />
         </div>
         <div className="col-span-full lg:col-span-3 lg:col-start-10">
           <hr className="d-block lg:hidden mb-10" />

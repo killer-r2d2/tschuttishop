@@ -58,7 +58,7 @@ export default function OrdersPageContent({
         <div className="col-span-full xl:col-span-6 xl:grid flex flex-col lg:flex-row xl:grid-rows-0 xl:grid-cols-2 xl:gap-x-4 gap-y-4 mb-8 xl:mb-0 mt-5 lg:mt-0">
           <div className="xl:col-span-1 md:mr-8 aspect-[4/3] max-w-lg">
             <Image
-              src="/shirt-player.png"
+              src="/shirt-player.jpg"
               alt="shirt-player"
               width={500}
               height={500}

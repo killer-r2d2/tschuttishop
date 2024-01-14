@@ -18,7 +18,7 @@ export default function FavoritesItem({
       <div className="col-span-full xl:col-span-1 relative aspect-[4/3] max-w-lg">
         <Link href={`/Products/${id}`}>
           <Image
-            src="/shirt-player.png"
+            src="/shirt-player.jpg"
             alt={name}
             width={800}
             height={800}
