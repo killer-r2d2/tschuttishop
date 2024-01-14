@@ -6,12 +6,19 @@
 
 ## Tech stack
 - [Nextjs](https://nextjs.org/)
+  A React framework that enables server-side rendering and static site generation, enhancing performance and SEO for web applications.
 - [Supabase](https://supabase.com/)
+An open-source Firebase alternative providing a suite of tools like a database, authentication, real-time subscriptions, and storage, aimed at rapidly building and scaling applications.
 - [Prisma](https://www.prisma.io/)
+An open-source database toolkit that includes an ORM (Object-Relational Mapping) for Node.js and TypeScript, simplifying database access and management.
 - [Playwright](https://playwright.dev/)
+A framework for automated end-to-end testing of web applications across multiple browsers, enabling reliable and efficient testing processes.
 - [Tailwindcss](https://tailwindcss.com/)
+A utility-first CSS framework for rapidly building custom designs without leaving your HTML, promoting faster and more maintainable styling.
 - [NextUi](https://nextui.org/)
+A React UI library designed for creating modern and responsive interfaces with a collection of customizable and reusable components.
 - [Resend](https://resend.com/)
+Email solution
 
 ## Getting Started
 
@@ -48,19 +55,6 @@ yarn dev
 pnpm dev
 ```
 
-## How to setup prisma in this project:
-
-1. npm install prisma --save-dev
-2. npm install @prisma/client
-3. npm install typescript ts-node @types/node --save-dev
-4. npx prisma init
-You get prisma/schema.prisma
-5. build your model
-6. npx prisma migrate -> the model is now in your database
-5. prisma client: https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
-
-
-
 ## Automated Testing with Playwright
 
 In this project, we use [Playwright](https://playwright.dev/) for automated end-to-end testing to ensure the functionality and reliability of our application. The following tests have been implemented:
@@ -70,9 +64,8 @@ In this project, we use [Playwright](https://playwright.dev/) for automated end-
 - First Product Detail Page Check (`productDetailPage.spec.ts`): This test ensures that the detail page of the first product on the homepage loads successfully and that the user can return to the homepage using the 'Back' button.
 
 ## Usability Testing
-Für das Usability Testing haben wir einen Fragebogen mit ein paar Aufgaben erstellt. Getestet wurde von mehreren Personen auf Windows und Mac.
-Die Umfragen mit den Antworten sind hier zu funden. [Usability Testing](https://drive.google.com/drive/folders/1aVG5FBLAst57tTYWFlhghE66SeIWbxEz?usp=sharing)
-### Anpassungen nach Usability Testing
-- Der Button auf der Produktseite, wird nun direkt nach dem das Produkt in den Warenkorb gelegt wurde deaktiviert und zeigt, dass das Produkt erfolgreich in den Warenkorb gelegt wurde.
-- Cards wurden so angepasst, dass diese anzeigen wenn ein Produkt "Vintage" oder "Verkauft" ist.
-- Dashboard wurde neu aufgeteilt und mit mehr Informationen zum Status des Verkaufs/Verkaufs erweitert.
+For usability testing, we created a questionnaire with a few tasks. The testing was conducted by several individuals on Windows and Mac systems. The surveys with the responses can be found here. [Usability Testing](https://drive.google.com/drive/folders/1aVG5FBLAst57tTYWFlhghE66SeIWbxEz?usp=sharing)
+### Adjustments after Usability Testing
+- The button on the product page is now immediately disabled after the product is added to the cart, indicating that the product has been successfully added to the cart.
+- Cards have been adjusted to show when a product is "Vintage" or "Sold".
+- The dashboard has been restructured and expanded with more information about the status of the sale/purchase.
