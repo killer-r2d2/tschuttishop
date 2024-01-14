@@ -44,7 +44,7 @@ const Index = ({
             />
           </div>
           <div className="col-span-full xl:col-span-8 h-full flex flex-col justify-between gap-y-5 lg:gap-y-5">
-            <div className="flex justify-between">
+            <div className="flex justify-between flex-col gap-y-4 md:flex-row">
               <h1 className="text-4xl font-bold">{name}</h1>
               {favItems.includes(id) ? (
                 <Button
