@@ -40,14 +40,14 @@ export default async function Page() {
             </p>
           </div>
           <div className="mt-10">
-            <p className="text-xl mb-3">Du suchst deine Erfassten Produkte?</p>
+            <p className="text-xl mb-3">Du suchst deine aktuellen Produkte?</p>
             <Button
-              href="/DashboardProduct"
+              href="/DashboardProduct/products"
               as={Link}
               color="primary"
               className="w-full"
             >
-              Dashboard
+              Deine aktuellen Produkte
             </Button>
           </div>
         </div>

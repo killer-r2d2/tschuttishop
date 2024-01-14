@@ -64,16 +64,33 @@ export function DashboardUser({ profileId }: { profileId: string }) {
         <div className="w-1/4 h-auto mb-4 bg-slate-200 rounded-xl mt-5">
           <UserIcon className="w-full" />
         </div>
-        <ul className="mb-4">
-          <li>
-            {loadedProfile?.firstname} {loadedProfile?.lastname}
-          </li>
-          <li>{loadedProfile?.street}</li>
-          <li>
-            {loadedProfile?.zip} {loadedProfile?.city}
-          </li>
-        </ul>
-        <Button onPress={onOpen}>Profil Bearbeiten</Button>
+        {loadedProfile && loadedProfile?.firstname ? (
+          <>
+            <ul className="mb-4">
+              <li>
+                {loadedProfile?.firstname} {loadedProfile?.lastname}
+              </li>
+              <li>{loadedProfile?.street}</li>
+              <li>
+                {loadedProfile?.zip} {loadedProfile?.city}
+              </li>
+            </ul>
+            <Button onPress={onOpen}>Profil Bearbeiten</Button>
+          </>
+        ) : (
+          <>
+            <p className="mb-4">
+              <strong>Keine Adresse hinterlegt</strong>
+              <br />
+              Damit Sie Produkte verkaufen oder kaufen können, müssen Sie eine
+              Adresse angeben.
+            </p>
+            <Button onPress={onOpen} color="primary">
+              Profil Erstellen
+            </Button>
+          </>
+        )}
+
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalContent>
             <ModalHeader>Profil Bearbeiten</ModalHeader>

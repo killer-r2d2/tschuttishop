@@ -151,7 +151,11 @@ export default function OrdersPageContent({
                 key="shipment"
                 title={
                   <div className="flex items-center space-x-2">
-                    <TruckIcon className="w-6" />
+                    {isShipped ? (
+                      <CheckIcon className="w-6" />
+                    ) : (
+                      <TruckIcon className="w-6" />
+                    )}
                     <span>Versand</span>
                   </div>
                 }
