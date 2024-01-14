@@ -69,3 +69,6 @@ For usability testing, we created a questionnaire with a few tasks. The testing 
 - The button on the product page is now immediately disabled after the product is added to the cart, indicating that the product has been successfully added to the cart.
 - Cards have been adjusted to show when a product is "Vintage" or "Sold".
 - The dashboard has been restructured and expanded with more information about the status of the sale/purchase.
+
+## Prisma
+- A key advantage of Prisma is that it eliminates the need for manually writing and executing SQL statements, accelerating development while enhancing security and type safety.
