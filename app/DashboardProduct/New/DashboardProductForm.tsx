@@ -12,8 +12,12 @@ import {
 } from "@/app/DashboardProduct/formProductAspects";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { CheckIcon } from "@heroicons/react/24/solid";
+import { useGetProfileById } from "@/hooks/useGetProfileById";
+import Link from "next/link";
 
 export function DashboardProductForm({ profileId }: { profileId: string }) {
+  const { profile } = useGetProfileById(profileId || "");
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -81,76 +85,101 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   if (isError) return <p>Error: hat nicht funktioniert {isError}</p>;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="my-2">
-        <Input
-          type="text"
-          variant={"bordered"}
-          label="Name"
-          name="name"
-          isRequired
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="my-2">
-        <Textarea
-          variant="bordered"
-          label="Beschreibung"
-          placeholder="Beschreiben Sie das Produkt"
-          name="description"
-          isRequired
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="my-2">
-        <Select
-          label="Grösse"
-          name="size"
-          className="lg:w-1/2"
-          isRequired
-          onChange={handleSelectChange}
-        >
-          {sizes.map((size) => (
-            <SelectItem key={size.value} value={size.value}>
-              {size.label}
-            </SelectItem>
-          ))}
-        </Select>
-      </div>
-      <div className="my-2">
-        <Select
-          label="Klub"
-          name="club"
-          className="lg:w-1/2"
-          isRequired
-          onChange={handleSelectChange}
-        >
-          {clubs.map((club) => (
-            <SelectItem key={club.value} value={club.value}>
-              {club.label}
-            </SelectItem>
-          ))}
-        </Select>
-      </div>
-      <div className="my-2">
-        <Input
-          type="number"
-          variant={"bordered"}
-          label="Preis"
-          name="price"
-          isRequired
-          step="0.05"
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="my-4">
-        <Checkbox name="isVintage" onChange={handleInputChange}>
-          Vintage
-        </Checkbox>
-      </div>
-      <Button color="primary" type="submit">
-        Produkt erstellen
-      </Button>
-    </form>
+    <>
+      {!profile?.street && (
+        <div className="bg-warning-100 text-warning-800 p-4 rounded-xl w-fit mb-10">
+          <p className="font-bold">Keine Adresse hinterlegt</p>
+          <p>
+            Damit Sie Produkte verkaufen oder kaufen können, müssen Sie eine
+            Adresse angeben.
+          </p>
+          <Button
+            href="/DashboardProduct"
+            as={Link}
+            color="primary"
+            className="mt-5"
+          >
+            Profil vervollständigen
+          </Button>
+        </div>
+      )}
+      <form onSubmit={handleSubmit}>
+        <div className="my-2">
+          <Input
+            type="text"
+            variant={"bordered"}
+            label="Name"
+            name="name"
+            isRequired
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="my-2">
+          <Textarea
+            variant="bordered"
+            label="Beschreibung"
+            placeholder="Beschreiben Sie das Produkt"
+            name="description"
+            isRequired
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="my-2">
+          <Select
+            label="Grösse"
+            name="size"
+            className="lg:w-1/2"
+            isRequired
+            onChange={handleSelectChange}
+          >
+            {sizes.map((size) => (
+              <SelectItem key={size.value} value={size.value}>
+                {size.label}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+        <div className="my-2">
+          <Select
+            label="Klub"
+            name="club"
+            className="lg:w-1/2"
+            isRequired
+            onChange={handleSelectChange}
+          >
+            {clubs.map((club) => (
+              <SelectItem key={club.value} value={club.value}>
+                {club.label}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
+        <div className="my-2">
+          <Input
+            type="number"
+            variant={"bordered"}
+            label="Preis"
+            name="price"
+            isRequired
+            step="0.05"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="my-4">
+          <Checkbox name="isVintage" onChange={handleInputChange}>
+            Vintage
+          </Checkbox>
+        </div>
+        {!profile?.street ? (
+          <Button isDisabled color="primary">
+            Produkt erstellen
+          </Button>
+        ) : (
+          <Button color="primary" type="submit">
+            Produkt erstellen
+          </Button>
+        )}
+      </form>
+    </>
   );
 }

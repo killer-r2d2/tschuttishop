@@ -86,7 +86,7 @@ export function DashboardUser({ profileId }: { profileId: string }) {
               Adresse angeben.
             </p>
             <Button onPress={onOpen} color="primary">
-              Profil Erstellen
+              Adresse angeben
             </Button>
           </>
         )}

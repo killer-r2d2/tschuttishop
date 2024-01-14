@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { DashboardProductForm } from "@/app/DashboardProduct/New/DashboardProductForm";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
+import { useGetProfileById } from "@/hooks/useGetProfileById";
 
 export default async function Page() {
   const cookieStore = cookies();
@@ -16,6 +17,7 @@ export default async function Page() {
   if (!user) {
     redirect("/Login");
   }
+
   return (
     <Container>
       <h1 className="text-5xl font-bold mb-5">Neues Produkt erfassen</h1>
@@ -40,7 +42,7 @@ export default async function Page() {
             </p>
           </div>
           <div className="mt-10">
-            <p className="text-xl mb-3">Du suchst deine aktuellen Produkte?</p>
+            <p className="text-xl mb-3">Suchen Sie ihre aktuellen Produkte?</p>
             <Button
               href="/DashboardProduct/products"
               as={Link}
