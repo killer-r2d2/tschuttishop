@@ -1,3 +1,9 @@
+<!-- add an image -->
+
+![vintage-hero-wide image](/public/vintage-hero-wide.jpg)
+
+
+
 # Tschuttishop
 
 ## Project for: CAS Frontend Engineering @ Ost
