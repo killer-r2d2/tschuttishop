@@ -15,6 +15,10 @@ const navLinks: NavLink[] = [
 
 export function Navigation() {
   const [toggle, setToggle] = useState(false);
+
+  const closeNav = () => {
+    setToggle(false);
+  }
   return (
     <>
       {/* Desktop */}
@@ -78,6 +82,7 @@ export function Navigation() {
                 <li
                   key={link.name}
                   className="hover:text-slate-500 transition-colors mt-5"
+                  onClick={closeNav}
                 >
                   <Link href={link.href}>{link.name}</Link>
                 </li>

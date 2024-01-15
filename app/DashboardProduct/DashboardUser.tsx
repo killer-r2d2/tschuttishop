@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
 import { UserIcon } from "@heroicons/react/24/solid";

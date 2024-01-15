@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Sold from "@/app/DashboardProduct/Sold/Sold";
+import { Section } from "@/app/components/Base/Section";
 
 export default async function SoldPage() {
   const cookieStore = cookies();
@@ -15,9 +16,5 @@ export default async function SoldPage() {
     redirect("/Login");
   }
 
-  return (
-    <Container>
-      <Sold userProfileId={user?.id} />
-    </Container>
-  );
+  return <Sold userProfileId={user?.id} />;
 }

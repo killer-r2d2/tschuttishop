@@ -4,7 +4,6 @@ import { createClient } from "@/utils/supabase/server";
 import Orders from "@/app/DashboardProduct/Orders/Orders";
 import { redirect } from "next/navigation";
 
-
 export default async function OrdersPage() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
@@ -16,9 +15,5 @@ export default async function OrdersPage() {
     redirect("/Login");
   }
 
-  return (
-    <Container>
-      <Orders userProfileId={user?.id} />
-    </Container>
-  );
+  return <Orders userProfileId={user?.id} />;
 }

@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { DashboardUser } from "@/app/DashboardProduct/DashboardUser";
 import { DashboardStatus } from "@/app/DashboardProduct/DashboardStatus";
+import { Section } from "@/app/components/Base/Section";
 
 export default async function Dashboard() {
   const cookieStore = cookies();
@@ -16,19 +17,21 @@ export default async function Dashboard() {
     redirect("/Login");
   }
   return (
-    <Container>
-      <h1 className="text-5xl font-bold mb-5">Dashboard</h1>
-      <div className="grid grid-cols-2 gap-y-10">
-        <div className="col-span-full lg:col-span-1">
-          <p className="text-xl">Willkommen {user.email}!</p>
-          <DashboardUser profileId={user.id} />
+    <Section>
+      <Container>
+        <h1 className="text-5xl font-bold mb-5">Dashboard</h1>
+        <div className="grid grid-cols-2 gap-y-10">
+          <div className="col-span-full lg:col-span-1">
+            <p className="text-xl">Willkommen {user.email}!</p>
+            <DashboardUser profileId={user.id} />
+          </div>
+          <div className="col-span-full lg:col-span-1">
+            <hr className="lg:hidden mb-10" />
+            <h2 className="text-2xl font-bold mb-5">Meldungen</h2>
+            <DashboardStatus profileId={user.id} />
+          </div>
         </div>
-        <div className="col-span-full lg:col-span-1">
-          <hr className="lg:hidden mb-10" />
-          <h2 className="text-2xl font-bold mb-5">Meldungen</h2>
-          <DashboardStatus profileId={user.id} />
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </Section>
   );
 }
