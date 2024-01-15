@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { DashboardProductForm } from "@/app/DashboardProduct/New/DashboardProductForm";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
-import { useGetProfileById } from "@/hooks/useGetProfileById";
 
 export default async function Page() {
   const cookieStore = cookies();

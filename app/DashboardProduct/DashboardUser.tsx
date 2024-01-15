@@ -1,62 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  Input,
-  useDisclosure,
-} from "@nextui-org/react";
-import { useUpdateProfile } from "@/hooks/useUpdateProfile";
+import { Button, useDisclosure } from "@nextui-org/react";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
-import { Profile } from "@/app/types/Profile";
 import { UserIcon } from "@heroicons/react/24/solid";
+import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
 
 export function DashboardUser({ profileId }: { profileId: string }) {
-  const { profile: loadedProfile, refreshProfile } =
-    useGetProfileById(profileId);
+  const { profile: loadedProfile } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [profile, setProfile] = useState({
-    firstname: "",
-    lastname: "",
-    street: "",
-    city: "",
-    zip: "",
-  });
-
-  useEffect(() => {
-    if (loadedProfile && isOpen) {
-      setProfile({
-        firstname: loadedProfile.firstname || "",
-        lastname: loadedProfile.lastname || "",
-        street: loadedProfile.street || "",
-        city: loadedProfile.city || "",
-        zip: loadedProfile.zip || "",
-      });
-    }
-  }, [loadedProfile, isOpen]);
-
-  const { updateProfile } = useUpdateProfile();
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProfile({
-      ...profile,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async () => {
-    try {
-      await updateProfile(profileId, { ...profile } as Partial<Profile>);
-      onClose();
-      refreshProfile();
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <>
@@ -91,56 +42,12 @@ export function DashboardUser({ profileId }: { profileId: string }) {
           </>
         )}
 
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalContent>
-            <ModalHeader>Profil Bearbeiten</ModalHeader>
-            <ModalBody>
-              <Input
-                variant="bordered"
-                label="Vorname"
-                name="firstname"
-                value={profile.firstname}
-                onChange={handleInputChange}
-              />
-              <Input
-                variant="bordered"
-                label="Nachname"
-                name="lastname"
-                value={profile.lastname}
-                onChange={handleInputChange}
-              />
-              <Input
-                variant="bordered"
-                label="Straße"
-                name="street"
-                value={profile.street}
-                onChange={handleInputChange}
-              />
-              <Input
-                variant="bordered"
-                label="Stadt"
-                name="city"
-                value={profile.city}
-                onChange={handleInputChange}
-              />
-              <Input
-                variant="bordered"
-                label="PLZ"
-                name="zip"
-                value={profile.zip}
-                onChange={handleInputChange}
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Schließen
-              </Button>
-              <Button color="primary" onPress={handleSubmit}>
-                Speichern
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+        <DashboardUserModal
+          profileId={profileId}
+          onOpen={onOpen}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
       </div>
     </>
   );

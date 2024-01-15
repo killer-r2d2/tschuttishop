@@ -13,12 +13,21 @@ import {
 import { useUpdateProfile } from "@/hooks/useUpdateProfile";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
 import { Profile } from "@/app/types/Profile";
-import { UserIcon } from "@heroicons/react/24/solid";
 
-export function DashboardUser({ profileId }: { profileId: string }) {
+export function DashboardUserModal({
+  profileId,
+  onOpen,
+  onClose,
+  isOpen,
+}: {
+  profileId: string;
+  onOpen: () => void;
+  onClose: () => void;
+  isOpen: boolean;
+}) {
   const { profile: loadedProfile, refreshProfile } =
     useGetProfileById(profileId);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [profile, setProfile] = useState({
     firstname: "",
     lastname: "",
@@ -48,11 +57,12 @@ export function DashboardUser({ profileId }: { profileId: string }) {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       await updateProfile(profileId, { ...profile } as Partial<Profile>);
-      onClose();
       refreshProfile();
+      onClose();
     } catch (error) {
       console.error(error);
     }
@@ -60,47 +70,24 @@ export function DashboardUser({ profileId }: { profileId: string }) {
 
   return (
     <>
-      <div>
-        <div className="w-1/4 h-auto mb-4 bg-slate-200 rounded-xl mt-5">
-          <UserIcon className="w-full" />
-        </div>
-        {loadedProfile && loadedProfile?.firstname ? (
-          <>
-            <ul className="mb-4">
-              <li>
-                {loadedProfile?.firstname} {loadedProfile?.lastname}
-              </li>
-              <li>{loadedProfile?.street}</li>
-              <li>
-                {loadedProfile?.zip} {loadedProfile?.city}
-              </li>
-            </ul>
-            <Button onPress={onOpen}>Profil Bearbeiten</Button>
-          </>
-        ) : (
-          <>
-            <p className="mb-4">
-              <strong>Keine Adresse hinterlegt</strong>
-              <br />
-              Damit Sie Produkte verkaufen oder kaufen können, müssen Sie eine
-              Adresse angeben.
-            </p>
-            <Button onPress={onOpen} color="primary">
-              Adresse angeben
-            </Button>
-          </>
-        )}
-
-        <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <form onSubmit={handleSubmit}>
           <ModalContent>
             <ModalHeader>Profil Bearbeiten</ModalHeader>
             <ModalBody>
+              {!profile.street && (
+                <p>
+                  Damit Sie Produkte verkaufen oder kaufen können, müssen Sie
+                  eine Adresse angeben.
+                </p>
+              )}
               <Input
                 variant="bordered"
                 label="Vorname"
                 name="firstname"
                 value={profile.firstname}
                 onChange={handleInputChange}
+                isRequired
               />
               <Input
                 variant="bordered"
@@ -108,6 +95,7 @@ export function DashboardUser({ profileId }: { profileId: string }) {
                 name="lastname"
                 value={profile.lastname}
                 onChange={handleInputChange}
+                isRequired
               />
               <Input
                 variant="bordered"
@@ -115,6 +103,7 @@ export function DashboardUser({ profileId }: { profileId: string }) {
                 name="street"
                 value={profile.street}
                 onChange={handleInputChange}
+                isRequired
               />
               <Input
                 variant="bordered"
@@ -122,6 +111,7 @@ export function DashboardUser({ profileId }: { profileId: string }) {
                 name="city"
                 value={profile.city}
                 onChange={handleInputChange}
+                isRequired
               />
               <Input
                 variant="bordered"
@@ -129,19 +119,20 @@ export function DashboardUser({ profileId }: { profileId: string }) {
                 name="zip"
                 value={profile.zip}
                 onChange={handleInputChange}
+                isRequired
               />
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
                 Schließen
               </Button>
-              <Button color="primary" onPress={handleSubmit}>
+              <Button color="primary" type="submit">
                 Speichern
               </Button>
             </ModalFooter>
           </ModalContent>
-        </Modal>
-      </div>
+        </form>
+      </Modal>
     </>
   );
 }

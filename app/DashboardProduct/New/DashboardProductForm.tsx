@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useCreateProduct } from "@/hooks/useCreateProduct";
-import { Input } from "@nextui-org/react";
+import { Input, useDisclosure } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/react";
@@ -14,9 +14,11 @@ import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
 import Link from "next/link";
+import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
 
 export function DashboardProductForm({ profileId }: { profileId: string }) {
-  const { profile } = useGetProfileById(profileId || "");
+  const { profile } = useGetProfileById(profileId);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -86,23 +88,6 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
 
   return (
     <>
-      {!profile?.street && (
-        <div className="bg-warning-100 text-warning-800 p-4 rounded-xl w-fit mb-10">
-          <p className="font-bold">Keine Adresse hinterlegt</p>
-          <p>
-            Damit Sie Produkte verkaufen oder kaufen können, müssen Sie eine
-            Adresse angeben.
-          </p>
-          <Button
-            href="/DashboardProduct"
-            as={Link}
-            color="primary"
-            className="mt-5"
-          >
-            Profil vervollständigen
-          </Button>
-        </div>
-      )}
       <form onSubmit={handleSubmit}>
         <div className="my-2">
           <Input
@@ -171,7 +156,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
           </Checkbox>
         </div>
         {!profile?.street ? (
-          <Button isDisabled color="primary">
+          <Button color="primary" onPress={onOpen}>
             Produkt erstellen
           </Button>
         ) : (
@@ -179,6 +164,12 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
             Produkt erstellen
           </Button>
         )}
+        <DashboardUserModal
+          profileId={profileId}
+          onOpen={onOpen}
+          onClose={onClose}
+          isOpen={isOpen}
+        />
       </form>
     </>
   );

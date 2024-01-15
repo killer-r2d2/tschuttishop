@@ -11,12 +11,13 @@ import { Button } from "@nextui-org/button";
 import useProducts from "@/hooks/useProducts";
 import CartModal from "@/app/Cart/CartModal";
 import { useStore } from "zustand";
+import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
+import { useGetProfileById } from "@/hooks/useGetProfileById";
+import { useDisclosure } from "@nextui-org/react";
 
-export default function Cart({
-  userProfileId,
-}: {
-  userProfileId: string | undefined;
-}) {
+export default function Cart({ userProfileId }: { userProfileId: string }) {
+  const { profile: loadedProfile } = useGetProfileById(userProfileId);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const items: number[] = useStore(cartStore, (state) => state.items);
   const clearCart = useStore(cartStore, (state) => state.clearCart);
   const { purchaseProduct } = usePurchaseProduct();
@@ -82,12 +83,29 @@ export default function Cart({
             </div>
             <div className="mt-5">
               {userProfileId ? (
-                <Button color="primary" onClick={() => buyItems(items)}>
-                  Jetzt Kaufen
-                </Button>
+                <>
+                  {!loadedProfile?.street ? (
+                    <Button color="primary" onPress={onOpen}>
+                      Jetzt Kaufen
+                    </Button>
+                  ) : (
+                    <Button color="primary" onPress={() => buyItems(items)}>
+                      Jetzt Kaufen
+                    </Button>
+                  )}
+                </>
               ) : (
-                <CartModal />
+                <>
+                  <CartModal />
+                </>
               )}
+
+              <DashboardUserModal
+                profileId={userProfileId}
+                onOpen={onOpen}
+                onClose={onClose}
+                isOpen={isOpen}
+              />
             </div>
           </div>
         )}
