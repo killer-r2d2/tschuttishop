@@ -9,7 +9,6 @@ import { Product } from "../types/Product";
 import { cartStore } from "@/store/cartStore";
 import { Button } from "@nextui-org/button";
 import useProducts from "@/hooks/useProducts";
-import CartModal from "@/app/Cart/CartModal";
 import { useStore } from "zustand";
 import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
@@ -82,24 +81,15 @@ export default function Cart({ userProfileId }: { userProfileId: string }) {
               CHF
             </div>
             <div className="mt-5">
-              {userProfileId ? (
-                <>
-                  {!loadedProfile?.street ? (
-                    <Button color="primary" onPress={onOpen}>
-                      Jetzt Kaufen
-                    </Button>
-                  ) : (
-                    <Button color="primary" onPress={() => buyItems(items)}>
-                      Jetzt Kaufen
-                    </Button>
-                  )}
-                </>
+              {!loadedProfile?.street ? (
+                <Button color="primary" onPress={onOpen}>
+                  Jetzt Kaufen
+                </Button>
               ) : (
-                <>
-                  <CartModal />
-                </>
+                <Button color="primary" onPress={() => buyItems(items)}>
+                  Jetzt Kaufen
+                </Button>
               )}
-
               <DashboardUserModal
                 profileId={userProfileId}
                 onOpen={onOpen}
