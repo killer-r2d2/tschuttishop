@@ -5,7 +5,7 @@ import { Link, Button } from "@nextui-org/react";
 export function Hero() {
   return (
     <Container>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mt-5 gap-5">
         <div className="rounded-xl relative shadow-xl hover:scale-101 hover:shadow-2xl transition flex flex-col justify-end items-end">
           <Image
             src="/hero-shirt.jpg"
