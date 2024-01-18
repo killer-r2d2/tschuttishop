@@ -1,3 +1,4 @@
+// This test checks if accessing certain URLs leads to the expected final URLs,
 import { test, expect } from '@playwright/test';
 
 test('check the basic urls with expected redirections', async ({ page }) => {
