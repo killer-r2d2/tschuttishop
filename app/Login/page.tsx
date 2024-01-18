@@ -1,4 +1,5 @@
-import Link from "next/link";
+// Login component: Handles user authentication actions like sign in, sign up, and password reset.
+
 import { headers, cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { Section } from "@/app/components/Base/Section";
@@ -11,9 +12,9 @@ export default function Login({
 }: {
   searchParams: { message: string };
 }) {
+  // signIn: Authenticates the user with email and password for sign-in.
   const signIn = async (formData: FormData) => {
     "use server";
-
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const cookieStore = cookies();
@@ -29,10 +30,9 @@ export default function Login({
     }
     return redirect("/");
   };
-
+  // signUp: Registers a new user with email and password for sign-up.
   const signUp = async (formData: FormData) => {
     "use server";
-
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -46,31 +46,24 @@ export default function Login({
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-
     if (error) {
       console.log("error: ", error);
-      
       return redirect("/Login?message=signUp:User konnte nicht authentifiziert werden");
     }
-
     return redirect("/Login?message=signUp: Du hast eine E-Mail erhalten, bitte bestätige diese");
   };
-
+  // resetPassword: Sends a password reset email to the user's email address.
   const resetPassword = async (formData: FormData) => {
     "use server";
-
     const email = formData.get("email") as string;
     const cookieStore = cookies();
     const supabase = createClient(cookieStore);
-
     const { error } = await supabase.auth.resetPasswordForEmail(email);
-
     if (error) {
       return redirect(
         "/Login?message=resetPassword: User konnte nicht authentifiziert werden"
       );
     }
-
     return redirect("/Login?message=resetPassword: Du hast eine E-Mail erhalten. Nutze den Link um dir ein neues Passwort zu setzen");
   };
 
