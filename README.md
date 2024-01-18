@@ -76,5 +76,10 @@ For usability testing, we created a questionnaire with a few tasks. The testing 
 - Cards have been adjusted to show when a product is "Vintage" or "Sold".
 - The dashboard has been restructured and expanded with more information about the status of the sale/purchase.
 
+You can run the the test with:
+```bash
+npm run test
+```
+
 ## Prisma
 - A key advantage of Prisma is that it eliminates the need for manually writing and executing SQL statements, accelerating development while enhancing security and type safety.
