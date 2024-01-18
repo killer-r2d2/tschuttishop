@@ -6,6 +6,7 @@ export type FormData = {
   price: number;
   inStock: boolean;
   profileId: string;
+  image: string;
 };
 
 export type UseCreateProductResponse = {

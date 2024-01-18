@@ -14,6 +14,7 @@ export type Product = {
   buyerId?: string | null;
   isPaid: boolean;
   isShipped: boolean;
+  image?: string;
 };
 
 export type ApiResponse = Product[] | Product | { error: string };

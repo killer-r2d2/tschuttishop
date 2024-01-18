@@ -56,6 +56,7 @@ export default async function handle(
         inStock,
         isVintage,
         profileId,
+        image,
       } = req.body;
       const product = await createProduct({
         name,
@@ -70,6 +71,7 @@ export default async function handle(
         buyerId: undefined,
         isPaid: false,
         isShipped: false,
+        image,
       });
 
       return res.status(200).json(product);
@@ -82,10 +84,7 @@ export default async function handle(
   }
   if (req.method === "PUT") {
     try {
-      const {
-        id,
-        ...updateData
-      } = req.body;
+      const { id, ...updateData } = req.body;
 
       if (!id) {
         return res.status(400).json({ error: "ID is required" });

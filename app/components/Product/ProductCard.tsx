@@ -5,6 +5,7 @@ import { Product } from "@/app/types/Product";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Button } from "@nextui-org/button";
 import { Badge } from "@nextui-org/react";
+import { Chip } from "@nextui-org/chip";
 
 interface ExtendProduct extends Product {
   hasEdit: boolean;
@@ -28,6 +29,7 @@ export function ProductCard({
   getActiveProduct,
   handleDelete,
   openModal,
+  image,
 }: ExtendProduct) {
   const isInStock = inStock ? "opacity-100" : "opacity-50";
   return (
@@ -54,6 +56,7 @@ export function ProductCard({
                     updatedAt: new Date(),
                     isPaid: false,
                     isShipped: false,
+                    image,
                   })
                 : null
             }
@@ -80,6 +83,7 @@ export function ProductCard({
                     updatedAt: new Date(),
                     isPaid: false,
                     isShipped: false,
+                    image,
                   })
                 : null
             }
@@ -90,36 +94,35 @@ export function ProductCard({
           </button>
         </div>
       ) : null}
+
       <Link href={`/Products/${id}`} data-testid="product-link">
-        <div>
-          <div className="relative">
-            <div className="absolute top-5  flex flex-col items-end space-y-2 w-full">
-              <div className="flex flex-col gap-y-2">
-                {isVintage ? (
-                  <Badge content="Vintage" color="primary" className="right-10">
-                    Vintage
-                  </Badge>
-                ) : null}
-                {!inStock ? (
-                  <Badge
-                    content="Aussverkauft"
-                    color="primary"
-                    className="right-14"
-                  >
-                    In Stock
-                  </Badge>
-                ) : null}
-              </div>
-            </div>
-            <Image
-              height="1000"
-              width="1000"
-              src="/shirt-player.jpg"
-              alt="Shirt"
-              className="rounded-t-xl relative"
-            />
+        <div className="relative">
+          <Image
+            height="400"
+            width="400"
+            src={
+              image
+                ? image
+                : "https://files.edgestore.dev/9mp5a6aaofwi92im/publicFiles/_public/229e27e1-a29b-4045-8a5a-9f6b9b893aab.jpg"
+            }
+            alt={name}
+            className="h-[400px] md:h-[200px] xl:h-[250px] w-full object-cover rounded-t-xl"
+          />
+
+          <div className="absolute top-2 right-2 flex flex-col gap-2">
+            {isVintage && (
+              <Chip color="primary" variant="shadow">
+                Vintage
+              </Chip>
+            )}
+            {!inStock && (
+              <Chip color="primary" variant="shadow">
+                Verkauft
+              </Chip>
+            )}
           </div>
         </div>
+
         <div className="p-5">
           <h2 className="font-bold">{name}</h2>
           <p className="mb-5 truncate ...">{description}</p>

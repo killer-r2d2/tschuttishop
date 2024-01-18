@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { cartStore } from "@/store/cartStore";
 import { Badge } from "@nextui-org/react";
-import { useStore } from "zustand";
 import { useAsyncStore } from "@/hooks/useAsyncStore";
 export function CartNav() {
   const count = useAsyncStore(cartStore, (state) => state.count);

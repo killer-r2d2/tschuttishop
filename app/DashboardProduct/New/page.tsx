@@ -32,7 +32,7 @@ export default async function Page() {
                 Erfasse hier dein neues Produkt und verkaufe es im Tschuttishop.
               </p>
               <p>
-                Hat es spezielle Mekmale? Vielleicht eine Unterschirft eines
+                Hat es spezielle Mekmale? Vielleicht eine Unterschrift eines
                 Spielers? Dann schreibe es in die Beschreibung. Viel Erfolg!
               </p>
               <p className="mt-8">

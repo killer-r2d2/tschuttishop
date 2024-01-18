@@ -17,11 +17,15 @@ import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
 import DashboardProductImage from "@/app/DashboardProduct/New/DashboardProductImage";
 
 export function DashboardProductForm({ profileId }: { profileId: string }) {
+  const sizes = productAspectsSizes;
+  const clubs = productAspectsClubs;
   const { profile } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [imageUrl, setImageUrl] = useState<string>("");
+  console.log("imageUrl", imageUrl);
 
   const [formData, setFormData] = useState({
+    image: "",
     name: "",
     description: "",
     size: "M",
@@ -35,7 +39,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value, image: imageUrl });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,12 +50,13 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         : type === "number"
         ? parseFloat(value)
         : value;
-    setFormData({ ...formData, [name]: actualValue });
+    setFormData({ ...formData, [name]: actualValue, image: imageUrl });
   };
 
   useEffect(() => {
     if (isSuccess) {
       setFormData({
+        image: "",
         name: "",
         description: "",
         size: "",
@@ -72,9 +77,6 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
     createProduct({ ...formData, size: formData.size });
   };
 
-  const sizes = productAspectsSizes;
-  const clubs = productAspectsClubs;
-
   if (isLoading) return <SpinnerNext />;
   if (isSuccess)
     return (
@@ -91,7 +93,13 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
     <>
       <DashboardProductImage setImageUrl={setImageUrl} />
       <form onSubmit={handleSubmit}>
-        <input type="hidden" name="image" value={imageUrl} />
+        <input
+          type="hidden"
+          name="image"
+          value={imageUrl}
+          onChange={handleInputChange}
+          required
+        />
         <div className="my-2">
           <Input
             type="text"
