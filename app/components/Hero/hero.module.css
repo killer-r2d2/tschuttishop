@@ -1,6 +1,0 @@
-.heroCard {
-    transition: transform 0.25s;
-}
-.heroCard:hover {
-    transform: scale(101%);
-}
