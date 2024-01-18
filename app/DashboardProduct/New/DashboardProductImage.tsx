@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useEdgeStore } from "@/utils/edgestore/edgestore";
+import { SingleImageDropzone } from "@/app/components/Edgestore";
+import { Button, Progress } from "@nextui-org/react";
 
 export default function DashboardProductImage({
   setImageUrl,
@@ -8,24 +10,37 @@ export default function DashboardProductImage({
   setImageUrl: (url: string) => void;
 }) {
   const [file, setFile] = React.useState<File>();
+  const [progress, setProgress] = useState<number>(0);
   const { edgestore } = useEdgeStore();
 
   return (
-    <div>
-      <input
-        type="file"
-        onChange={(e) => {
-          setFile(e.target.files?.[0]);
+    <div className="w-fit flex flex-col gap-y-2 mb-5">
+      <SingleImageDropzone
+        width={200}
+        height={200}
+        value={file}
+        dropzoneOptions={{
+          maxSize: 1024 * 1024 * 1,
+        }}
+        onChange={(file) => {
+          setFile(file);
         }}
       />
-      <button
+      <div>
+        <Progress
+          aria-label="Upload..."
+          value={progress}
+          color={progress == 100 ? "success" : "primary"}
+        />
+      </div>
+      <Button
+        color="primary"
         onClick={async () => {
           if (file) {
             const res = await edgestore.publicFiles.upload({
               file,
               onProgressChange: (progress) => {
-                // you can use this to show a progress bar
-                console.log(progress);
+                setProgress(progress);
               },
             });
             // you can run some server action or api here
@@ -35,8 +50,8 @@ export default function DashboardProductImage({
           }
         }}
       >
-        Upload
-      </button>
+        Dieses Bild verwenden
+      </Button>
     </div>
   );
 }

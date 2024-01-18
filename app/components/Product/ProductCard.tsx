@@ -100,11 +100,7 @@ export function ProductCard({
           <Image
             height="400"
             width="400"
-            src={
-              image
-                ? image
-                : "https://files.edgestore.dev/9mp5a6aaofwi92im/publicFiles/_public/229e27e1-a29b-4045-8a5a-9f6b9b893aab.jpg"
-            }
+            src={image ? image : "/placeholder.jpg"}
             alt={name}
             className="h-[400px] md:h-[200px] xl:h-[250px] w-full object-cover rounded-t-xl"
           />

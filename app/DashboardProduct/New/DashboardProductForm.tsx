@@ -37,6 +37,11 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   });
   const { isLoading, isError, createProduct, isSuccess } = useCreateProduct();
 
+  //automatically handle image from state
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value, image: imageUrl });
+  };
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value, image: imageUrl });
@@ -66,6 +71,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         isVintage: false,
         profileId: profileId,
       });
+      setImageUrl("");
     }
   }, [isSuccess, profileId]);
 
@@ -73,8 +79,11 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
     e.preventDefault();
     if (!formData.profileId) {
       console.log("profileId is missing");
+    } else if (!imageUrl) {
+      alert("Bitte ein Bild einfügen");
+    } else {
+      createProduct({ ...formData, size: formData.size });
     }
-    createProduct({ ...formData, size: formData.size });
   };
 
   if (isLoading) return <SpinnerNext />;
@@ -97,7 +106,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
           type="hidden"
           name="image"
           value={imageUrl}
-          onChange={handleInputChange}
+          onChange={handleImageChange}
           required
         />
         <div className="my-2">
