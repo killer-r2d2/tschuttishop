@@ -13,12 +13,13 @@ import {
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
-import Link from "next/link";
 import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
+import DashboardProductImage from "@/app/DashboardProduct/New/DashboardProductImage";
 
 export function DashboardProductForm({ profileId }: { profileId: string }) {
   const { profile } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -88,7 +89,9 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
 
   return (
     <>
+      <DashboardProductImage setImageUrl={setImageUrl} />
       <form onSubmit={handleSubmit}>
+        <input type="hidden" name="image" value={imageUrl} />
         <div className="my-2">
           <Input
             type="text"

@@ -6,7 +6,6 @@ import { DashboardProductForm } from "@/app/DashboardProduct/New/DashboardProduc
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { Section } from "@/app/components/Base/Section";
-
 export default async function Page() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
