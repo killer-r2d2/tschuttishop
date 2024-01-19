@@ -1,4 +1,3 @@
-import { Container } from "@/app/components/Base/Container";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import Orders from "@/app/DashboardProduct/Orders/Orders";

@@ -1,9 +1,7 @@
-import { Container } from "@/app/components/Base/Container";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Sold from "@/app/DashboardProduct/Sold/Sold";
-import { Section } from "@/app/components/Base/Section";
 
 export default async function SoldPage() {
   const cookieStore = cookies();

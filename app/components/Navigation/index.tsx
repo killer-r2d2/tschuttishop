@@ -22,7 +22,7 @@ export function Navigation() {
   return (
     <>
       {/* Desktop */}
-      <nav className="pt-4 pb-4 bg-slate-900 shadow mb-5 hidden lg:block">
+      <nav className="py-4 bg-slate-900 shadow hidden lg:block">
         <Container>
           <div className="flex justify-between items-center">
             <Logo />
@@ -47,7 +47,7 @@ export function Navigation() {
       </nav>
 
       {/* Mobile */}
-      <nav className="sticky top-0 z-50 pt-4 pb-4 bg-slate-900 shadow mb-5 lg:hidden">
+      <nav className="sticky top-0 z-50 pt-4 pb-4 bg-slate-900 shadow lg:hidden">
         <Container>
           <div className="flex justify-between items-center lg:block">
             <Logo />

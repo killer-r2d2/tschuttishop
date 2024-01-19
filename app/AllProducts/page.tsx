@@ -1,4 +1,5 @@
 "use client";
+// AllProductsPage component: Displays a list of products with filtering options.
 import React, { useState, useEffect } from "react";
 import { Container } from "@/app/components/Base/Container";
 import { RadioGroup, Radio, Select, SelectItem } from "@nextui-org/react";
@@ -11,11 +12,16 @@ import { Section } from "@/app/components/Base/Section";
 
 export default function AllProductsPage() {
   const { products, isLoading, isError } = useProducts();
+  // State for the list of filtered products based on selected filters.
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  // State for the current filter option (e.g., 'all', 'vintage', 'inStock').
   const [filterOption, setFilterOption] = useState("all");
+  // State for the selected club in the dropdown filter.
   const [selectedClub, setSelectedClub] = useState("");
+  // State to track if there are any products after filtering.
   const [hasProducts, setHasProducts] = useState(true);
 
+  // Extracts unique club names from the products list for the club filter dropdown.
   const uniqueClubs = [
     "Alle",
     ...new Set(
@@ -24,11 +30,11 @@ export default function AllProductsPage() {
         .filter((club): club is string => club !== null && club !== undefined)
     ),
   ];
+
+  // Updates filteredProducts based on selected filterOption and selectedClub.
   useEffect(() => {
     if (products) {
       let filtered = products;
-
-      // Filterlogik
       switch (filterOption) {
         case "vintage":
           filtered = (filtered as Product[]).filter(
@@ -47,7 +53,6 @@ export default function AllProductsPage() {
           break;
       }
 
-      // Club-Filter
       if (selectedClub && selectedClub !== "Alle") {
         filtered = filtered.filter((product) => product.club === selectedClub);
       }
@@ -104,6 +109,7 @@ export default function AllProductsPage() {
             <h1 className="text-5xl font-bold mb-5">Alle Produkte</h1>
             {hasProducts ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                {/* Map each filtered product to a ProductCard component. */}
                 {filteredProducts.map((product) => (
                   <ProductCard {...product} key={product.id} hasEdit={false} />
                 ))}

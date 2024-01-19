@@ -1,4 +1,5 @@
 "use client";
+// Favorites page: displaying the user's favorite products.
 import { Container } from "@/app/components/Base/Container";
 import BackButton from "@/app/components/Base/BackButton";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
@@ -12,6 +13,7 @@ import { Section } from "@/app/components/Base/Section";
 export default function Page() {
   const items: number[] = useStore(favoritesStore, (state) => state.items);
   const { products, isLoading, isError } = useProducts();
+  // Filters the full product list to only show those that are in the favorites list.
   const favoritesProducts = (products as Product[])?.filter((product) =>
     items.includes(product.id)
   );

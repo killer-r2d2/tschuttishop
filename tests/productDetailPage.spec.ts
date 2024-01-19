@@ -1,3 +1,4 @@
+// Test to verify the functionality of navigating to a product detail page.
 import { test } from '@playwright/test';
 
 test('check if first product has a detailsite', async ({ page }) => {
