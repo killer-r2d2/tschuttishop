@@ -21,7 +21,6 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   const clubs = productAspectsClubs;
   const { profile } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [imageUrl, setImageUrl] = useState<string>("");
   const [imageUploadError, setImageUploadError] = useState<string>("hidden");
 
   const [formData, setFormData] = useState({
@@ -38,13 +37,12 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   const { isLoading, isError, createProduct, isSuccess } = useCreateProduct();
 
   //automatically handle image from state
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value, image: imageUrl });
+  const handleImageChange = (url: string) => {
+    setFormData({ ...formData, image: url });
   };
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value, image: imageUrl });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +53,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         : type === "number"
         ? parseFloat(value)
         : value;
-    setFormData({ ...formData, [name]: actualValue, image: imageUrl });
+    setFormData({ ...formData, [name]: actualValue });
   };
 
   useEffect(() => {
@@ -71,7 +69,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         isVintage: false,
         profileId: profileId,
       });
-      setImageUrl("");
+      setImageUploadError("hidden");
     }
   }, [isSuccess, profileId]);
 
@@ -79,14 +77,10 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
     e.preventDefault();
     if (!formData.profileId) {
       console.log("profileId is missing");
-    } else if (!imageUrl) {
+    } else if (!formData.image) {
       setImageUploadError("block");
     } else {
-      await createProduct({
-        ...formData,
-        size: formData.size,
-        image: imageUrl,
-      });
+      await createProduct(formData);
     }
   };
 
@@ -104,15 +98,9 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
 
   return (
     <>
-      <DashboardProductImage setImageUrl={setImageUrl} />
+      <DashboardProductImage setImageUrl={handleImageChange} />
+
       <form onSubmit={handleSubmit}>
-        <input
-          type="hidden"
-          name="image"
-          value={imageUrl}
-          onChange={handleImageChange}
-          required
-        />
         <div className="my-2">
           <Input
             type="text"

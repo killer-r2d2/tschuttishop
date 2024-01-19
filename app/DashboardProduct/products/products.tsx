@@ -25,6 +25,7 @@ import {
   productAspectsClubs,
   productAspectsSizes,
 } from "@/app/DashboardProduct/formProductAspects";
+import DashboardProductImage from "@/app/DashboardProduct/New/DashboardProductImage";
 
 export function Products({ userProfileId }: { userProfileId: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -72,6 +73,14 @@ export function Products({ userProfileId }: { userProfileId: string }) {
               </ModalHeader>
               <ModalBody>
                 <div>
+                  <DashboardProductImage
+                    setImageUrl={(url) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        image: url,
+                      })
+                    }
+                  />
                   <Input
                     type="text"
                     value={activeProduct ? activeProduct.name : ""}
@@ -183,7 +192,7 @@ export function Products({ userProfileId }: { userProfileId: string }) {
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                  Abbrechen
                 </Button>
                 <Button
                   color="primary"

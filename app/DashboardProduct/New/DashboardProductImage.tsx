@@ -21,6 +21,10 @@ export default function DashboardProductImage({
         value={file}
         dropzoneOptions={{
           maxSize: 1024 * 1024 * 1,
+          accept: {
+            "image/jpeg": [".jpg", ".jpeg"],
+            "image/png": [".png"],
+          },
         }}
         onChange={(file) => {
           setFile(file);
