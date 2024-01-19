@@ -43,14 +43,11 @@ export default function DashboardProductImage({
                 setProgress(progress);
               },
             });
-            // you can run some server action or api here
-            // to add the necessary data to your database
-            console.log(res.url);
             setImageUrl(res.url);
           }
         }}
       >
-        Dieses Bild verwenden
+        Bild hochladen
       </Button>
     </div>
   );

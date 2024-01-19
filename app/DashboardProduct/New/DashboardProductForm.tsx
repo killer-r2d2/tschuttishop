@@ -22,7 +22,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   const { profile } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [imageUrl, setImageUrl] = useState<string>("");
-  console.log("imageUrl", imageUrl);
+  const [imageUploadError, setImageUploadError] = useState<string>("hidden");
 
   const [formData, setFormData] = useState({
     image: "",
@@ -80,9 +80,13 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
     if (!formData.profileId) {
       console.log("profileId is missing");
     } else if (!imageUrl) {
-      alert("Bitte ein Bild einfügen");
+      setImageUploadError("block");
     } else {
-      createProduct({ ...formData, size: formData.size });
+      await createProduct({
+        ...formData,
+        size: formData.size,
+        image: imageUrl,
+      });
     }
   };
 
@@ -174,6 +178,11 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
           <Checkbox name="isVintage" onChange={handleInputChange}>
             Vintage
           </Checkbox>
+        </div>
+        <div
+          className={`text-red-800 image-upload-error bg-red-200 p-2 mb-4 rounded-xl w-full ${imageUploadError}`}
+        >
+          Bitte ein Bild hochladen
         </div>
         {!profile?.street ? (
           <Button color="primary" onPress={onOpen}>

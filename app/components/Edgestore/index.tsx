@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useDropzone, type DropzoneOptions } from "react-dropzone";
 import { twMerge } from "tailwind-merge";
-import { CloudArrowUpIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const variants = {
   base: "relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out",
@@ -28,16 +28,16 @@ type InputProps = {
 
 const ERROR_MESSAGES = {
   fileTooLarge(maxSize: number) {
-    return `The file is too large. Max size is ${formatFileSize(maxSize)}.`;
+    return `Das Bild ist zu gross. Maximalgrösse: ${formatFileSize(maxSize)}.`;
   },
   fileInvalidType() {
-    return "Invalid file type.";
+    return "Ungültiger Dateityp.";
   },
   tooManyFiles(maxFiles: number) {
-    return `You can only add ${maxFiles} file(s).`;
+    return `Nur ${maxFiles} Datei(en) erlaubt.`;
   },
   fileNotSupported() {
-    return "The file is not supported.";
+    return "Datei nicht unterstützt.";
   },
 };
 
@@ -130,7 +130,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
           })}
         >
           {/* Main File Input */}
-          <input ref={ref} {...getInputProps()} />
+          <input ref={ref} {...getInputProps()} id="image-upload" />
 
           {imageUrl ? (
             // Image Preview
@@ -142,10 +142,10 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
           ) : (
             // Upload Icon
             <div className="flex flex-col items-center justify-center text-xs text-gray-400">
-              <CloudArrowUpIcon className="mb-2 h-7 w-7" />
-              <div className="text-gray-400">drag & drop to upload</div>
+              <PhotoIcon className="mb-2 h-7 w-7" />
+              <div className="text-gray-400">drag & drop</div>
               <div className="mt-3">
-                <Button disabled={disabled}>select</Button>
+                <Button disabled={disabled}>Hinzufügen</Button>
               </div>
             </div>
           )}
