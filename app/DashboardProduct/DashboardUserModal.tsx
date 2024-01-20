@@ -124,7 +124,7 @@ export function DashboardUserModal({
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
-                Schließen
+                Abbrechen
               </Button>
               <Button color="primary" type="submit">
                 Speichern
