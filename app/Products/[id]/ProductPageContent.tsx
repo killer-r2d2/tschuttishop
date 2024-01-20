@@ -10,7 +10,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 import { useStore } from "zustand";
 import { Section } from "@/app/components/Base/Section";
 
-const Index = ({
+const ProductPageContent = ({
   id,
   name,
   club,
@@ -105,4 +105,4 @@ const Index = ({
   );
 };
 
-export default Index;
+export default ProductPageContent;

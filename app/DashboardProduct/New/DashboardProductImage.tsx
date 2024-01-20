@@ -51,7 +51,7 @@ export default function DashboardProductImage({
           }
         }}
       >
-        Bild hochladen
+        Bild bestätigen
       </Button>
     </div>
   );

@@ -1,9 +1,9 @@
 "use client";
 // Page component: Responsible for rendering the product details page based on a given product ID.
 import useGetProductById from "@/hooks/useGetProductById";
-import ProductPage from "@/app/components/ProductPage";
 import { Container } from "@/app/components/Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
+import ProductPageContent from "@/app/Products/[id]/ProductPageContent";
 
 export default function Page({ params }: { params: { id: number } }) {
   const productId: number = params.id;
@@ -19,7 +19,7 @@ export default function Page({ params }: { params: { id: number } }) {
   if (isError) return <p>Error: {isError.message}</p>;
 
   return (
-    <ProductPage
+    <ProductPageContent
       id={0}
       name={""}
       description={""}
@@ -35,6 +35,6 @@ export default function Page({ params }: { params: { id: number } }) {
       isPaid={false}
       isShipped={false}
       {...product}
-    ></ProductPage>
+    ></ProductPageContent>
   );
 }
