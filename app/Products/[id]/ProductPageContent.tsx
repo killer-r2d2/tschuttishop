@@ -42,7 +42,6 @@ const ProductPageContent = ({
               height={500}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               className="rounded-xl"
-              priority
             />
           </div>
           <div className="col-span-full xl:col-span-8 h-full flex flex-col justify-between gap-y-5 lg:gap-y-5">

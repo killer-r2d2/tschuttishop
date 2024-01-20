@@ -30,7 +30,7 @@ export default function CartItem({
         </Link>
       </div>
       <div className="col-span-full xl:col-span-4 flex flex-col gap-8">
-        <Link href={`/Products/${id}`}>
+        <Link href={`/Products/${id}`} className="max-w-max">
           <h2 className="text-2xl font-bold">{name}</h2>
         </Link>
         <div>
