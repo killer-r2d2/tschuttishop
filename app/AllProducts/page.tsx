@@ -34,7 +34,12 @@ export default function AllProductsPage() {
   // Updates filteredProducts based on selected filterOption and selectedClub.
   useEffect(() => {
     if (products) {
-      let filtered = products;
+      let sortedProducts = [...products].sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+
+      let filtered = sortedProducts;
       switch (filterOption) {
         case "vintage":
           filtered = (filtered as Product[]).filter(
@@ -89,7 +94,7 @@ export default function AllProductsPage() {
                 <Radio value="all">Alle Produkte</Radio>
                 <Radio value="vintage">Vintage</Radio>
                 <Radio value="inStock">Erhältlich</Radio>
-                <Radio value="outOfStock">Ausverkauft</Radio>
+                <Radio value="outOfStock">Verkauft</Radio>
               </RadioGroup>
               <Select
                 label="Wählen Sie einen Club"
