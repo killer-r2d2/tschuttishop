@@ -25,6 +25,8 @@ A utility-first CSS framework for rapidly building custom designs without leavin
 A React UI library designed for creating modern and responsive interfaces with a collection of customizable and reusable components.
 - [Resend](https://resend.com/)
 Email solution
+- [Edgstore](https://edgestore.dev/)
+EdgeStore streamlines the file upload process in web applications
 
 ## Getting Started
 
@@ -37,7 +39,11 @@ This project requires certain environment variables to be set up. Follow the ste
         ```bash
         cp example.env .env
         ```
-    - Open the `.env` file and set the value for `DATABASE_URL` to your database connection string.
+    - Open the `.env` file and set the value for:
+        - `DATABASE_URL` to your database connection string.
+    - Add EdgeStore variables:
+        - `EDGE_STORE_ACCESS_KEY`
+        - `EDGE_STORE_SECRET_KEY`
 
 2. **Setting Up Local Environment Variables:**
     - Copy the `example.env.local` file and rename the copy to `.env.local`.
@@ -69,17 +75,7 @@ In this project, we use [Playwright](https://playwright.dev/) for automated end-
   
 - First Product Detail Page Check (`productDetailPage.spec.ts`): This test ensures that the detail page of the first product on the homepage loads successfully and that the user can return to the homepage using the 'Back' button.
 
-## Usability Testing
-For usability testing, we created a questionnaire with a few tasks. The testing was conducted by several individuals on Windows and Mac systems. The surveys with the responses can be found here. [Usability Testing](https://drive.google.com/drive/folders/1aVG5FBLAst57tTYWFlhghE66SeIWbxEz?usp=sharing)
-### Adjustments after Usability Testing
-- The button on the product page is now immediately disabled after the product is added to the cart, indicating that the product has been successfully added to the cart.
-- Cards have been adjusted to show when a product is "Vintage" or "Sold".
-- The dashboard has been restructured and expanded with more information about the status of the sale/purchase.
-
 You can run the the test with:
 ```bash
 npm run test
 ```
-
-## Prisma
-- A key advantage of Prisma is that it eliminates the need for manually writing and executing SQL statements, accelerating development while enhancing security and type safety.
