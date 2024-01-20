@@ -18,7 +18,7 @@ export function Navigation() {
 
   const closeNav = () => {
     setToggle(false);
-  }
+  };
   return (
     <>
       {/* Desktop */}
@@ -31,7 +31,7 @@ export function Navigation() {
                 {navLinks.map((link: NavLink) => (
                   <li
                     key={link.name}
-                    className="hover:text-slate-500 transition-colors"
+                    className="hover:text-slate-500 transition-colors nav-item"
                   >
                     <Link href={link.href}>{link.name}</Link>
                   </li>
@@ -54,7 +54,10 @@ export function Navigation() {
             <div className="flex gap-4 items-center">
               <FavoritesNav />
               <CartNav />
-              <button className="block" onClick={() => setToggle(!toggle)}>
+              <button
+                className="block mobile-nav-button"
+                onClick={() => setToggle(!toggle)}
+              >
                 <span className="sr-only">Toggle navigation</span>
                 <Bars4Icon
                   className={`${
@@ -66,7 +69,6 @@ export function Navigation() {
                     !toggle ? "hidden" : "block"
                   } w-10 text-slate-100 hover:text-slate-500 transition-colors`}
                 />
-                
               </button>
             </div>
           </div>
@@ -81,7 +83,7 @@ export function Navigation() {
               {navLinks.map((link: NavLink) => (
                 <li
                   key={link.name}
-                  className="hover:text-slate-500 transition-colors mt-5"
+                  className="hover:text-slate-500 transition-colors mt-5 nav-item-mobile"
                   onClick={closeNav}
                 >
                   <Link href={link.href}>{link.name}</Link>
