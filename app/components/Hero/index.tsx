@@ -14,6 +14,7 @@ export function Hero() {
             height={500}
             style={{ width: "100%", height: "100%" }}
             className="rounded-xl object-cover"
+            priority
           />
           <Button
             className="absolute bottom-5 right-5"
@@ -34,6 +35,7 @@ export function Hero() {
               height={500}
               style={{ width: "100%", height: "100%" }}
               className="rounded-2xl object-cover"
+              priority
             />
             <Button
               className="absolute bottom-5 right-5"
