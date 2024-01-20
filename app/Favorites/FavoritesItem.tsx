@@ -10,7 +10,8 @@ export default function FavoritesItem({
   name,
   price,
   size,
-  category,
+  isVintage,
+  image,
 }: Product) {
   const removeFav = useStore(favoritesStore, (state) => state.removeFav);
   return (
@@ -18,10 +19,10 @@ export default function FavoritesItem({
       <div className="col-span-full xl:col-span-1 relative aspect-[4/3] max-w-lg">
         <Link href={`/Products/${id}`}>
           <Image
-            src="/shirt-player.jpg"
+            src={image ? image : "/placeholder.jpg"}
             alt={name}
-            width={800}
-            height={800}
+            width={200}
+            height={200}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             className="rounded-xl"
           />
@@ -36,7 +37,7 @@ export default function FavoritesItem({
             Preis: <span className="font-bold">{price} CHF</span>
           </p>
           <p className="mt-2">Grösse: {size}</p>
-          <p className="mt-2">Kategorie: {category}</p>
+          {isVintage && <p>Vintage</p>}
         </div>
       </div>
       <div className="col-span-full xl:col-span-1  flex w-full xl:justify-end">

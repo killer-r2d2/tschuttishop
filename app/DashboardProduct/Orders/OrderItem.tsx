@@ -10,6 +10,7 @@ export default function OrderItem({
   price,
   isPaid,
   isShipped,
+  image,
 }: Product) {
   return (
     <Link
@@ -18,10 +19,10 @@ export default function OrderItem({
     >
       <div className="col-span-full xl:col-span-1 relative aspect-[4/3] max-w-lg">
         <Image
-          src="/shirt-player.jpg"
+          src={image ? image : "/placeholder.jpg"}
           alt={name}
-          width={800}
-          height={800}
+          width={200}
+          height={200}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           className="rounded-xl"
         />

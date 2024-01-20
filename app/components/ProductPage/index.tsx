@@ -19,6 +19,7 @@ const Index = ({
   price,
   inStock,
   isVintage,
+  image,
 }: Product) => {
   const favItems: number[] = useStore(favoritesStore, (state) => state.items);
   const addFav = useStore(favoritesStore, (state) => state.addFav);
@@ -33,14 +34,15 @@ const Index = ({
           <div className="col-span-full">
             <BackButton />
           </div>
-          <div className="col-span-full xl:col-span-4 bg-slate-200 relative aspect-[4/3] max-w-lg">
+          <div className="col-span-full xl:col-span-4 bg-slate-200 rounded-xl relative aspect-[4/3] max-w-lg">
             <Image
-              src="/shirt-player.jpg"
+              src={image ? image : "/placeholder.jpg"}
               alt={name}
-              width={800}
-              height={800}
+              width={500}
+              height={500}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               className="rounded-xl"
+              priority
             />
           </div>
           <div className="col-span-full xl:col-span-8 h-full flex flex-col justify-between gap-y-5 lg:gap-y-5">
