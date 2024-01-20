@@ -3,10 +3,25 @@ import { Button, useDisclosure } from "@nextui-org/react";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { DashboardUserModal } from "@/app/DashboardProduct/DashboardUserModal";
+import { Container } from "@/app/components/Base/Container";
+import { SpinnerNext } from "@/app/components/Base/Spinner";
+import React from "react";
 
 export function DashboardUser({ profileId }: { profileId: string }) {
-  const { profile: loadedProfile } = useGetProfileById(profileId);
+  const {
+    profile: loadedProfile,
+    isLoading,
+    isError,
+  } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  if (isLoading)
+    return (
+      <Container>
+        <SpinnerNext />
+      </Container>
+    );
+  if (isError) return <p>Error: {isError.message}</p>;
 
   return (
     <>
