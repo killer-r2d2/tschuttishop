@@ -6,6 +6,7 @@ import { Section } from "@/app/components/Base/Section";
 import { Container } from "@/app/components/Base/Container";
 
 import { redirect } from "next/navigation";
+import { Input } from "@nextui-org/react";
 
 export default function Login({
   searchParams,
@@ -26,7 +27,9 @@ export default function Login({
     });
 
     if (error) {
-      return redirect("/Login?message=signIn: User konnte nicht authentifiziert werden");
+      return redirect(
+        "/Login?message=signIn: User konnte nicht authentifiziert werden",
+      );
     }
     return redirect("/");
   };
@@ -48,9 +51,13 @@ export default function Login({
     });
     if (error) {
       console.log("error: ", error);
-      return redirect("/Login?message=signUp:User konnte nicht authentifiziert werden");
+      return redirect(
+        "/Login?message=signUp:User konnte nicht authentifiziert werden",
+      );
     }
-    return redirect("/Login?message=signUp: Du hast eine E-Mail erhalten, bitte bestätige diese");
+    return redirect(
+      "/Login?message=signUp: Du hast eine E-Mail erhalten, bitte bestätige diese",
+    );
   };
   // resetPassword: Sends a password reset email to the user's email address.
   const resetPassword = async (formData: FormData) => {
@@ -61,10 +68,12 @@ export default function Login({
     const { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) {
       return redirect(
-        "/Login?message=resetPassword: User konnte nicht authentifiziert werden"
+        "/Login?message=resetPassword: User konnte nicht authentifiziert werden",
       );
     }
-    return redirect("/Login?message=resetPassword: Du hast eine E-Mail erhalten. Nutze den Link um dir ein neues Passwort zu setzen");
+    return redirect(
+      "/Login?message=resetPassword: Du hast eine E-Mail erhalten. Nutze den Link um dir ein neues Passwort zu setzen",
+    );
   };
 
   return (
@@ -73,11 +82,11 @@ export default function Login({
         <div className="flex justify-center h-full">
           <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
             <h1 className="text-4xl font-bold mb-6">Willkommen</h1>
-          {searchParams?.message && (
-            <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-              {searchParams.message}
-            </p>
-          )}
+            {searchParams?.message && (
+              <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+                {searchParams.message}
+              </p>
+            )}
             <form
               className="animate-in flex-1 flex flex-col w-full justify-center mb-8 gap-2 text-foreground"
               action={signIn}
@@ -91,6 +100,7 @@ export default function Login({
                 placeholder="you@example.com"
                 required
               />
+              <Input></Input>
               <label className="text-md" htmlFor="password">
                 Password
               </label>

@@ -24,7 +24,7 @@ import {
 import {
   productAspectsClubs,
   productAspectsSizes,
-} from "@/app/DashboardProduct/formProductAspects";
+} from "@/utils/formProductAspects";
 import DashboardProductImage from "@/app/DashboardProduct/New/DashboardProductImage";
 
 export function Products({ userProfileId }: { userProfileId: string }) {

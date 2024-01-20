@@ -10,7 +10,7 @@ import { Button } from "@nextui-org/button";
 import {
   productAspectsSizes,
   productAspectsClubs,
-} from "@/app/DashboardProduct/formProductAspects";
+} from "@/utils/formProductAspects";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import { useGetProfileById } from "@/hooks/useGetProfileById";
