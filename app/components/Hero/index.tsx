@@ -11,10 +11,9 @@ export function Hero() {
             src="/hero-shirt.jpg"
             alt="Fußballshirt"
             width={500}
-            objectFit="cover"
             height={500}
             style={{ width: "100%", height: "100%" }}
-            className="rounded-xl"
+            className="rounded-xl object-cover"
           />
           <Button
             className="absolute bottom-5 right-5"
@@ -32,10 +31,9 @@ export function Hero() {
               src="/shirt-player.jpg"
               alt="Fußballspieler"
               width={500}
-              objectFit="cover"
               height={500}
               style={{ width: "100%", height: "100%" }}
-              className="rounded-2xl"
+              className="rounded-2xl object-cover"
             />
             <Button
               className="absolute bottom-5 right-5"
