@@ -11,6 +11,7 @@ export function CartNav() {
         content={count}
         color="danger"
         isInvisible={count === undefined || count < 1}
+        className="pointer-events-none"
       >
         <Link href="/Cart" aria-label="cart icon">
           <ShoppingCartIcon className="w-6 text-slate-100 hover:text-slate-500 transition-colors" />
