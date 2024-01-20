@@ -28,7 +28,7 @@ export default function Login({
 
     if (error) {
       return redirect(
-        "/Login?message=signIn: User konnte nicht authentifiziert werden",
+        "/Login?message=signIn: Die Anmeldung ist fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldeinformationen und versuchen Sie es erneut.",
       );
     }
     return redirect("/");
@@ -52,11 +52,11 @@ export default function Login({
     if (error) {
       console.log("error: ", error);
       return redirect(
-        "/Login?message=signUp:User konnte nicht authentifiziert werden",
+        "/Login?message=signUp: Registrierung fehlgeschlagen. Bitte überprüfen Sie Ihre Informationen und versuchen Sie es erneut.",
       );
     }
     return redirect(
-      "/Login?message=signUp: Du hast eine E-Mail erhalten, bitte bestätige diese",
+      "/Login?message=signUp: Sie haben eine E-Mail mit dem Bestätigungslink erhalten.",
     );
   };
   // resetPassword: Sends a password reset email to the user's email address.
@@ -68,11 +68,11 @@ export default function Login({
     const { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) {
       return redirect(
-        "/Login?message=resetPassword: User konnte nicht authentifiziert werden",
+        "/Login?message=resetPassword: Die Anmeldung ist fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldeinformationen und versuchen Sie es erneut.",
       );
     }
     return redirect(
-      "/Login?message=resetPassword: Du hast eine E-Mail erhalten. Nutze den Link um dir ein neues Passwort zu setzen",
+      "/Login?message=resetPassword: Sie haben eine E-Mail erhalten. Benutzen Sie den Link um ein neues Passwort zu setzen",
     );
   };
 
@@ -83,16 +83,16 @@ export default function Login({
           <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
             <h1 className="text-4xl font-bold mb-6">Willkommen</h1>
             {searchParams?.message && (
-              <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+              <p className="bg-slate-200 text-slate-900 p-4 rounded-xl">
                 {searchParams.message}
               </p>
             )}
             <form
-              className="animate-in flex-1 flex flex-col w-full justify-center mb-8 gap-2 text-foreground"
+              className="animate-in flex-1 flex flex-col w-full justify-center mb-8 gap-2 text-foreground border-1 border-slate-400 rounded-xl p-4"
               action={signIn}
             >
               <label className="text-md" htmlFor="email">
-                Email
+                E-Mail
               </label>
               <input
                 className="rounded-md px-4 py-2 bg-inherit border mb-4"
@@ -100,39 +100,43 @@ export default function Login({
                 placeholder="you@example.com"
                 required
               />
-              <Input></Input>
               <label className="text-md" htmlFor="password">
-                Password
+                Passwort
               </label>
               <input
-                className="rounded-md px-4 py-2 bg-inherit border mb-6"
+                className="rounded-md px-4 py-2 bg-inherit border"
                 type="password"
                 name="password"
                 placeholder="••••••••"
                 required
               />
-              <button className="bg-green-700 text-white rounded-md px-4 py-2 mb-2">
+              <p className="text-small text-gray-500 mb-4">
+                Das Passwort muss mindestens 6 Zeichen lang sein.
+              </p>
+              <button className="bg-slate-900 text-white rounded-md px-4 py-2 mb-2">
                 Sign In
               </button>
               <button
                 formAction={signUp}
                 className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
               >
-                Sign Up
+                Register
               </button>
             </form>
-            <h2 className="text-foreground">Passwort vergessen?</h2>
-            <form action={resetPassword}>
-              <input
-                className="rounded-md w-full px-4 py-2 bg-inherit border mb-6"
-                name="email"
-                placeholder="you@example.com"
-                required
-              />
-              <button className="bg-green-700 text-white w-full rounded-md px-4 py-2 mb-2">
-                Passwort zurücksetzen
-              </button>
-            </form>
+            <div className="border-1 border-slate-400 rounded-xl p-4">
+              <h2 className="text-foreground">Passwort vergessen?</h2>
+              <form action={resetPassword} className="mt-4">
+                <input
+                  className="rounded-md w-full px-4 py-2 bg-inherit border mb-6"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+                <button className="bg-slate-900 text-white w-full rounded-md px-4 py-2 mb-2">
+                  Passwort zurücksetzen
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </Container>
