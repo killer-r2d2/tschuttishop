@@ -75,6 +75,8 @@ In this project, we use [Playwright](https://playwright.dev/) for automated end-
   
 - First Product Detail Page Check (`productDetailPage.spec.ts`): This test ensures that the detail page of the first product on the homepage loads successfully and that the user can return to the homepage using the 'Back' button.
 
+- Navigation Items Check (`navigationItems.spec.ts`): This test verifies the presence and functionality of navigation items in both desktop and mobile views. It ensures that all navigation links are correctly displayed and accessible on the homepage. The test first checks the navigation items in the desktop view, confirming their visibility and interaction. It then simulates a mobile environment by adjusting the viewport size and verifies the functionality of the navigation, including the presence and operability of a mobile navigation button if available. This test is crucial for ensuring a consistent and user-friendly navigation experience across different devices.
+
 You can run the the test with:
 ```bash
 npm run test
