@@ -21,8 +21,8 @@ export default async function ProductsPage() {
       <Container>
         <h1 className="text-5xl font-bold mb-5">Aktuelle Produkte</h1>
         <p className="mb-10">
-          Verwalte hier deine aktuellen Angebote. Du willst dein Produkt doch
-          nicht mehr verkaufen? Dann kannst du es hier einfach löschen.
+          Verwalten Sie hier Ihre aktuellen Angebote. Sie wollen ein Produkt
+          doch nicht mehr verkaufen? Dann können Sie es hier einfach löschen.
         </p>
         <Products userProfileId={user?.id} />
       </Container>

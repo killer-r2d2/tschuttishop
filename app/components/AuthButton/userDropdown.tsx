@@ -24,7 +24,7 @@ export default function UserDropdown({ user }: { user: string | undefined }) {
             Neues Produkt
           </DropdownItem>
           <DropdownItem key="products" href="/DashboardProduct/products">
-            Deine aktuellen Produkte
+            Ihre aktuellen Produkte
           </DropdownItem>
           <DropdownItem key="sell" href="/DashboardProduct/Sold">
             Verkauft

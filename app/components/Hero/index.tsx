@@ -44,7 +44,7 @@ export function Hero() {
               color="primary"
               variant="solid"
             >
-              New Arrivals
+              Neu eingetroffen
             </Button>
           </div>
           <div className="rounded-2xl shadow-xl hover:scale-101 hover:shadow-2xl transition flex flex-col justify-end items-end">
