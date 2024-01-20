@@ -3,7 +3,6 @@ import { Container } from "@/app/components/Base/Container";
 import { SpinnerNext } from "@/app/components/Base/Spinner";
 import useProducts from "@/hooks/useProducts";
 import SoldItem from "@/app/DashboardProduct/Sold/SoldItem";
-import BackButton from "@/app/components/Base/BackButton";
 import { Product } from "@/app/types/Product";
 import { Section } from "@/app/components/Base/Section";
 export default function Sold({
@@ -14,7 +13,8 @@ export default function Sold({
   const { products, isLoading, isError } = useProducts();
 
   const soldProducts = (products as Product[])?.filter(
-    (product) => product.profileId === userProfileId && product.buyerId !== null
+    (product) =>
+      product.profileId === userProfileId && product.buyerId !== null,
   );
 
   if (isLoading)
@@ -28,7 +28,6 @@ export default function Sold({
   return (
     <Section>
       <Container>
-        <BackButton />
         <div>
           <h1 className="text-5xl font-bold mb-5">Verkaufte Produkte</h1>
           {soldProducts!.length > 0 ? (

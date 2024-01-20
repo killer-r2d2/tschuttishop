@@ -18,7 +18,6 @@ export default function OrdersPageContent({
   size,
   club,
   profileId,
-  buyerId,
   isPaid,
   isShipped,
   isVintage,
