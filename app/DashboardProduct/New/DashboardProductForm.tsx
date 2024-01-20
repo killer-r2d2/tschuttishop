@@ -100,68 +100,58 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
     <>
       <DashboardProductImage setImageUrl={handleImageChange} />
 
-      <form onSubmit={handleSubmit}>
-        <div className="my-2">
-          <Input
-            type="text"
-            variant={"bordered"}
-            label="Name"
-            name="name"
-            isRequired
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="my-2">
-          <Textarea
-            variant="bordered"
-            label="Beschreibung"
-            placeholder="Beschreiben Sie das Produkt"
-            name="description"
-            isRequired
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="my-2">
-          <Select
-            label="Grösse"
-            name="size"
-            className="lg:w-1/2"
-            isRequired
-            onChange={handleSelectChange}
-          >
-            {sizes.map((size) => (
-              <SelectItem key={size.value} value={size.value}>
-                {size.label}
-              </SelectItem>
-            ))}
-          </Select>
-        </div>
-        <div className="my-2">
-          <Select
-            label="Klub"
-            name="club"
-            className="lg:w-1/2"
-            isRequired
-            onChange={handleSelectChange}
-          >
-            {clubs.map((club) => (
-              <SelectItem key={club.value} value={club.value}>
-                {club.label}
-              </SelectItem>
-            ))}
-          </Select>
-        </div>
-        <div className="my-2">
-          <Input
-            type="number"
-            variant={"bordered"}
-            label="Preis"
-            name="price"
-            isRequired
-            step="0.05"
-            onChange={handleInputChange}
-          />
-        </div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <Input
+          type="text"
+          variant={"bordered"}
+          label="Name"
+          name="name"
+          isRequired
+          onChange={handleInputChange}
+        />
+        <Textarea
+          variant="bordered"
+          label="Beschreibung"
+          placeholder="Beschreiben Sie das Produkt"
+          name="description"
+          isRequired
+          onChange={handleInputChange}
+        />
+        <Select
+          label="Grösse"
+          name="size"
+          className="lg:w-1/2"
+          isRequired
+          onChange={handleSelectChange}
+        >
+          {sizes.map((size) => (
+            <SelectItem key={size.value} value={size.value}>
+              {size.label}
+            </SelectItem>
+          ))}
+        </Select>
+        <Select
+          label="Klub"
+          name="club"
+          className="lg:w-1/2"
+          isRequired
+          onChange={handleSelectChange}
+        >
+          {clubs.map((club) => (
+            <SelectItem key={club.value} value={club.value}>
+              {club.label}
+            </SelectItem>
+          ))}
+        </Select>
+        <Input
+          type="number"
+          variant={"bordered"}
+          label="Preis"
+          name="price"
+          isRequired
+          step="0.05"
+          onChange={handleInputChange}
+        />
         <div className="my-4">
           <Checkbox name="isVintage" onChange={handleInputChange}>
             Vintage

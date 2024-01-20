@@ -68,7 +68,12 @@ export function Products({ userProfileId }: { userProfileId: string }) {
 
   return (
     <div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="4xl">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="4xl"
+        scrollBehavior="inside"
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -86,105 +91,98 @@ export function Products({ userProfileId }: { userProfileId: string }) {
                     }
                   />
                 </div>
-                <form onSubmit={handleUpdateDialog}>
-                  <div className="mb-2">
-                    <Input
-                      type="text"
-                      value={activeProduct ? activeProduct.name : ""}
-                      variant="bordered"
-                      label="Name"
-                      name="name"
-                      isRequired
-                      onChange={(event) =>
-                        setActiveProduct({
-                          ...activeProduct!,
-                          name: event.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="my-2">
-                    <Textarea
-                      value={
-                        activeProduct ? activeProduct.description || "" : ""
-                      }
-                      variant="bordered"
-                      label="Beschreibung"
-                      placeholder="Beschreiben Sie das Produkt"
-                      name="description"
-                      isRequired
-                      onChange={(event) =>
-                        setActiveProduct({
-                          ...activeProduct!,
-                          description: event.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="my-2">
-                    <Select
-                      label="Grösse"
-                      name="size"
-                      isRequired
-                      className="lg:w-1/2"
-                      selectedKeys={
-                        activeProduct?.size ? [activeProduct.size] : []
-                      }
-                      onChange={(event) =>
-                        setActiveProduct({
-                          ...activeProduct!,
-                          size: event.target.value,
-                        })
-                      }
-                    >
-                      {sizes.map((size) => (
-                        <SelectItem key={size.value} value={size.value}>
-                          {size.label}
-                        </SelectItem>
-                      ))}
-                    </Select>
-                  </div>
-                  <div className="my-2">
-                    <Select
-                      label="Klub"
-                      name="club"
-                      isRequired
-                      className="lg:w-1/2"
-                      selectedKeys={
-                        activeProduct?.club ? [activeProduct.club] : []
-                      }
-                      onChange={(event) =>
-                        setActiveProduct({
-                          ...activeProduct!,
-                          club: event.target.value,
-                        })
-                      }
-                    >
-                      {clubs.map((club) => (
-                        <SelectItem key={club.value} value={club.value}>
-                          {club.label}
-                        </SelectItem>
-                      ))}
-                    </Select>
-                  </div>
-                  <div className="my-2">
-                    <Input
-                      type="number"
-                      variant={"bordered"}
-                      label="Preis"
-                      name="price"
-                      isRequired
-                      value={activeProduct?.price.toString()}
-                      step="0.05"
-                      onChange={(event) =>
-                        setActiveProduct({
-                          ...activeProduct!,
-                          price: Number(event.target.value),
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="my-2">
+                <form
+                  onSubmit={handleUpdateDialog}
+                  className="flex flex-col gap-2"
+                >
+                  <Input
+                    type="text"
+                    value={activeProduct ? activeProduct.name : ""}
+                    variant="bordered"
+                    label="Name"
+                    name="name"
+                    isRequired
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        name: event.target.value,
+                      })
+                    }
+                  />
+                  <Textarea
+                    value={activeProduct ? activeProduct.description || "" : ""}
+                    variant="bordered"
+                    label="Beschreibung"
+                    placeholder="Beschreiben Sie das Produkt"
+                    name="description"
+                    isRequired
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        description: event.target.value,
+                      })
+                    }
+                  />
+
+                  <Select
+                    label="Grösse"
+                    name="size"
+                    isRequired
+                    className="lg:w-1/2"
+                    selectedKeys={
+                      activeProduct?.size ? [activeProduct.size] : []
+                    }
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        size: event.target.value,
+                      })
+                    }
+                  >
+                    {sizes.map((size) => (
+                      <SelectItem key={size.value} value={size.value}>
+                        {size.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+
+                  <Select
+                    label="Klub"
+                    name="club"
+                    isRequired
+                    className="lg:w-1/2"
+                    selectedKeys={
+                      activeProduct?.club ? [activeProduct.club] : []
+                    }
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        club: event.target.value,
+                      })
+                    }
+                  >
+                    {clubs.map((club) => (
+                      <SelectItem key={club.value} value={club.value}>
+                        {club.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                  <Input
+                    type="number"
+                    variant={"bordered"}
+                    label="Preis"
+                    name="price"
+                    isRequired
+                    value={activeProduct?.price.toString()}
+                    step="0.05"
+                    onChange={(event) =>
+                      setActiveProduct({
+                        ...activeProduct!,
+                        price: Number(event.target.value),
+                      })
+                    }
+                  />
+                  <div className="my-4">
                     <Checkbox
                       name="isVintage"
                       isSelected={

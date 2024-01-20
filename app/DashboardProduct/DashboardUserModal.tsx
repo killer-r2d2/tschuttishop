@@ -70,17 +70,17 @@ export function DashboardUserModal({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <form onSubmit={handleSubmit}>
-          <ModalContent>
-            <ModalHeader>Profil Bearbeiten</ModalHeader>
-            <ModalBody>
-              {!profile.street && (
-                <p>
-                  Damit Sie Produkte verkaufen oder kaufen können, müssen Sie
-                  eine Adresse angeben.
-                </p>
-              )}
+      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+        <ModalContent>
+          <ModalHeader>Profil Bearbeiten</ModalHeader>
+          <ModalBody>
+            {!profile.street && (
+              <p>
+                Damit Sie Produkte verkaufen oder kaufen können, müssen Sie eine
+                Adresse angeben.
+              </p>
+            )}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
               <Input
                 variant="bordered"
                 label="Vorname"
@@ -121,17 +121,17 @@ export function DashboardUserModal({
                 onChange={handleInputChange}
                 isRequired
               />
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Abbrechen
-              </Button>
-              <Button color="primary" type="submit">
-                Speichern
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </form>
+              <div className="flex flex-row gap-2 px-0 py-4 justify-end">
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Abbrechen
+                </Button>
+                <Button color="primary" type="submit">
+                  Speichern
+                </Button>
+              </div>
+            </form>
+          </ModalBody>
+        </ModalContent>
       </Modal>
     </>
   );
