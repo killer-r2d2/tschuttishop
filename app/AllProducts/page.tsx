@@ -85,6 +85,7 @@ export default function AllProductsPage() {
           <div className="col-span-full xl:col-span-3 mb-5 xl:mr-5">
             <div className="bg-slate-200 h-fit p-5 rounded-xl">
               <p className="font-bold mb-4">Filter</p>
+              <p className="mb-4">Resultate: {filteredProducts.length}</p>
               <RadioGroup
                 value={filterOption}
                 onChange={(event) => setFilterOption(event.target.value)}
