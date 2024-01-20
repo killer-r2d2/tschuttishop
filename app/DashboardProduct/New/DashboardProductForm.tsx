@@ -22,6 +22,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   const { profile } = useGetProfileById(profileId);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [imageUploadError, setImageUploadError] = useState<string>("hidden");
+  const [focusUpload, setFocusUpload] = useState<string>("");
 
   const [formData, setFormData] = useState({
     image: "",
@@ -70,6 +71,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         profileId: profileId,
       });
       setImageUploadError("hidden");
+      setFocusUpload("");
     }
   }, [isSuccess, profileId]);
 
@@ -79,6 +81,7 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
       console.log("profileId is missing");
     } else if (!formData.image) {
       setImageUploadError("block");
+      setFocusUpload("bg-red-200 p-2 mb-4 rounded-xl w-fit rounded-xl");
     } else {
       await createProduct(formData);
     }
@@ -98,7 +101,9 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
 
   return (
     <>
-      <DashboardProductImage setImageUrl={handleImageChange} />
+      <div className={`${focusUpload}`}>
+        <DashboardProductImage setImageUrl={handleImageChange} />
+      </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <Input
@@ -158,19 +163,21 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
           </Checkbox>
         </div>
         <div
-          className={`text-red-800 image-upload-error bg-red-200 p-2 mb-4 rounded-xl w-full ${imageUploadError}`}
+          className={`text-red-800 bg-red-200 p-2 mb-4 rounded-xl w-full ${imageUploadError}`}
         >
-          Bitte ein Bild hochladen
+          Wähle ein Produtktbild aus und bestätige es.
         </div>
-        {!profile?.street ? (
-          <Button color="primary" onPress={onOpen}>
-            Produkt erstellen
-          </Button>
-        ) : (
-          <Button color="primary" type="submit">
-            Produkt erstellen
-          </Button>
-        )}
+        <div>
+          {!profile?.street ? (
+            <Button color="primary" onPress={onOpen}>
+              Produkt erstellen
+            </Button>
+          ) : (
+            <Button color="primary" type="submit">
+              Produkt erstellen
+            </Button>
+          )}
+        </div>
         <DashboardUserModal
           profileId={profileId}
           onOpen={onOpen}
