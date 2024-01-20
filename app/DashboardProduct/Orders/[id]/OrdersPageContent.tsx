@@ -68,7 +68,6 @@ export default function OrdersPageContent({
                 height={400}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 className="rounded-xl"
-                priority
               />
             </div>
             <div className="col-span-full xl:col-span-1 flex flex-col">
