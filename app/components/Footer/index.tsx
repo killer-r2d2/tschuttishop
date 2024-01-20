@@ -7,7 +7,7 @@ export function Footer() {
       <Container>
         <div className="grid grid-cols-2 gap-4">
           <ul className="col-span-full md:col-span-1">
-            <li className="text-xl mb-2">tschuttishop gmbh</li>
+            <li className="text-xl mb-2">Tschuttishop gmbh</li>
             <li>Bahnhofstrasse 1</li>
             <li>8000 Zürich</li>
             <li>
