@@ -1,4 +1,5 @@
 "use client";
+// DashboardProductForm component: Provides a form for creating or editing a product.
 import { useState, useEffect } from "react";
 import { useCreateProduct } from "@/hooks/useCreateProduct";
 import { Input, useDisclosure } from "@nextui-org/react";
@@ -41,13 +42,17 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
   const handleImageChange = (url: string) => {
     setFormData({ ...formData, image: url });
   };
+  // Handle changes in select elements: Updates the formData state with new values.
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle changes in input elements: Updates the formData state with new values.
+  // Handles different input types including text, number, and checkbox.
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
+    // Determine the actual value based on the input type.
     const actualValue =
       type === "checkbox"
         ? checked
@@ -56,9 +61,10 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         : value;
     setFormData({ ...formData, [name]: actualValue });
   };
-
+  // Reset form data and image upload error message when a new product is successfully created.
   useEffect(() => {
     if (isSuccess) {
+      // Clear form data fields and set default values.
       setFormData({
         image: "",
         name: "",
@@ -70,19 +76,24 @@ export function DashboardProductForm({ profileId }: { profileId: string }) {
         isVintage: false,
         profileId: profileId,
       });
+      // Hide the image upload error message.
       setImageUploadError("hidden");
       setFocusUpload("");
     }
   }, [isSuccess, profileId]);
-
+  // Handle form submission: Prevents the default form submission behavior.
+  // Checks if profileId and image URL are provided in the formData.
+  // If they are available, invokes the createProduct function to submit the product data.
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.profileId) {
       console.log("profileId is missing");
     } else if (!formData.image) {
+      // Display an error message if the image URL is missing.
       setImageUploadError("block");
       setFocusUpload("bg-red-200 p-2 mb-4 rounded-xl w-fit rounded-xl");
     } else {
+      // Submit the product data to create a new product.
       await createProduct(formData);
     }
   };
